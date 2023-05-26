@@ -1,5 +1,6 @@
+/* eslint-disable camelcase */
 /* eslint-disable react/no-unknown-property */
-// eslint-disable-next-line camelcase
+import Applayout from '~/layout/Applayout';
 import { Roboto, Bebas_Neue } from 'next/font/google';
 import '~/styles/globals.scss';
 
@@ -27,8 +28,9 @@ export default function App({ Component, pageProps })
         }
       `}
       </style>
-      <Component { ...pageProps } />
+      <Applayout>
+        <Component { ...pageProps } />
+      </Applayout>
     </>
-
   );
 }

@@ -1,6 +1,3 @@
-const Footer = () =>
-{
-  retunr(<footer>footer</footer>);
-};
+const Footer = () => (<footer />);
 
 export default Footer;

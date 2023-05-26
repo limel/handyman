@@ -8,7 +8,7 @@
   --text-color: #FFF;
   --hover-links-color: #FEF9CC;
   --accent-color: #FBE64D;
-  --light-accent-color: #FEF9CC;
+  --accent-color-light: #FEF9CC;
   --error-color:rgb(234 67 30 / 80%);
 
 
@@ -21,6 +21,8 @@
   --placeholder-color: rgb(255 255 255 / 55%);
   
   // linear-gradient(180.95deg, #FFFFFF -7.76%, #FBE64D 58.47%);
+
+  --transition: 0.3s ease-in-out;
 }
 
 * {
@@ -34,13 +36,33 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: var(--font-mono);
+  
 }
 
 body {
+  color: var(--text-color);
   background-color: var(--primary-bg);
+  font-size: 1.125rem;
+  min-height: 100vh;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  outline: none;
 }

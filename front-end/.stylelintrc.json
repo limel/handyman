@@ -1,19 +1,36 @@
 {
-	"extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-standard-scss"],
-	"rules": {
-		"string-quotes": "single",
-		"selector-class-pattern": null,
-		"property-no-unknown": [
-			true,
-			{
-				"ignoreProperties": ["composes", "compose-with"]
-			}
-		],
-		"selector-pseudo-class-no-unknown": [
-			true,
-			{
-				"ignorePseudoClasses": ["global"]
-			}
-		]
-	}
+  "extends": "stylelint-config-standard-scss",
+  "plugins": [
+    "stylelint-selector-bem-pattern"
+  ],
+  "rules": {
+    "string-quotes": "double",
+    "selector-class-pattern": null,
+    "plugin/selector-bem-pattern": {
+      "componentName": "[A-Z]+",
+      "componentSelectors": {
+        "initial": "^\\.{componentName}(?:-[a-z]+)?$",
+        "combined": "^\\.combined-{componentName}-[a-z]+$"
+      },
+      "utilitySelectors": "^\\.util-[a-z]+$"
+    },
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["composes", "compose-with"]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
+    "value-no-vendor-prefix": [
+      true,
+      {
+        "ignoreValues": ["box"]
+      }
+    ]
+  }
 }

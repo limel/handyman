@@ -1,0 +1,38 @@
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mainBlock {
+  background: linear-gradient(151.13deg, rgba(245, 245, 245, 0.28) 14.71%, rgba(245, 245, 245, 0) 106.39%);
+  backdrop-filter: blur(25px);
+  border-radius: 61px;
+  padding: 33px 127px 33px 177px;
+}
+
+.handyman {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: 120px;
+  line-height: 100%;
+  background: linear-gradient(2.4deg, #FBE64D 27.24%, rgba(255, 255, 255, 0.96) 105.65%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 100%;
+}
+
+.description {
+  font-size: 25px;
+  letter-spacing: 0.045em;
+  margin-top: 32px;
+}

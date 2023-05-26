@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import s from '~/styles/index.module.scss';
+import cn from 'classnames';
 
 export default function Home()
 {
@@ -10,7 +12,14 @@ export default function Home()
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main />
+      <main className={ s.section }>
+        <div className={ s.mainBlock }>
+          <p className={ s.text }>Seattle</p>
+          <h1 className={ s.handyman }>Handyman</h1>
+          <p className={ s.text } style={ { textAlign: 'right' } }>Services</p>
+        </div>
+        <p className={ s.description }>Serving Customers in the Greater Seattle Area</p>
+      </main>
     </>
   );
 }

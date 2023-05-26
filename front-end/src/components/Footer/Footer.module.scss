@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1690px;
+  width: 100%;
+  padding: 0 70px 70px;
+  margin: 0 auto;
+
+  @media (width <= 768px) {
+    & {
+      padding: 0 15px 56px;
+    }
+  }
+}
+
+.phoneBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+}
+
+.phoneIconLink {
+  width: 38px;
+  height: 38px;
+}
+
+.phoneIcon {
+  width: 100%;
+  height: 100%;
+}
+
+.phoneNumber {
+  transition: var(--transition) color;
+  font-size: 16px;
+  letter-spacing: 0.045em;
+  
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--accent-color-light);
+    }
+  }
+
+  @media (width <= 768px) {
+    & {
+      display: none;
+    }
+  }
+}

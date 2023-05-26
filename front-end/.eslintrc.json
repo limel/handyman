@@ -1,0 +1,60 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["plugin:react/recommended", "airbnb", "plugin:@next/next/recommended"],
+	"overrides": [],
+	"parserOptions": {
+		"ecmaVersion": 2021,
+		"sourceType": "module",
+    "ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"plugins": ["react"],
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"react/prop-types": "off",
+		"react/jsx-props-no-spreading": "off",
+		"jsx-a11y/anchor-is-valid": "off",
+		"react/function-component-definition": [
+			2,
+			{
+				"namedComponents": ["arrow-function", "function-declaration"]
+			}
+		],
+		"jsx-a11y/alt-text": [
+			2,
+			{
+				"elements": ["img", "object", "area", "input[type=\"image\"]"],
+				"img": ["Image"],
+				"object": ["Object"],
+				"area": ["Area"],
+				"input[type=\"image\"]": ["InputImage"]
+			}
+		],
+		"brace-style": [2, "allman"],
+		"linebreak-style": "off",
+		"object-curly-spacing": ["error", "always"],
+		"react/jsx-curly-spacing": ["error", "always"],
+
+		/* WARNINGS */
+
+		"template-curly-spacing": ["warn", "always"],
+		"array-bracket-spacing": ["warn", "always"],
+    "react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [".js", ".jsx"]
+			}
+		]
+	},
+	"settings": {
+		"import/resolver": {
+			"jsconfig": {
+				"config": "./jsconfig.json"
+			}
+		}
+	}
+}

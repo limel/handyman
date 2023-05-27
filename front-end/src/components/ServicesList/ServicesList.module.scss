@@ -5,7 +5,22 @@
   padding: 0 4.375rem;
 
   .list{ 
-    list-style: none  ;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3.375rem 0;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    list-style: none;
+
+    &:nth-child(2n+2) {
+      transform: translateX(96px);
+    }
   }
 }
 

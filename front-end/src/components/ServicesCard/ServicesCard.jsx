@@ -18,12 +18,13 @@ const ServicesCard = ({ title, description }) => (
             width: '100%',
             height: '100%',
             objectFit: 'cover',
+            inset: ' auto 0 0 auto',
           } }
         />
       </div>
     </figure>
     <div className="text" dangerouslySetInnerHTML={ { __html: description } } />
-    <Button href="/services">
+    <Button href="/services" className={ s.button }>
       GET A QUOTE
     </Button>
   </li>

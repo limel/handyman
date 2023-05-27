@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-direction: row;
   gap: 50px;
 
   &__link {
@@ -54,6 +55,7 @@
     opacity: 0;
     transform-origin: top right;
     visibility: hidden;
+    z-index: 10;
     transition: var(--transition) transform,
                 var(--transition) opacity, 
                 var(--transition) visibility;

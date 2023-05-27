@@ -6,11 +6,12 @@
   // Colors
   --primary-bg: #303030;
   --text-color: #FFF;
+  --hover-text-color: #535353;
   --hover-links-color: #FEF9CC;
   --accent-color: #FBE64D;
   --accent-color-light: #FEF9CC;
   --error-color:rgb(234 67 30 / 80%);
-
+  --button-bg: rgb(83 83 83 / 65.9%);
 
   /* Forms */
   --inputs-bg: rgb(196 196 196 / 5%);
@@ -43,7 +44,22 @@ body {
   color: var(--text-color);
   background-color: var(--primary-bg);
   font-size: 1.125rem;
-  min-height: 100vh;
+  height: 100vh;
+}
+
+body > div:first-child {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @supports (overflow: clip) {
+    overflow: clip;
+  }
+
+  > main {
+    flex: 1 1 auto;
+  }
 }
 
 a {

@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
-
 import s from './Navigation.module.scss';
 
 const navigationPlaceholder = [
@@ -37,14 +36,14 @@ const Navigation = () =>
 {
   const activeRoute = useRouter().asPath;
   const [ active, setActive ] = useState(false);
-  const navigationMenu = useRef(null);
+  const navigationMenuRef = useRef(null);
   const buttonRef = useRef(null);
 
   useEffect(() =>
   {
     const handleClickOutside = (event) =>
     {
-      if (navigationMenu.current && !navigationMenu.current.contains(event.target)
+      if (navigationMenuRef.current && !navigationMenuRef.current.contains(event.target)
         && !buttonRef.current.contains(event.target))
       {
         setActive(false);
@@ -81,7 +80,7 @@ const Navigation = () =>
       >
         <ul
           className={ s['navigation-list'] }
-          ref={ navigationMenu }
+          ref={ navigationMenuRef }
         >
           { navigationPlaceholder.map(({ id, title, url }) => (
             <li

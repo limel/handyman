@@ -5,6 +5,7 @@
   justify-content: center;
   width: fit-content;
   border-radius: 61px;
+  text-align: center;
   padding: 1.25rem 1.8125rem;
   position: relative;
   background-color: var(--button-bg);
@@ -26,6 +27,8 @@
     height: calc(100% + 6px);
     background: linear-gradient(180.95deg, #FFF -7.76%, #FBE64D 58.47%);;
     z-index: -1;
+    top: -3px;
+    left: -3px;
     opacity: 0;
     transition:  var(--transition) opacity;
     border-radius: 61px;

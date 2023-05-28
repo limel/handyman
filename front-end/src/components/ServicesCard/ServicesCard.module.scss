@@ -1,6 +1,16 @@
 .card {
-  width: fit-content;
+  max-width: 12.625rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   cursor: pointer;
+  transition:  var(--transition) all;
+
+  &:nth-child(4n+4) {
+    margin-left: 96px;
+  }
 
   .main {
     max-width: 12.625rem; 
@@ -25,9 +35,8 @@
     width: 100%;
     height: 12.375rem;
     overflow: hidden;
+    transition: var(--transition) all;
 
-    // margin-bottom: 1.5rem;
-    
     img {
       max-width: 12rem;
       width: 100%;
@@ -51,19 +60,40 @@
   }
 
   & :global(.text) {
-    display: none;
-    margin-bottom: 3rem;
+    margin-bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    transition: var(--transition) all;
   }
 
   .button {
     display: none;
   }
+}
 
-  &.active {
-    max-width: none;
-    
-    // margin-bottom: 1.5rem;
+.card.active {
+  max-width: none;
+  margin-bottom: 1.5rem;
+  width: fit-content;
 
+  // position: absolute;
+  transform: translate(0%, 0%);
+  margin-left: 0;
+
+  .image {
+     margin-bottom: 1.5rem;
   }
 
+  & :global(.text) {
+    opacity: 1;
+    visibility: visible;
+    font-size: inherit;
+    line-height: inherit;
+    margin-bottom: 3rem;
+  }
+
+  .button {
+    display: block;
+  }
 }

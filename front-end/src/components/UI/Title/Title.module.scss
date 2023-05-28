@@ -58,6 +58,14 @@
 
 
 @media (width <= 992px) {
+  .decorative {
+    width: 110px;
+
+    &::after {
+      right: 25px
+    }
+  }
+
   .title {
     font-size: 3rem;
   }
@@ -75,7 +83,7 @@
   }
 
   .decorative {
-    width: 97px;
+    width: 76px;
     height: 5px;
 
     &::before,

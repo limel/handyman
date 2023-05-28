@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import ServicesList from '~/components/ServicesList';
 
 export default function Home()
 {
@@ -11,7 +12,7 @@ export default function Home()
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        service
+        <ServicesList />
       </main>
     </>
   );

@@ -3,10 +3,10 @@ import Link from 'next/link';
 import s from './Button.module.scss';
 
 const Button = ({
-  children, className, type, onClick, tag, href,
+  children, className, type, onClick, tag, href = false,
 }) =>
 {
-  const Tag = tag || Link;
+  const Tag = href !== false ? tag || Link : tag || 'button';
   return (
     <Tag
       className={ cn(s.button, className) }

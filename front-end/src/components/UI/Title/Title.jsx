@@ -12,7 +12,9 @@ const Title = ({ children, className, tag }) =>
       >
         {children}
       </Tag>
-      <div className={ s.decorative } />
+      <div className={ s['decorative-container'] }>
+        <div className={ s.decorative } />
+      </div>
     </div>
   );
 };

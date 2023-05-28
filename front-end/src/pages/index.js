@@ -1,5 +1,7 @@
 import Head from 'next/head';
 // import HomePage from '~/components/HomePage/HomePage';
+import Error from '~/components/Error';
+import Success from '~/components/Success/';
 
 export default function Home()
 {
@@ -13,6 +15,8 @@ export default function Home()
       </Head>
       <main>
         {/* <HomePage /> */}
+        <Error />
+        <Success />
       </main>
     </>
   );

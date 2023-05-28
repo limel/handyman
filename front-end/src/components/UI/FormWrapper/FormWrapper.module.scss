@@ -1,0 +1,16 @@
+.form {
+  max-width: 58.375rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  &__wrapper {
+    border: 3px solid var(--border-color);
+    border-radius: 61px;
+    padding: 5.625rem;
+    width: 100%;
+  }
+}

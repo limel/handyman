@@ -85,6 +85,8 @@ button {
 
 .text {
   width: fit-content;
+  font-size: 1.125rem;
+  line-height: 1.4;
 
   ul {
   list-style: none;
@@ -94,8 +96,8 @@ button {
   width: fit-content;
 
   & li {
-    font-size: 1.125rem;
-    line-height: 1.4;
+    font-size: inherit;
+    line-height: inherit;
     font-weight: 400;  
     display: flex;
     align-items: center;

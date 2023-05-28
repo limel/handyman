@@ -4,18 +4,20 @@
   margin: 0 auto;
   padding: 0 4.375rem;
 
-  .list{ 
+  .list-container{ 
     list-style: none;
     display: flex;
-    flex-direction: column;
-    gap: 3.375rem 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3.375rem 12.375rem;
+    position: relative;
   }
 
   .row {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2.5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
     list-style: none;
 
     &:nth-child(2n+2) {

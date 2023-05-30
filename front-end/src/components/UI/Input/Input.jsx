@@ -23,7 +23,6 @@ export default function Input({
         placeholder={ placeholder }
         className={ classNames }
         required={ required }
-        as={ type === 'textarea' ? 'textarea' : 'input' }
         { ...props }
       />
     </div>

@@ -1,0 +1,112 @@
+.select {
+  margin-bottom: 1.5rem;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 1.125rem 1.875rem;
+    border-radius: 61px;
+    background-color: var(--inputs-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    outline: transparent solid 1px;
+    transition: var(--transition) outline-color;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:focus,
+    &:active {
+      outline-color: var(--border-color);
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 8px;
+    right: 1.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: var(--transition) transform;
+  }
+
+  &__wrapper.active {
+    .select__arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__list {
+    padding: 14px 30px 44px;
+    border: 2px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 61px 61px;
+    transform: translateX(30px);
+    width: calc(100% - 60px);
+    list-style: none;
+
+  }
+
+  &__item {
+    padding: 10px 0;
+    cursor: pointer;
+    transition: var(--transition) color;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+
+    &-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #D9D9D9;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+
+      &::after {
+        content: "";
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        background-color: var(--accent-color);
+        transform: scale(0.5) translate(-50%, -50%);
+        opacity: 0;
+        transition: var(--transition) transform,
+          var(--transition) opacity;
+      }
+    }
+
+    &.selected {
+      .select__item-mark {
+        &::after {
+          transform: scale(1) translate(-50%, -50%);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__item_first {
+    justify-content: center;
+
+    .select__item-mark {
+      margin-left: 10px;
+
+      &::after{
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%);
+      }
+    }
+  }
+}

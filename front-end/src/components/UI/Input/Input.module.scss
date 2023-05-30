@@ -3,23 +3,19 @@
 
   &__field {
     width: 100%;
-    padding: 1.375rem 1.875rem;
+    padding: 1.125rem 1.875rem;
     border-radius: 61px;
     background-color: var(--inputs-bg);
     border: 1px solid var(--border-color);
     color: var(--text-color);
-    outline: transparent solid 2px;
+    outline: transparent solid 1px;
     transition: var(--transition) outline-color;
     margin-bottom: 1.5rem;
+    font-size: 1rem;
 
     &:focus,
     &:active {
       outline-color: var(--border-color);
     }
-  }
-
-  .my-element {
-    border: 2px solid black;
-    animation: borderAnimation 0.3s ease;
   }
 }

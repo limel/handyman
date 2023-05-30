@@ -3,11 +3,13 @@ import FormWrapper from '~/components/UI/FormWrapper';
 import Input from '~/components/UI/Input';
 import SelectField from '~/components/UI/SelectField';
 import RadioGroup from '~/components/UI/RadioGroupe';
+import InputFile from '~/components/UI/InputFile';
 import s from './CallbackForm.module.scss';
 import Title from '../UI/Title/Title';
 
 const CallbackForm = () =>
 {
+  console.log(process.env.BACK_URL);
   const initialValues = {
     name: '',
     lastName: '',
@@ -59,6 +61,7 @@ const CallbackForm = () =>
           rows="7"
         />
         <RadioGroup label="Gender" name="gender" options={ options } />
+        <InputFile name="file" as="file" label="Upload file" />
       </FormWrapper>
     </section>
   );

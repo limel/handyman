@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useField } from 'formik';
 import s from './RadioGroupe.module.scss';
 
@@ -13,6 +13,11 @@ const RadioGroup = ({
     const { value } = event.target;
     field.onChange({ target: { name, value } });
   };
+
+  useEffect(() =>
+  {
+
+  }, []);
 
   return (
     <div className={ s.radio }>

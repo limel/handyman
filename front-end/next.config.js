@@ -60,6 +60,13 @@ const nextConfig = {
     return config;
   },
 
+  rewrites: async () => [
+    {
+      source: '/api/:path*',
+      destination: `${ process.env.BACK_URL }/:path*`,
+    },
+  ],
+
 };
 
 module.exports = nextConfig;

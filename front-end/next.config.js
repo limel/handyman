@@ -22,7 +22,7 @@ const hashOnlyIdent = (context, _, exportName) =>
   return result;
 };
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
 
   webpack: (config, { dev }) =>
   {

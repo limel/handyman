@@ -66,6 +66,11 @@
     }
   }
 
+  .decorative-container{
+    max-width: 187px;
+    min-width: 70px
+  }
+
   .title {
     font-size: 3rem;
   }
@@ -80,6 +85,7 @@
 
   .decorative-container{
     max-width: 117px;
+    min-width: 50px
   }
 
   .decorative {

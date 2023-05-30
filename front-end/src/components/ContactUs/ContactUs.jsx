@@ -21,7 +21,7 @@ const ContactUs = () => (
         <p className={ s.discription }>Let us help you with your project!</p>
       </div>
     </div>
-    <Button href="/">GET A QUOTE</Button>
+    <Button href="/callback-form">GET A QUOTE</Button>
   </section>
 );
 

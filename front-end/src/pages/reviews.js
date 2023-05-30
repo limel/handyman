@@ -11,9 +11,9 @@ export default function ReviewsPage()
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDFWvgz9fkV8wnlzz3nsoBKDb17UjMJsv0" />
+        <script src='https://widgets.sociablekit.com/google-reviews/widget.js' async defer></script>
       </Head>
       <main>
-        {/* <div id="map" /> */}
         <Reviews />
       </main>
     </>

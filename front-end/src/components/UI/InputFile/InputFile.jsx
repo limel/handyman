@@ -10,27 +10,23 @@ import s from './InputFile.module.scss';
 const FileInput = ({
   placeholder,
   ...props
-}) =>
-{
+}) => {
   const id = useId();
 
   const [ field, meta, helpers ] = useField(props);
   const inputRef = useRef();
 
-  const handleClick = () =>
-  {
+  const handleClick = () => {
     if (field.value) return null;
     return inputRef.current.click();
   };
 
-  const onInputChange = (e) =>
-  {
+  const onInputChange = (e) => {
     helpers.setTouched(true);
     helpers.setValue(e.currentTarget.files[0]);
   };
 
-  const onClearFile = () =>
-  {
+  const onClearFile = () => {
     helpers.setValue(null);
   };
 

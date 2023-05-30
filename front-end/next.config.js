@@ -2,8 +2,7 @@
 const loaderUtils = require('loader-utils');
 const path = require('path');
 
-const hashOnlyIdent = (context, _, exportName) =>
-{
+const hashOnlyIdent = (context, _, exportName) => {
   const result = loaderUtils
     .getHashDigest(
       Buffer.from(
@@ -24,23 +23,18 @@ const hashOnlyIdent = (context, _, exportName) =>
 const nextConfig = {
   reactStrictMode: false,
 
-  webpack: (config, { dev }) =>
-  {
+  webpack: (config, { dev }) => {
     const rules = config.module.rules
       .find((rule) => typeof rule.oneOf === 'object')
       .oneOf.filter((rule) => Array.isArray(rule.use));
 
-    if (!dev)
-    {
-      rules.forEach((rule) =>
-      {
-        rule.use.forEach((moduleLoader) =>
-        {
+    if (!dev) {
+      rules.forEach((rule) => {
+        rule.use.forEach((moduleLoader) => {
           if (
             moduleLoader.loader?.includes('css-loader')
           && !moduleLoader.loader?.includes('postcss-loader')
-          )
-          {
+          ) {
           // eslint-disable-next-line no-param-reassign
             moduleLoader.options.modules.getLocalIdent = hashOnlyIdent;
           }
@@ -48,8 +42,7 @@ const nextConfig = {
       });
     }
 
-    if (dev)
-    {
+    if (dev) {
     // eslint-disable-next-line no-param-reassign
       config.watchOptions = {
         poll: 1000,
@@ -60,13 +53,14 @@ const nextConfig = {
     return config;
   },
 
-  rewrites: async () => [
-    {
-      source: '/api/:path*',
-      destination: `${ process.env.BACK_URL }/:path*`,
-    },
-  ],
-
+  async rewrites() {
+    return [
+      {
+        source: '/api/orders',
+        destination: `${ process.env.BACK_URL }/api/orders`,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

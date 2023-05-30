@@ -5,13 +5,21 @@ import s from './Input.module.scss';
 
 export default function Input({
   placeholder = '', name, label, required, type = 'text', ...props
-})
-{
-  const { errors } = useFormikContext();
+}) {
+  const {
+    errors, values, touched, setFieldValue,
+  } = useFormikContext();
+  const fullfieldCondition = values[name] !== '' && !errors[name] && touched[name] && props.as !== 'textarea';
 
   const classNames = cn(s.input__field, {
-    [s.error]: errors[name],
+    [s.error]: errors[name] && touched[name],
+    [s.fullfield]: fullfieldCondition,
   });
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setFieldValue(name, value);
+  };
 
   return (
     <div className={ s.input }>
@@ -20,9 +28,10 @@ export default function Input({
         type={ type }
         id={ name }
         name={ name }
+        value={ values[name] }
         placeholder={ placeholder }
         className={ classNames }
-        required={ required }
+        onChange={ handleChange }
         { ...props }
       />
     </div>

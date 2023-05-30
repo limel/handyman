@@ -9,6 +9,19 @@
   border: 3px solid #FEF9CC;
   border-radius: 61px;
   padding: 56px 175px;
+  background-color: var(--primary-bg);
+  margin: 0 auto;
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: var(--transition) transform, 
+              var(--transition) visibility,
+              var(--transition) opacity;
+  opacity: 0;
+  visibility: hidden;
+
 
   @media (width <= 768px) {
     padding: 42px 84px;
@@ -33,10 +46,10 @@
     height: 185px;
     border-radius: 50%;
     background: conic-gradient(from 180deg at 50% 50%, #FEF9CC 0deg, #FBE64D 0.84deg, #FEF9CC 360deg);
-    animation: rotate 5s infinite linear;
+    animation: rotate 1s infinite linear;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       display: block;
       width: 75%;
@@ -55,6 +68,7 @@
   0% {
     transform: rotate(360deg);
   }
+
   100% {
     transform: rotate(0);
   }

@@ -1,8 +1,18 @@
 import Head from 'next/head';
 import CallbackForm from '~/components/CallbackForm/CallbackForm';
 
-export default function GetAQuote()
-{
+// export async function getStaticProps() {
+
+//   const formOptions =
+
+//   return {
+//     props: {
+//       title: 'Get a quote',
+//     },
+//   };
+// }
+
+export default function GetAQuote() {
   return (
     <>
       <Head>

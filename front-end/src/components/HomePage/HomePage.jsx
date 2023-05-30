@@ -1,3 +1,4 @@
+import Button from '../UI/Button/Button';
 import s from './HomePage.module.scss';
 
 const HomePage = () => (
@@ -10,6 +11,7 @@ const HomePage = () => (
       </div>
     </div>
     <p className={ s.description }>Serving Customers in the Greater Seattle Area</p>
+    <Button href="/callback-form" className={ s.button }>GET A QUOTE</Button>
   </section>
 );
 

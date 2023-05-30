@@ -5,7 +5,7 @@ import s from './Footer.module.scss';
 const Footer = () => (
   <footer className={ s.container }>
     <div className={ s.phoneBlock }>
-      <Link href="" className={ s.phoneIconLink }>
+      <Link href="/contact-us" className={ s.phoneIconLink }>
         <svg className={ s.phoneIcon }>
           <use href="/sprite.svg#phone" />
         </svg>

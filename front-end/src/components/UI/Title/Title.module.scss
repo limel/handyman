@@ -78,6 +78,10 @@
 }
 
 @media (width <= 768px) {
+  .title-block {
+    margin-bottom: 2.625rem;
+  }
+
   .title {
     font-size: 1.875rem;
     padding-bottom: 2px;

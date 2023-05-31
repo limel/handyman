@@ -57,7 +57,7 @@ const nextConfig = {
     return [
       {
         source: '/api/orders',
-        destination: `${ process.env.BACK_URL }/api/orders`,
+        destination: 'http://localhost:1337/api/orders',
       },
     ];
   },

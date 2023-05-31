@@ -1,39 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { useState, useRef, useEffect } from 'react';
 import Steps from '~/components/Steps/';
 import FormWrapper from '~/components/UI/FormWrapper';
 import Input from '~/components/UI/Input';
 import SelectField from '~/components/UI/SelectField';
 import RadioGroup from '~/components/UI/RadioGroupe';
 import InputFile from '~/components/UI/InputFile';
-import cn from 'classnames';
-import createOrderApi from '~/pages/api/createOrederApi';
 import * as schema from '~/../../cms/src/api/order/content-types/order/schema.json';
-import Success from '~/components/Success';
-import Error from '~/components/Error';
 import Title from '~/components/UI/Title';
-import Loading from '~/components/Loading';
 import s from './CallbackForm.module.scss';
 
 const CallbackForm = () => {
-  const [ status, setStatus ] = useState(null);
-  const messagesRef = useRef(null);
-  const formRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (messagesRef.current && !messagesRef.current.contains(event.target)) {
-        setStatus(null); // Reset the status to null when clicking outside the form
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   const initialValues = {
     first_name: '',
     last_name: '',
@@ -46,27 +22,6 @@ const CallbackForm = () => {
     first_exp: true,
     description: '',
     upload_file: null,
-  };
-
-  const handleSubmit = async (values, actions) => {
-    setStatus('pending');
-
-    console.log(actions);
-
-    setTimeout(() => {
-      createOrderApi(values).then(() => {
-        actions.setErrors({});
-        actions.resetForm();
-        setStatus('success');
-      }).catch((error) => {
-        setStatus('error');
-        actions.setErrors({ submit: error.message });
-      });
-    }, 5000);
-
-    setTimeout(() => {
-      setStatus(null);
-    }, 10000);
   };
 
   const { attributes } = schema;
@@ -85,7 +40,7 @@ const CallbackForm = () => {
     <section className={ s.section }>
       <Title>Get a Quote</Title>
       <Steps />
-      <FormWrapper initialValues={ initialValues } handleSubmit={ handleSubmit } ref={ formRef }>
+      <FormWrapper initialValues={ initialValues }>
         <>
           <div className={ s.row }>
             <Input name="first_name" as="input" placeholder="e.g. Anna" label="FIRST NAME" required />
@@ -99,7 +54,7 @@ const CallbackForm = () => {
             <Input name="city" as="input" placeholder="e.g.Shoreline" label="CITY" required />
             <Input name="zip_code" as="input" placeholder="98155" label="ZIP CODE" required />
           </div>
-          <SelectField name="hear_about_us" as="select" placeholder="Select from the list..." label="How did you hear about us?*" required options={ hearAboutUsEnum.enum } />
+          <SelectField name="hear_about_us" as="select" placeholder="Select from the list..." label="How did you hear about us?" required options={ hearAboutUsEnum.enum } />
           <RadioGroup label="Would you like to receive occasional tips and offers via email?" name="tips_via_email" options={ tipsEmailOptions } />
           <RadioGroup label="Is this your first experience with Acumen Handyman?" name="first_exp" options={ firstExpOptions } />
           <Input
@@ -110,23 +65,10 @@ const CallbackForm = () => {
             as="textarea"
             style={ { padding: '29px 30px' } }
             rows="7"
+            className={ s.description }
           />
-          <InputFile name="file" as="file" label="Upload file" />
+          <InputFile name="upload_file" as="file" label="Upload image" />
         </>
-        <div ref={ messagesRef }>
-          <Success className={ cn({
-            [s.success]: status === 'success',
-          }) }
-          />
-          <Error className={ cn({
-            [s.error]: status === 'error',
-          }) }
-          />
-          <Loading className={ cn({
-            [s.loading]: status === 'pending',
-          }) }
-          />
-        </div>
       </FormWrapper>
     </section>
   );

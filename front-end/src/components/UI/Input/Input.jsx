@@ -4,7 +4,7 @@ import ControlLabel from '~/components/UI/ControlLabel';
 import s from './Input.module.scss';
 
 export default function Input({
-  placeholder = '', name, label, required, type = 'text', ...props
+  placeholder = '', name, label, required, type = 'text', className, ...props
 }) {
   const {
     errors, values, touched, setFieldValue,
@@ -22,7 +22,7 @@ export default function Input({
   };
 
   return (
-    <div className={ s.input }>
+    <div className={ cn(s.input, className) }>
       <ControlLabel id={ name } label={ label } required={ required } />
       <Field
         type={ type }

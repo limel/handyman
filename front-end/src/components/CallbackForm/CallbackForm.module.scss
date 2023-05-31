@@ -11,21 +11,41 @@
     width: 100%;
 
     & > div:first-child {
-      margin-right: 100px;
+      margin-right: 6.25rem;
     }
-  }
-
-  .success, 
-  .error, 
-  .loading {
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
   }
 }
 
-
 .list {
   position: static;
+}
+
+@media (width <= 992px) {
+  .section {
+    margin: 0 4.375rem;
+    margin-bottom: 3.75rem;
+
+    .row {
+      flex-wrap: wrap;
+
+      & > div:first-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  
+}
+
+@media (width <= 768px) {
+  .section {
+    margin: 0;
+    margin-bottom: 3.75rem;
+
+    .description label{
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
 }
 

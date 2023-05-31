@@ -57,6 +57,15 @@ export default function SelectField({
     };
   }, []);
 
+  const fullfieldCondition = field.value !== ''
+  && (!meta.error || !meta.touched)
+  && meta.touched;
+
+  const classNames = cn(s.select__input, {
+    [s.error]: meta.error && meta.touched,
+    [s.fullfield]: fullfieldCondition,
+  });
+
   return (
     <div className={ s.select } ref={ selectRef }>
       <ControlLabel id={ name } label={ label } required={ required } />
@@ -68,7 +77,7 @@ export default function SelectField({
           type="text"
           readOnly
           value={ field.value }
-          className={ s.select__input }
+          className={ classNames }
           onClick={ () => setOpen(!open) }
           onBlur={ handleBlur }
           onKeyDown={ handlerKeyDown }
@@ -105,7 +114,6 @@ export default function SelectField({
           ))}
         </ul>
       </SlideDown>
-      {/* {meta.touched && meta.error ? <div>{meta.error}</div> : null} */}
     </div>
   );
 }

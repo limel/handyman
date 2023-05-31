@@ -1,8 +1,7 @@
 import Head from 'next/head';
 import Reviews from '~/components/Reviews/Reviews';
 
-export default function ReviewsPage()
-{
+export default function ReviewsPage() {
   return (
     <>
       <Head>

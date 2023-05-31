@@ -13,9 +13,25 @@
     margin-bottom: 1.5rem;
     font-size: 1rem;
 
-    &:focus,
-    &:active {
+    &:focus:not(.error),
+    &:active:not(.error) {
       outline-color: var(--border-color);
     }
+
+    &.error {
+      outline-color: var(--error-color);
+      border-color: var(--error-color);
+    }
+
+    &.fullfield {
+      border-color: var(--accent-color);
+      outline-color: var(--accent-color);
+    }
+  }
+}
+
+@media (width <= 768px) {
+  .input__field {
+    padding: 1rem;
   }
 }

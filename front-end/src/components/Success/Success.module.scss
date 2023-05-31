@@ -4,6 +4,19 @@
   border: 3px solid var(--accent-color-light);
   border-radius: 61px;
   padding: 58px 156px;
+  background-color: var(--primary-bg);
+  margin: 0 auto;
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: var(--transition) transform, 
+              var(--transition) visibility,
+              var(--transition) opacity;
+  opacity: 0;
+  visibility: hidden;
+
 
   @media (width <= 992px) {
     max-width: 587px;
@@ -57,6 +70,7 @@
       font-size: 18px;
     }
   }
+
   span {
     font-size: 25px;
     line-height: 100%;

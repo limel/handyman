@@ -1,7 +1,8 @@
+import cn from 'classnames';
 import s from './Error.module.scss';
 
-const Error = () => (
-  <div className={ s['error-block'] }>
+const Error = ({ className }) => (
+  <div className={ cn(s['error-block'], className) }>
     <div className={ s['error-block__content'] }>
       <h3 className={ s.title }>OOPS!</h3>
       <p>

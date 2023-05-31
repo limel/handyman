@@ -23,6 +23,11 @@
     }
   }
 
+  &__input.error {
+    border-color: var(--error-color);
+    outline-color: var(--error-color);
+  }
+
   &__arrow {
     position: absolute;
     top: 8px;
@@ -62,6 +67,7 @@
 
     &-mark {
       width: 20px;
+      min-width: 20px;
       height: 20px;
       border-radius: 50%;
       background-color: #D9D9D9;

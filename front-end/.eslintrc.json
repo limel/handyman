@@ -34,7 +34,6 @@
 				"input[type=\"image\"]": ["InputImage"]
 			}
 		],
-		"brace-style": [2, "allman"],
 		"linebreak-style": "off",
 		"object-curly-spacing": ["error", "always"],
 		"react/jsx-curly-spacing": ["error", "always"],

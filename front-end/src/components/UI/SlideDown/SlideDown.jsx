@@ -2,10 +2,8 @@
 import React, { forwardRef, Component } from 'react';
 import styles from './slidedown.module.scss';
 
-class SlideDownContent extends Component
-{
-  constructor(props)
-  {
+class SlideDownContent extends Component {
+  constructor(props) {
     super(props);
     this.outerRef = null;
     this.state = {
@@ -14,81 +12,58 @@ class SlideDownContent extends Component
     };
     this.closedClassName = props.closedClassName || styles.closed;
 
-    this.handleRef = (ref) =>
-    {
+    this.handleRef = (ref) => {
     /* Handle both the internal and forwardedRef and maintain correct typings */
       this.outerRef = ref;
 
-      if (this.props.forwardedRef)
-      {
-        if (typeof this.props.forwardedRef === 'function')
-        {
+      if (this.props.forwardedRef) {
+        if (typeof this.props.forwardedRef === 'function') {
           this.props.forwardedRef(ref);
-        }
-        else if (typeof this.props.forwardedRef === 'object')
-        {
+        } else if (typeof this.props.forwardedRef === 'object') {
           const { forwardedRef } = this.props;
           forwardedRef.current = ref;
-        }
-        else
-        {
+        } else {
           throw new Error(`Invalid forwardedRef ${ this.props.forwardedRef }`);
         }
       }
     };
 
-    this.handleTransitionEnd = (evt) =>
-    {
-      if ((evt.target === this.outerRef) && (evt.propertyName === 'height'))
-      {
-        if (this.state.childrenLeaving)
-        {
+    this.handleTransitionEnd = (evt) => {
+      if ((evt.target === this.outerRef) && (evt.propertyName === 'height')) {
+        if (this.state.childrenLeaving) {
           this.setState({ children: null, childrenLeaving: false }, () => this.endTransition());
-        }
-        else
-        {
+        } else {
           this.endTransition();
         }
       }
     };
   }
 
-  componentDidMount()
-  {
-    if (this.outerRef)
-    {
-      if (this.props.closed || !this.props.children)
-      {
+  componentDidMount() {
+    if (this.outerRef) {
+      if (this.props.closed || !this.props.children) {
         this.outerRef.classList.add(this.closedClassName);
         this.outerRef.style.height = '0px';
-      }
-      else if (this.props.transitionOnAppear)
-      {
+      } else if (this.props.transitionOnAppear) {
         this.startTransition('0px');
-      }
-      else
-      {
+      } else {
         this.outerRef.style.height = 'auto';
       }
     }
   }
 
-  getSnapshotBeforeUpdate()
-  {
+  getSnapshotBeforeUpdate() {
     /* Prepare to resize */
     return this.outerRef ? `${ this.outerRef.getBoundingClientRect().height }px` : null;
   }
 
-  static getDerivedStateFromProps(props, state)
-  {
-    if (props.children)
-    {
+  static getDerivedStateFromProps(props, state) {
+    if (props.children) {
       return {
         children: props.children,
         childrenLeaving: false,
       };
-    } if (state.children)
-    {
+    } if (state.children) {
       return {
         children: state.children,
         childrenLeaving: true,
@@ -97,39 +72,32 @@ class SlideDownContent extends Component
     return null;
   }
 
-  componentDidUpdate(_prevProps, _prevState, snapshot)
-  {
-    if (this.outerRef)
-    {
+  componentDidUpdate(_prevProps, _prevState, snapshot) {
+    if (this.outerRef) {
       this.startTransition(snapshot);
     }
   }
 
-  endTransition()
-  {
+  endTransition() {
     this.outerRef.classList.remove(styles.transitioning);
     this.outerRef.style.transitionProperty = 'none';
     this.outerRef.style.height = this.props.closed ? '0px' : 'auto';
 
-    if (this.props.closed || !this.state.children)
-    {
+    if (this.props.closed || !this.state.children) {
       this.outerRef.classList.add(this.closedClassName);
     }
   }
 
-  startTransition(prevHeight)
-  {
+  startTransition(prevHeight) {
     let endHeight = '0px';
 
-    if (!this.props.closed && !this.state.childrenLeaving && this.state.children)
-    {
+    if (!this.props.closed && !this.state.childrenLeaving && this.state.children) {
       this.outerRef.classList.remove(this.closedClassName);
       this.outerRef.style.height = 'auto';
       endHeight = getComputedStyle(this.outerRef).height;
     }
 
-    if (parseFloat(endHeight).toFixed(2) !== parseFloat(prevHeight).toFixed(2))
-    {
+    if (parseFloat(endHeight).toFixed(2) !== parseFloat(prevHeight).toFixed(2)) {
       this.outerRef.classList.add(styles.transitioning);
       this.outerRef.style.height = prevHeight;
       // eslint-disable-next-line no-unused-expressions
@@ -139,8 +107,7 @@ class SlideDownContent extends Component
     }
   }
 
-  render()
-  {
+  render() {
     const {
       as = 'div', children, className, closed, closedClassName, transitionOnAppear, forwardedRef, ...rest
     } = this.props;

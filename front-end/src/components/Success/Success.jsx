@@ -1,7 +1,8 @@
+import cn from 'classnames';
 import s from './Success.module.scss';
 
-const Success = () => (
-  <div className={ s['success-block'] }>
+const Success = ({ className }) => (
+  <div className={ cn(s['success-block'], className) }>
     <div className={ s['success-block__content'] }>
       <h3 className={ s.title }>SUCCESS!</h3>
       <p>

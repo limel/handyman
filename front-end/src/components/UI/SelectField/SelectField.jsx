@@ -16,57 +16,55 @@ export default function SelectField({
   required,
   options,
   ...props
-})
-{
+}) {
   const [ field, meta, helpers ] = useField(name);
   const [ open, setOpen ] = useState(false);
   const selectRef = useRef(null);
 
-  const handleChange = (selectedOption) =>
-  {
-    helpers.setValue(selectedOption.value);
+  const handleChange = (selectedOption) => {
+    helpers.setValue(selectedOption);
     setOpen(false);
   };
 
-  const handlerKeyDown = (event) =>
-  {
-    if (event.key === 'Enter')
-    {
+  const handlerKeyDown = (event) => {
+    if (event.key === 'Enter') {
       event.preventDefault();
       setOpen(!open);
     }
   };
 
-  const handlerOptionKeyDown = (event, selectedOption) =>
-  {
-    if (event.key === 'Enter')
-    {
+  const handlerOptionKeyDown = (event, selectedOption) => {
+    if (event.key === 'Enter') {
       event.preventDefault();
       handleChange(selectedOption);
     }
   };
 
-  const handleBlur = () =>
-  {
+  const handleBlur = () => {
     helpers.setTouched(true);
   };
 
-  const handleClickOutside = (event) =>
-  {
-    if (selectRef.current && !selectRef.current.contains(event.target))
-    {
+  const handleClickOutside = (event) => {
+    if (selectRef.current && !selectRef.current.contains(event.target)) {
       setOpen(false);
     }
   };
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
-    return () =>
-    {
+    return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const fullfieldCondition = field.value !== ''
+  && (!meta.error || !meta.touched)
+  && meta.touched;
+
+  const classNames = cn(s.select__input, {
+    [s.error]: meta.error && meta.touched,
+    [s.fullfield]: fullfieldCondition,
+  });
 
   return (
     <div className={ s.select } ref={ selectRef }>
@@ -79,7 +77,7 @@ export default function SelectField({
           type="text"
           readOnly
           value={ field.value }
-          className={ s.select__input }
+          className={ classNames }
           onClick={ () => setOpen(!open) }
           onBlur={ handleBlur }
           onKeyDown={ handlerKeyDown }
@@ -101,9 +99,9 @@ export default function SelectField({
           </li>
           {options.map((option) => (
             <li
-              key={ option.value }
+              key={ option }
               className={ cn(s.select__item, {
-                [s.selected]: field.value === option.value,
+                [s.selected]: field.value === option,
               }) }
               onClick={ () => handleChange(option) }
               onKeyDown={ (e) => handlerOptionKeyDown(e, option) }
@@ -111,12 +109,11 @@ export default function SelectField({
               tabIndex={ 0 }
             >
               <span className={ s['select__item-mark'] } />
-              {option.label}
+              {option}
             </li>
           ))}
         </ul>
       </SlideDown>
-      {/* {meta.touched && meta.error ? <div>{meta.error}</div> : null} */}
     </div>
   );
 }

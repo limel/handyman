@@ -59,8 +59,7 @@ const CallbackForm = () => {
           <RadioGroup label="Is this your first experience with Acumen Handyman?" name="first_exp" options={ firstExpOptions } />
           <Input
             name="description"
-            placeholder="e.g.  I would like to...
-                  I will upload images to make it more clear.Thanks!"
+            placeholder={ 'e.g.  I would like to...\nI will upload images to make it more clear.Thanks!' }
             label="Please provide a description of your project and upload the image(s)"
             as="textarea"
             style={ { padding: '29px 30px' } }

@@ -1,9 +1,8 @@
 .section {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
   margin: 0 15px;
 
   .button {
@@ -12,7 +11,7 @@
 }
 
 .main-block {
-  background: linear-gradient(151.13deg, rgba(245, 245, 245, 0.28) 14.71%, rgba(245, 245, 245, 0) 106.39%);
+  background: linear-gradient(151.13deg, rgb(245 245 245 / 28%) 14.71%, rgb(245 245 245 / 0%) 106.39%);
   backdrop-filter: blur(25px);
   border-radius: 61px;
   padding: 41px 124px 41px 183px;
@@ -38,8 +37,7 @@
     font-size: 120px;
     line-height: 100%;
     letter-spacing: -0.01em;
-    background: linear-gradient(2.4deg, #FBE64D 27.24%, rgba(255, 255, 255, 0.96) 105.65%);
-    -webkit-background-clip: text;
+    background: linear-gradient(2.4deg, #FBE64D 27.24%, rgb(255 255 255 / 96%) 105.65%);
     -webkit-text-fill-color: transparent;
     background-clip: text;
 

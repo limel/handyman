@@ -44,7 +44,9 @@ body {
   color: var(--text-color);
   background-color: var(--primary-bg);
   font-size: 1.125rem;
-  height: 100vh;
+  position: relative;
+
+  // min-height: 100vh;
 }
 
 body > div:first-child {
@@ -52,7 +54,7 @@ body > div:first-child {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-
+  
   @supports (overflow: clip) {
     overflow: clip;
   }

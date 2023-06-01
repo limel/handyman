@@ -43,7 +43,7 @@
   
 }
 
-@media (width <= 768px) {
+@media (width < 768px) {
   .section {
     margin: 0;
     margin-bottom: 3.75rem;

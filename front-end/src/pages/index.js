@@ -4,11 +4,14 @@ import Background from '~/components/Background';
 import LampLightAnimation from '~/components/Background/LampLightAnimation/';
 import LampLigth from '~/components/Background/LampLight';
 import House from '~/components/Background/House';
-import Kithcen from '~/components/Background/Kitchen';
+import Kitchen from '~/components/Background/Kitchen';
 import Bath from '~/components/Background/Bath';
 import Thorfer from '~/components/Background/Thorfer';
+import useWindowWidth from '~/hooks/useWindowWidth';
 
 export default function Home() {
+  const windowWidth = useWindowWidth();
+
   return (
     <>
       <Head>
@@ -21,13 +24,37 @@ export default function Home() {
         <HomePage />
       </main>
       <Background>
-        <LampLightAnimation top="-20%" left="30%" />
-        <LampLigth top="-50%" left="20%" delay="2.5" />
-        <LampLigth top="-57%" left="37%" delay="3" />
-        <House top="35%" left="67%" />
-        <Kithcen bottom="19%" left="20%" />
-        <Bath bottom="20%" left="87%" />
-        <Thorfer top="67%" left="55%" delay="7" />
+        <LampLightAnimation
+          top={ windowWidth >= 1440 ? '-20%' : windowWidth >= 768 ? '-27%' : '-31%' }
+          left={ windowWidth >= 1440 ? '30%' : windowWidth >= 768 ? '56%' : '50%' }
+        />
+        <LampLigth
+          top={ windowWidth >= 1440 ? '-41%' : '-53%' }
+          left="20%"
+          delay="2.5"
+        />
+        <LampLigth top="-48%" left="37%" delay="3" />
+        <House
+          width={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '137' }
+          height={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '125' }
+          top={ windowWidth >= 1440 ? '35%' : windowWidth >= 768 ? '38%' : '36%' }
+          left={ windowWidth >= 1440 ? '67%' : windowWidth >= 768 ? '14%' : '17%' }
+        />
+        <Kitchen
+          bottom="19%"
+          left={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '75%' : '73%' }
+          width={ windowWidth >= 1440 ? '171' : '103' }
+          height={ windowWidth >= 1440 ? '181' : '109' }
+        />
+        <Bath
+          bottom={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '5%' : '5%' }
+          left={ windowWidth >= 1440 ? '87%' : windowWidth >= 768 ? '27%' : '30%' }
+          width={ windowWidth >= 1440 ? '160' : '104' }
+          height={ windowWidth >= 1440 ? '146' : '99' }
+        />
+        {windowWidth >= 768
+          ? <Thorfer top="62%" left="55%" delay="7" />
+          : null}
       </Background>
     </>
   );

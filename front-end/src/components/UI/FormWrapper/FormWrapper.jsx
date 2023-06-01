@@ -1,12 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { useState, useRef, useEffect } from 'react';
 import { Formik, Form } from 'formik';
+import cn from 'classnames';
+
 import Button from '~/components/UI/Button';
 import Loading from '~/components/Loading';
 import Success from '~/components/Success';
-import cn from 'classnames';
 import Error from '~/components/Error';
-import createEntity from '~/lib/createEntity';
+import createEntity from '~/api/createEntity';
+import uploadFile from '~/api/uploadFile';
 import s from './FormWrapper.module.scss';
 import ValidataionSchema from './validationSchema';
 
@@ -16,36 +18,15 @@ const FormWrapper = ({ children, initialValues }) => {
   const messagesRef = useRef(null);
   const formRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (messagesRef.current && !messagesRef.current.contains(event.target)) {
-        setStatus(null); // Reset the status to null when clicking outside the form
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   const handleSubmit = async (values, actions) => {
     setStatus('pending');
-    if (values.upload_file !== null) {
-      const formData = new FormData();
-      values.upload_file.forEach((file) => {
-        formData.append('files', file);
-      });
-      const response = await fetch('http://localhost:1337/api/upload/', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await response.json();
+
+    if (values.upload_file.length > 0) {
+      const data = await uploadFile(values.upload_file);
       values.upload_image = data.map((file) => file.id);
     }
 
-    createEntity(values)
+    await createEntity(values)
       .then(() => {
         actions.setErrors({});
         actions.resetForm();
@@ -56,12 +37,25 @@ const FormWrapper = ({ children, initialValues }) => {
         setStatus('error');
         actions.setErrors({ submit: error.message });
         actions.setSubmitting(false);
+      }).finally(() => {
+        setTimeout(() => {
+          setStatus(null);
+          actions.setSubmitting(false);
+        }, 5000);
       });
-    setTimeout(() => {
-      setStatus(null);
-      actions.setSubmitting(false);
-    }, 5000);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (messagesRef.current && !messagesRef.current.contains(event.target)) {
+        setStatus(null); // Reset the status to null when clicking outside the form
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <Formik
@@ -69,13 +63,13 @@ const FormWrapper = ({ children, initialValues }) => {
       onSubmit={ handleSubmit }
       validationSchema={ ValidataionSchema }
     >
-      { (props) => {
+      { ({ isValid, isSubmitting, setSubmitting }) => {
         useEffect(() => {
-          if (!props.isValid && props.isSubmitting) {
+          if (!isValid && isSubmitting) {
             return formRef.current.scrollIntoView({ behavior: 'smooth' });
           }
-          return props.setSubmitting(false);
-        }, [ props.isValid, props.isSubmitting ]);
+          return setSubmitting(false);
+        }, [ isValid, isSubmitting ]);
 
         return (
           <Form className={ s.form } ref={ formRef }>

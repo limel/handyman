@@ -14,7 +14,7 @@ const FileInput = ({
   const [ field, meta, helpers ] = useField(props);
   const inputRef = useRef();
   const error = meta.touched && meta.error;
-
+  const hasValue = field.value && field.value.length > 0;
   const handleClick = () => {
     if (field.value) return null;
     return inputRef.current.click();
@@ -51,7 +51,7 @@ const FileInput = ({
           className={ s['file-input__wrapper'] }
           onClick={ handleClick }
         >
-          {field.value && field.value.length > 0 && !error ? (
+          {hasValue && !error ? (
             field.value.map((file, index) => (
               <div key={ index } className={ s['file-item'] }>
                 <span className={ s.name }>{file.name}</span>

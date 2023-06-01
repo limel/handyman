@@ -21,7 +21,7 @@ const CallbackForm = () => {
     tips_via_email: true,
     first_exp: true,
     description: '',
-    upload_file: null,
+    upload_file: [],
   };
 
   const { attributes } = schema;

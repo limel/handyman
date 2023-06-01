@@ -1,8 +1,14 @@
 import Head from 'next/head';
 import HomePage from '~/components/HomePage';
+import Background from '~/components/Background';
+import LampLightAnimation from '~/components/Background/LampLightAnimation/';
+import LampLigth from '~/components/Background/LampLight';
+import House from '~/components/Background/House';
+import Kithcen from '~/components/Background/Kitchen';
+import Bath from '~/components/Background/Bath';
+import Thorfer from '~/components/Background/Thorfer';
 
-export default function Home()
-{
+export default function Home() {
   return (
     <>
       <Head>
@@ -14,6 +20,15 @@ export default function Home()
       <main>
         <HomePage />
       </main>
+      <Background>
+        <LampLightAnimation top="-20%" left="30%" />
+        <LampLigth top="-50%" left="20%" delay="2.5" />
+        <LampLigth top="-57%" left="37%" delay="3" />
+        <House top="35%" left="67%" />
+        <Kithcen bottom="19%" left="20%" />
+        <Bath bottom="20%" left="87%" />
+        <Thorfer top="67%" left="55%" delay="7" />
+      </Background>
     </>
   );
 }

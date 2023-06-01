@@ -6,8 +6,12 @@
   padding: 70px 70px 0;
   width: 100%;
   margin: 0 auto;
-  position: relative;
   margin-bottom: 6.375rem;
+  position: relative;
+
+  // background-color: var(--primary-bg);
+  // top: 0;
+  z-index: 40;
 }
 
 @media (width <= 768px) {

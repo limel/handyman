@@ -1,5 +1,11 @@
 import Head from 'next/head';
-import CallbackForm from '~/components/CallbackForm/CallbackForm';
+import CallbackForm from '~/components/CallbackForm/';
+import Background from '~/components/Background';
+import LampLightAnimation from '~/components/Background/LampLightAnimation';
+import Bath from '~/components/Background/Bath';
+import House from '~/components/Background/House';
+import Kitchen from '~/components/Background/Kitchen';
+import useWindowWidth from '~/hooks/useWindowWidth';
 
 // export async function getStaticProps() {
 
@@ -13,6 +19,7 @@ import CallbackForm from '~/components/CallbackForm/CallbackForm';
 // }
 
 export default function GetAQuote() {
+  const windowWidth = useWindowWidth();
   return (
     <>
       <Head>
@@ -24,6 +31,32 @@ export default function GetAQuote() {
       <main>
         <CallbackForm />
       </main>
+      <Background>
+        {windowWidth >= 1440 ? <LampLightAnimation top="-9%" left="35%" /> : null}
+        <LampLightAnimation
+          left={ windowWidth >= 1440 ? '59%' : windowWidth >= 768 ? '65%' : '66%' }
+          top={ windowWidth >= 1440 ? '-9%' : windowWidth >= 768 ? '-13%' : '-13%' }
+        />
+        {windowWidth >= 768
+          ? (
+            <Bath
+              bottom={ windowWidth >= 1440 ? '16%' : windowWidth >= 768 ? '8%' : '8%' }
+              left={ windowWidth >= 1440 ? '6%' : windowWidth >= 768 ? '82%' : '66%' }
+              width={ windowWidth >= 1440 ? '154' : '104' }
+              height={ windowWidth >= 1440 ? '140' : '94' }
+            />
+          ) : null}
+        {windowWidth >= 1440 ? <House bottom="9%" left="66%" width="201" height="201" /> : null}
+        {windowWidth >= 768
+          ? (
+            <Kitchen
+              bottom={ windowWidth >= 1440 ? '35%' : windowWidth >= 768 ? '7%' : '8%' }
+              left={ windowWidth >= 1440 ? '83%' : windowWidth >= 768 ? '10%' : '8%' }
+              width={ windowWidth >= 1440 ? '127' : '103' }
+              height={ windowWidth >= 1440 ? '133' : '109' }
+            />
+          ) : null}
+      </Background>
     </>
   );
 }

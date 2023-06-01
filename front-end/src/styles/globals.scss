@@ -61,6 +61,7 @@ body > div:first-child {
 
   > main {
     flex: 1 1 auto;
+    margin-bottom: 6.25rem;
   }
 }
 
@@ -119,4 +120,9 @@ button {
 
 textarea {
   resize: none;
+}
+
+.decor {
+  display: block;
+  position: absolute;
 }

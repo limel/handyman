@@ -1,8 +1,16 @@
 import Head from 'next/head';
+import Background from '~/components/Background';
+import LampLightAnimation from '~/components/Background/LampLightAnimation';
+import LampLight from '~/components/Background/LampLight';
+import Cookie from '~/components/Background/Cookie';
+import House from '~/components/Background/House';
+import Bath from '~/components/Background/Bath';
+import Kitchen from '~/components/Background/Kitchen';
 import ServicesList from '~/components/ServicesList';
+import useWindowWidth from '~/hooks/useWindowWidth';
 
-export default function Home()
-{
+export default function Home() {
+  const windowWidth = useWindowWidth();
   return (
     <>
       <Head>
@@ -14,6 +22,50 @@ export default function Home()
       <main>
         <ServicesList />
       </main>
+      <Background>
+        {windowWidth >= 1024 ? <LampLight top="-41%" left="20%" delay="2.5" /> : null}
+        {windowWidth >= 1024 ? <LampLightAnimation top="-17%" left="28%" /> : null}
+        <LampLightAnimation
+          left={ windowWidth >= 1024 ? '62%' : windowWidth >= 768 ? '65%' : '66%' }
+          top={ windowWidth >= 1024 ? '-18%' : windowWidth >= 768 ? '-25%' : '-23%' }
+        />
+        {windowWidth >= 1024
+          ? (
+            <Cookie
+              left={ windowWidth >= 1024 ? '-17%' : '-37%' }
+              bottom={ windowWidth >= 1024 ? '12%' : '-4%' }
+            />
+          )
+          : null }
+        {windowWidth >= 1024
+          ? (
+            <House
+              width={ windowWidth >= 1024 ? '227' : windowWidth >= 768 ? '275' : '137' }
+              height={ windowWidth >= 1024 ? '227' : windowWidth >= 768 ? '275' : '125' }
+              bottom={ windowWidth >= 1440 ? '5%' : windowWidth >= 768 ? '38%' : '36%' }
+              left={ windowWidth >= 1440 ? '56%' : windowWidth >= 768 ? '14%' : '17%' }
+            />
+          )
+          : null}
+        {windowWidth < 1024
+          ? (
+            <Bath
+              bottom={ windowWidth >= 768 ? '8%' : '6%' }
+              left={ windowWidth >= 768 ? '28%' : '20%' }
+              width="104"
+              height="94"
+            />
+          ) : null}
+        {windowWidth < 1024
+          ? (
+            <Kitchen
+              bottom={ windowWidth >= 768 ? '18%' : '15%' }
+              left={ windowWidth >= 768 ? '8%' : '80%' }
+              width="103"
+              height="109"
+            />
+          ) : null}
+      </Background>
     </>
   );
 }

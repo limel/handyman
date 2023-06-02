@@ -29,7 +29,7 @@ const config = {
   ],   
   translations: {
     en: {
-      "Auth.form.welcome.title": "Welcome to Handyman admin panel",
+      "Auth.form.welcome.title": "Welcome to Handyman",
       "Auth.form.welcome.subtitle": "Enter your username and password to enter",
       "app.components.LeftMenu.navbrand.title": "Handyman",
       "app.components.LeftMenu.navbrand.workplace": "Admin panel",

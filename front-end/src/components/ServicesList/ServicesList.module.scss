@@ -15,7 +15,7 @@
     left: 0;
   }
 
-  .lists{
+  .lists {
     width: 100%;
     transition: var(--transition) all;
     margin-left: 0;
@@ -39,9 +39,16 @@
     position: relative;
     margin-bottom: 3.375rem;
 
+    @media (width <= 1210px) {
+      justify-content: center;
+    }
 
     li {
       margin-right: 12.375rem;
+
+      @media (width <= 1210px) {
+        margin-right: 0;
+      }
 
       &:last-child {
         margin-right: 0;
@@ -50,6 +57,10 @@
 
     &:nth-child(even) {
       margin-left: 96px;
+
+      @media (width < 768px) {
+        margin-left: 0;
+      }
     }
   }
 
@@ -63,6 +74,10 @@
 
 @media (width <= 1440px) {
   .container {
-    margin: 0 0 0 auto;
+    margin: 0 auto;
   }
+}
+
+.button {
+  margin: 0 auto;
 }

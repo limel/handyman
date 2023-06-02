@@ -32,28 +32,23 @@ const navigationPlaceholder = [
   },
 ];
 
-const Navigation = () =>
-{
+const Navigation = () => {
   const activeRoute = useRouter().asPath;
   const [ active, setActive ] = useState(false);
   const navigationMenuRef = useRef(null);
   const buttonRef = useRef(null);
 
-  useEffect(() =>
-  {
-    const handleClickOutside = (event) =>
-    {
+  useEffect(() => {
+    const handleClickOutside = (event) => {
       if (navigationMenuRef.current && !navigationMenuRef.current.contains(event.target)
-        && !buttonRef.current.contains(event.target))
-      {
+        && !buttonRef.current.contains(event.target)) {
         setActive(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
 
-    return () =>
-    {
+    return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
@@ -89,7 +84,7 @@ const Navigation = () =>
                 [s.active]: activeRoute === url,
               }) }
             >
-              <Link href={ url } className={ s['navigation-list__link'] }>
+              <Link href={ url } className={ s['navigation-list__link'] } onClick={ () => setActive(false) }>
                 {title}
               </Link>
             </li>

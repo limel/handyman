@@ -2,8 +2,10 @@
 import { useState, forwardRef, useRef } from 'react';
 import ServicesCard from '~/components/ServicesCard';
 import cn from 'classnames';
+import useWindowWidth from '~/hooks/useWindowWidth';
 import Title from '../UI/Title/Title';
 import s from './ServicesList.module.scss';
+import Button from '../UI/Button';
 
 const listPlaceholder = [
   {
@@ -92,6 +94,8 @@ const listPlaceholder = [
 ];
 
 const ServicesList = forwardRef((props, ref) => {
+  const windowWidth = useWindowWidth();
+  const cardCountInRow = windowWidth >= 768 ? 3 : 2;
   const [ activeItem, setActiveItem ] = useState(null);
   const targetRef = useRef(null);
   const commonListRef = useRef(null);
@@ -102,8 +106,8 @@ const ServicesList = forwardRef((props, ref) => {
 
   const rowList = [];
 
-  for (let i = 0; i < listPlaceholder.length; i += 3) {
-    const row = listPlaceholder.slice(i, i + 3);
+  for (let i = 0; i < listPlaceholder.length; i += cardCountInRow) {
+    const row = listPlaceholder.slice(i, i + cardCountInRow);
     rowList.push(row);
   }
 
@@ -142,6 +146,7 @@ const ServicesList = forwardRef((props, ref) => {
           ))}
         </div>
       </div>
+      {!activeItem ? <Button href="/callback-form" className={ s.button }>GET A QUOTE</Button> : null}
     </section>
   );
 });

@@ -1,24 +1,95 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
 import Image from 'next/image';
 import cn from 'classnames';
 import Button from '~/components/UI/Button';
 import s from './ServicesCard.module.scss';
 
 const ServicesCard = ({
-  title, description, isActive, onClick,
-}) =>
-{
+  title, description, isActive, onClick, targetRef, commonListRef,
+}) => {
   const textRef = useRef(null);
+  const cardRef = useRef(null);
+  const [ cardActiveHeight, setCardActiveHeight ] = useState(0);
 
-  useEffect(() =>
-  {
-    if (isActive) textRef.current.style.height = `${ textRef.current.scrollHeight }px`;
-    else textRef.current.style.height = '0px';
+  useEffect(() => {
+    let timeoutId;
+
+    const animateCardToTarget = () => {
+      const targetPosition = targetRef.current.getBoundingClientRect();
+      const cardPosition = cardRef.current.getBoundingClientRect();
+      const cardHeight = cardRef.current.scrollHeight - commonListRef.current.offsetHeight;
+
+      setCardActiveHeight(cardHeight);
+
+      const x = targetPosition.left - cardPosition.left;
+      const y = targetPosition.top - cardPosition.top;
+
+      gsap.to(textRef.current, {
+        opacity: 1,
+        duration: 0.5,
+        ease: 'line.out',
+        // delay: 0.6,
+      });
+
+      gsap.to(cardRef.current, {
+        x,
+        y,
+        duration: 0.5,
+        // delay: 0.6,
+        ease: 'line.out',
+      });
+    };
+
+    const resetCardPosition = () => {
+      setCardActiveHeight(0);
+      gsap.to(cardRef.current, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: 'line.out',
+      });
+
+      gsap.to(textRef.current, {
+        opacity: 0,
+        duration: 0.5,
+        ease: 'line.out',
+        // delay: 0.6,
+      });
+    };
+
+    if (isActive) {
+      // Add a delay of 500 milliseconds before calculating the position
+      timeoutId = setTimeout(() => {
+        animateCardToTarget();
+      }, 500);
+    } else {
+      resetCardPosition();
+    }
+
+    return () => {
+      // Clear the timeout when the component unmounts or when isActive changes it's important!
+      clearTimeout(timeoutId);
+    };
   }, [ isActive ]);
 
-  const handleKeyPress = (e) =>
-  {
-    if (e.key === 'Enter') onClick();
+  const handlerClick = (e) => {
+    if (e.currentTarget === textRef.current) return;
+    onClick();
+  };
+  useEffect(() => {
+    const mainElement = document.querySelector('main');
+    const mainHeight = mainElement.offsetHeight;
+
+    if (isActive && cardActiveHeight > 0) {
+      mainElement.style.minHeight = `${ mainHeight + cardActiveHeight }px`;
+    } else {
+      mainElement.style.minHeight = 0;
+    }
+  }, [ cardActiveHeight ]);
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') handlerClick(e);
   };
 
   const cardClassName = cn(s.card, { [s.active]: isActive });
@@ -26,13 +97,15 @@ const ServicesCard = ({
   return (
     <li
       className={ cardClassName }
-      onClick={ onClick }
-      tabIndex={ 0 }
-      onKeyDown={ handleKeyPress }
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-      role="button"
+      ref={ cardRef }
     >
-      <figure className={ s.main }>
+      <figure
+        className={ s.main }
+        onClick={ handlerClick }
+        tabIndex={ 0 }
+        role="button"
+        onKeyDown={ handleKeyPress }
+      >
         <figcaption>
           <h2 className={ s.title }>{title}</h2>
         </figcaption>
@@ -50,10 +123,12 @@ const ServicesCard = ({
           />
         </div>
       </figure>
-      <div ref={ textRef } className="text" dangerouslySetInnerHTML={ { __html: description } } />
-      <Button href="/services" className={ s.button }>
-        GET A QUOTE
-      </Button>
+      <div className={ s.description } ref={ textRef }>
+        <div className="text" dangerouslySetInnerHTML={ { __html: description } } />
+        <Button href="/services" className={ s.button }>
+          GET A QUOTE
+        </Button>
+      </div>
     </li>
   );
 };

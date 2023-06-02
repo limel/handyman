@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { useState } from 'react';
+import { useState, forwardRef, useRef } from 'react';
 import ServicesCard from '~/components/ServicesCard';
 import cn from 'classnames';
 import Title from '../UI/Title/Title';
@@ -91,49 +91,58 @@ const listPlaceholder = [
   },
 ];
 
-const ServicesList = () =>
-{
+const ServicesList = forwardRef((props, ref) => {
   const [ activeItem, setActiveItem ] = useState(null);
-
-  const handlerClick = (id) =>
-  {
+  const targetRef = useRef(null);
+  const commonListRef = useRef(null);
+  const handlerClick = (id) => {
     if (activeItem === id) setActiveItem(null);
     else setActiveItem(id);
   };
 
-  // const rowList = [];
+  const rowList = [];
 
-  // for (let i = 0; i < listPlaceholder.length; i += 3)
-  // {
-  //   const row = listPlaceholder.slice(i, i + 3);
-  //   rowList.push(row);
-  // }
+  for (let i = 0; i < listPlaceholder.length; i += 3) {
+    const row = listPlaceholder.slice(i, i + 3);
+    rowList.push(row);
+  }
 
   return (
     <section className={ s.container }>
       <Title>
         Services
       </Title>
-      {/* <div className={ s['list-container'] }> */}
-      {/* {rowList.map((chunk, index) => ( */}
-      <ul className={ cn(s['list-container'], {
-        [s.active]: activeItem !== null,
-      }) }
-      >
-        {listPlaceholder.map((item) => (
-          <ServicesCard
-            key={ item.id }
-            title={ item.title }
-            description={ item.description }
-            isActive={ activeItem === item.id }
-            onClick={ () => handlerClick(item.id) }
-          />
-        ))}
-      </ul>
-      {/* ))} */}
-      {/* </div> */}
+      <div className={ s.wrapper }>
+        <div className={ s.target } ref={ targetRef } />
+        <div
+          className={ cn(s.lists, {
+            [s.active]: activeItem !== null,
+          }) }
+          ref={ commonListRef }
+        >
+          {rowList.map((chunk, index) => (
+            <ul
+              className={ cn(s.list, {
+                [s.active]: activeItem !== null,
+              }) }
+              key={ index }
+            >
+              {chunk.map((item) => (
+                <ServicesCard
+                  key={ item.id }
+                  title={ item.title }
+                  description={ item.description }
+                  isActive={ activeItem === item.id }
+                  onClick={ () => handlerClick(item.id) }
+                  targetRef={ targetRef }
+                  commonListRef={ commonListRef }
+                />
+              ))}
+            </ul>
+          ))}
+        </div>
+      </div>
     </section>
   );
-};
-
+});
 export default ServicesList;

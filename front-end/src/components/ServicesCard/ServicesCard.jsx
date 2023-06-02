@@ -27,17 +27,17 @@ const ServicesCard = ({
 
       gsap.to(textRef.current, {
         opacity: 1,
-        duration: 0.5,
-        ease: 'line.out',
+        duration: 0.3,
+        ease: 'expo.out',
         // delay: 0.6,
       });
 
       gsap.to(cardRef.current, {
         x,
         y,
-        duration: 0.5,
+        duration: 0.3,
         // delay: 0.6,
-        ease: 'line.out',
+        ease: 'expo.out',
       });
     };
 
@@ -62,7 +62,7 @@ const ServicesCard = ({
       // Add a delay of 500 milliseconds before calculating the position
       timeoutId = setTimeout(() => {
         animateCardToTarget();
-      }, 500);
+      }, 200);
     } else {
       resetCardPosition();
     }

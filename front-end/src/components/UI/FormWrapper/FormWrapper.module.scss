@@ -28,7 +28,7 @@
   }
 }
 
-@media (width <= 768px) {
+@media (width < 768px) {
   .form__wrapper {
     margin-bottom: 3.375rem;
     border: none;

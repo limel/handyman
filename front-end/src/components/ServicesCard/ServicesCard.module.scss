@@ -5,17 +5,23 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  cursor: pointer;
   transition:  var(--transition) all;
+  position: relative;
 
-  &:nth-child(4n+4) {
-    margin-left: 96px;
+  .description {
+    position: absolute;
+    top: calc(100% + 1.5rem);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition) all;
+    width: 500px;
   }
 
   .main {
     max-width: 12.625rem; 
     min-width: 12.625rem;
     width: 100%;
+    cursor: pointer;
   }
 
   .title {
@@ -60,37 +66,20 @@
   }
 
   & :global(.text) {
-    margin-bottom: 0;
-    opacity: 0;
-    visibility: hidden;
-    height: 0;
     transition: var(--transition) all;
-  }
-
-  .button {
-    display: none;
+    margin-bottom: 3rem;
   }
 }
 
 .card.active {
   max-width: none;
-  margin-bottom: 1.5rem;
   width: fit-content;
-
-  // position: absolute;
-  transform: translate(0%, 0%);
+  z-index: 2;
   margin-left: 0;
 
-  .image {
-     margin-bottom: 1.5rem;
-  }
-
-  & :global(.text) {
+  .description {
     opacity: 1;
     visibility: visible;
-    font-size: inherit;
-    line-height: inherit;
-    margin-bottom: 3rem;
   }
 
   .button {

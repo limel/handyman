@@ -42,8 +42,8 @@ export default function Home() {
             <House
               width={ windowWidth >= 1024 ? '227' : windowWidth >= 768 ? '275' : '137' }
               height={ windowWidth >= 1024 ? '227' : windowWidth >= 768 ? '275' : '125' }
-              bottom={ windowWidth >= 1440 ? '5%' : windowWidth >= 768 ? '38%' : '36%' }
-              left={ windowWidth >= 1440 ? '56%' : windowWidth >= 768 ? '14%' : '17%' }
+              bottom={ windowWidth >= 1024 ? '5%' : windowWidth >= 768 ? '38%' : '36%' }
+              left={ windowWidth >= 1024 ? '56%' : windowWidth >= 768 ? '14%' : '17%' }
             />
           )
           : null}

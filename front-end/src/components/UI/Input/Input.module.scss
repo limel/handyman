@@ -2,31 +2,23 @@
   width: 100%;
 
   &__field {
+    display: block;
     width: 100%;
     padding: 1.125rem 1.875rem;
     border-radius: 61px;
     background-color: var(--inputs-bg);
     border: 1px solid var(--border-color);
     color: var(--text-color);
-    outline: transparent solid 1px;
-    transition: var(--transition) outline-color;
-    margin-bottom: 1.5rem;
+    outline: none;
     font-size: 1rem;
     line-height: 1;
 
-    &:focus:not(.error),
-    &:active:not(.error) {
-      outline-color: var(--border-color);
-    }
-
     &.error {
-      outline-color: var(--error-color);
       border-color: var(--error-color);
     }
 
     &.fullfield {
       border-color: var(--accent-color);
-      outline-color: var(--accent-color);
     }
   }
 }
@@ -34,5 +26,41 @@
 @media (width <= 768px) {
   .input__field {
     padding: 1rem;
+  }
+}
+
+.input-block {
+  position: relative;
+  margin-bottom: 1.5rem;
+  &:focus-within:not(.error) {
+    &::before {
+      border-color: var(--border-color);
+      opacity: 1;
+    }
+}
+
+    &.error {
+      &::before {
+        border-color: var(--error-color);
+        opacity: 1;
+      }
+    }
+
+    &.fullfield {
+      border-color: var(--accent-color);
+    }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    border: 2px solid var(--border-color);
+    border-radius: 61px;
+    pointer-events: none;
+    opacity: 0;
+    transition: var(--transition) opacity;
   }
 }

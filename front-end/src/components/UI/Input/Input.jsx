@@ -11,11 +11,6 @@ export default function Input({
   } = useFormikContext();
   const fullfieldCondition = values[name] !== '' && !errors[name] && touched[name] && props.as !== 'textarea';
 
-  const classNames = cn(s.input__field, {
-    [s.error]: errors[name] && touched[name],
-    [s.fullfield]: fullfieldCondition,
-  });
-
   const handleChange = (event) => {
     const { value } = event.target;
     setFieldValue(name, value);
@@ -24,16 +19,25 @@ export default function Input({
   return (
     <div className={ cn(s.input, className) }>
       <ControlLabel id={ name } label={ label } required={ required } />
-      <Field
-        type={ type }
-        id={ name }
-        name={ name }
-        value={ values[name] }
-        placeholder={ placeholder }
-        className={ classNames }
-        onChange={ handleChange }
-        { ...props }
-      />
+      <div className={ cn(s['input-block'], {
+        [s.error]: errors[name] && touched[name],
+        [s.fullfield]: fullfieldCondition,
+      }) }
+      >
+        <Field
+          type={ type }
+          id={ name }
+          name={ name }
+          value={ values[name] }
+          placeholder={ placeholder }
+          className={ cn(s.input__field, {
+            [s.error]: errors[name] && touched[name],
+            [s.fullfield]: fullfieldCondition,
+          }) }
+          onChange={ handleChange }
+          { ...props }
+        />
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
       const response = await axios.post(`${ process.env.BACK_URL }/api/orders`, {
         data,
       });
-      return res.status(201).json(response);
+      return res.status(201).json(response.data);
     } catch (error) {
       return res.status(500).json({ error });
     }

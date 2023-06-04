@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import Head from 'next/head';
 import Background from '~/components/Background';
 import LampLightAnimation from '~/components/Background/LampLightAnimation';
@@ -21,7 +22,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ services }) {
-  console.log(services);
   const windowWidth = useWindowWidth();
   return (
     <>

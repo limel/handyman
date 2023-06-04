@@ -6,7 +6,6 @@ export default async function handler(files) {
     formData.append('files', file);
   });
 
-  console.log('uploadFile.js: formData: ', formData);
   try {
     const response = await axios.post(`${ process.env.BACK_URL }/api/upload/`, formData, {
       headers: {

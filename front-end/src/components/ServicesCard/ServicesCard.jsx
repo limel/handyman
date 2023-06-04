@@ -13,11 +13,6 @@ const ServicesCard = ({
   const [ cardActiveHeight, setCardActiveHeight ] = useState(0);
   const { url } = image.data.attributes;
 
-  // Assuming the image file is located in '/path/to/images' folder
-
-  // Read the image file
-
-  console.log(url);
   useEffect(() => {
     let timeoutId;
 
@@ -109,6 +104,8 @@ const ServicesCard = ({
         className={ s.main }
         onClick={ handlerClick }
         tabIndex={ 0 }
+        aria-label="services-card"
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
         role="button"
         onKeyDown={ handleKeyPress }
       >
@@ -117,6 +114,7 @@ const ServicesCard = ({
         </figcaption>
         <div className={ s.image }>
           <Image
+            // TODO hide back url
             src={ `http://127.0.0.1:1337${ url }` }
             alt="test"
             fill

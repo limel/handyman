@@ -29,6 +29,7 @@ const nextConfig = {
     domains: [
       'lh3.googleusercontent.com',
       process.env.BACK_URL,
+      '127.0.0.1',
     ],
   },
   webpack: (config, { dev }) => {

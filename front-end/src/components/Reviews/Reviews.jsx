@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import s from './Reviews.module.scss';
+import ReviewItem from '../UI/ReviewItem/ReviewItem';
 
 const Reviews = () => {
   const placeId = 'ChIJKcxaU1Hj20ARUKAZQD-FLZg';
@@ -42,40 +43,43 @@ const Reviews = () => {
   //     console.error(error);
   //   });
 
-  const options = {
-    method: 'GET',
-    mode: 'no-cors',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer H50el0rBzv6vomGBs6IYlRKpmq1VIZvx4rPoJZ058KcZweNWriJIK766u3lSO4rXdPWPhzz8Oa0Zfhkct8YTn2wQ9htIQRvSo3E3GoVKFsKGbBo54EETZURKb2B3ZHYx',
-      'Access-Control-Allow-Origin': '*',
-    },
-  };
+  // const options = {
+  //   method: 'GET',
+  //   mode: 'no-cors',
+  //   headers: {
+  //     accept: 'application/json',
+  //     Authorization: 'Bearer H50el0rBzv6vomGBs6IYlRKpmq1VIZvx4rPoJZ058KcZweNWriJIK766u3lSO4rXdPWPhzz8Oa0Zfhkct8YTn2wQ9htIQRvSo3E3GoVKFsKGbBo54EETZURKb2B3ZHYx',
+  //     'Access-Control-Allow-Origin': '*',
+  //   },
+  // };
 
-  fetch('https://api.yelp.com/v3/businesses/ihop-san-francisco/reviews?offset=5&limit=5', options)
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
-
-  function logPlaceDetails() {
+  // fetch('https://api.yelp.com/v3/businesses/ihop-san-francisco/reviews?offset=5&limit=5', options)
+  //   .then((response) => response.json())
+  //   .then((response) => console.log(response))
+  //   .catch((err) => console.error(err));
+  const [ reviews, setReviews ] = useState([]);
+  const logPlaceDetails = async () => {
     const { google } = window;
-    const service = new google.maps.places.PlacesService(document.getElementById('map'));
+    const service = await new google.maps.places.PlacesService(document.getElementById('map'));
     service.getDetails({
       placeId,
       fields: [ 'reviews' ],
-    }, (place, status) => {
+    }, (place) => {
       console.log('Place details:', place.reviews);
+      setReviews(place.reviews);
     });
-  }
+  };
 
   useEffect(() => {
-    // logPlaceDetails();
+    logPlaceDetails();
   }, []);
+
   return (
-    <>
+    <section className={ s.section }>
       <div id="map" />
       {/* <div className="sk-ww-google-reviews" data-embed-id="148829" /> */}
-    </>
+      {reviews.map((review) => <ReviewItem review={ review } />)}
+    </section>
   );
 };
 

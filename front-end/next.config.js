@@ -25,6 +25,12 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  images: {
+    domains: [
+      'lh3.googleusercontent.com',
+      process.env.BACK_URL,
+    ],
+  },
   webpack: (config, { dev }) => {
     const rules = config.module.rules
       .find((rule) => typeof rule.oneOf === 'object')

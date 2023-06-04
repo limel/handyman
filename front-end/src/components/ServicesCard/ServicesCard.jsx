@@ -6,12 +6,18 @@ import Button from '~/components/UI/Button';
 import s from './ServicesCard.module.scss';
 
 const ServicesCard = ({
-  title, description, isActive, onClick, targetRef, commonListRef,
+  title, description, isActive, onClick, targetRef, commonListRef, image,
 }) => {
   const textRef = useRef(null);
   const cardRef = useRef(null);
   const [ cardActiveHeight, setCardActiveHeight ] = useState(0);
+  const { url } = image.data.attributes;
 
+  // Assuming the image file is located in '/path/to/images' folder
+
+  // Read the image file
+
+  console.log(url);
   useEffect(() => {
     let timeoutId;
 
@@ -111,7 +117,7 @@ const ServicesCard = ({
         </figcaption>
         <div className={ s.image }>
           <Image
-            src="/images/services/test.jpg"
+            src={ `http://127.0.0.1:1337${ url }` }
             alt="test"
             fill
             style={ {

@@ -21,7 +21,7 @@ const CallbackForm = () => {
     tips_via_email: true,
     first_exp: true,
     description: '',
-    upload_file: [],
+    upload_image: [],
   };
 
   const { attributes } = schema;
@@ -66,7 +66,7 @@ const CallbackForm = () => {
             rows="7"
             className={ s.description }
           />
-          <InputFile name="upload_file" as="file" label="Upload image" />
+          <InputFile name="upload_image" as="file" label="Upload image" />
         </>
       </FormWrapper>
     </section>

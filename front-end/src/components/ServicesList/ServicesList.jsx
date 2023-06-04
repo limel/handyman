@@ -103,14 +103,12 @@ const ServicesList = forwardRef((props, ref) => {
     if (activeItem === id) setActiveItem(null);
     else setActiveItem(id);
   };
-
+  const { data } = props.services;
   const rowList = [];
-
-  for (let i = 0; i < listPlaceholder.length; i += cardCountInRow) {
-    const row = listPlaceholder.slice(i, i + cardCountInRow);
+  for (let i = 0; i < data.length; i += cardCountInRow) {
+    const row = data.slice(i, i + cardCountInRow);
     rowList.push(row);
   }
-
   return (
     <section className={ s.container }>
       <Title>
@@ -134,8 +132,7 @@ const ServicesList = forwardRef((props, ref) => {
               {chunk.map((item) => (
                 <ServicesCard
                   key={ item.id }
-                  title={ item.title }
-                  description={ item.description }
+                  { ...item.attributes }
                   isActive={ activeItem === item.id }
                   onClick={ () => handlerClick(item.id) }
                   targetRef={ targetRef }

@@ -11,6 +11,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "^2.0.4",
     "@bn-digital/strapi-plugin-field-uuid": "^1.2.12",
     "@strapi/plugin-i18n": "4.10.6",
     "@strapi/plugin-users-permissions": "4.10.6",

@@ -1,12 +1,21 @@
+import axios from 'axios';
+
 export default async function handler(files) {
   const formData = new FormData();
   files.forEach((file) => {
     formData.append('files', file);
   });
-  const response = await fetch('http://localhost:1337/api/upload/', {
-    method: 'POST',
-    body: formData,
-  });
-  const data = await response.json();
-  return data;
+
+  console.log('uploadFile.js: formData: ', formData);
+  try {
+    const response = await axios.post(`${ process.env.BACK_URL }/api/upload/`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log('error', error.message || 'Server error');
+    throw error;
+  }
 }

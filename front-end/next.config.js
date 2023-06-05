@@ -28,6 +28,8 @@ const nextConfig = {
   images: {
     domains: [
       'lh3.googleusercontent.com',
+      's3-media0.fl.yelpcdn.com',
+      'production-next-images-cdn.thumbtack.com',
       process.env.BACK_URL,
       '127.0.0.1',
     ],

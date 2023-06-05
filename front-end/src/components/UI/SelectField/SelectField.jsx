@@ -61,23 +61,20 @@ export default function SelectField({
   && (!meta.error || !meta.touched)
   && meta.touched;
 
-  const classNames = cn(s.select__input, {
-    [s.error]: meta.error && meta.touched,
-    [s.fullfield]: fullfieldCondition,
-  });
-
   return (
     <div className={ s.select } ref={ selectRef }>
       <ControlLabel id={ name } label={ label } required={ required } />
       <div className={ cn(s.select__wrapper, {
         [s.active]: open,
+        [s.error]: meta.error && meta.touched,
+        [s.fullfield]: fullfieldCondition,
       }) }
       >
         <input
           type="text"
           readOnly
           value={ field.value }
-          className={ classNames }
+          className={ s.select__input }
           onClick={ () => setOpen(!open) }
           onBlur={ handleBlur }
           onKeyDown={ handlerKeyDown }
@@ -91,7 +88,11 @@ export default function SelectField({
         </div>
       </div>
       <SlideDown closed={ !open }>
-        <ul className={ s.select__list }>
+        <ul className={ cn(s.select__list, {
+          [s.error]: meta.error && meta.touched,
+          [s.fullfield]: fullfieldCondition,
+        }) }
+        >
           <li className={ cn(s.select__item, s.select__item_first) }>
             -Select-
             {' '}

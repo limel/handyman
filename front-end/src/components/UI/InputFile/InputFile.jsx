@@ -21,9 +21,7 @@ const FileInput = ({
   };
   const onInputChange = (e) => {
     if (!error) {
-      const selectedFiles = Array
-        .from(e.currentTarget.files)
-        .slice(0, 3 - (field.value?.length || 0));
+      const selectedFiles = Array.from(e.currentTarget.files);
       const fileList = Array.isArray(field.value)
         ? [ ...field.value, ...selectedFiles ]
         : selectedFiles;
@@ -68,7 +66,6 @@ const FileInput = ({
           )}
           <input type="file" ref={ inputRef } onChange={ onInputChange } id={ id } multiple />
         </div>
-
       </div>
       <p className={ s.notice }>
         <span>Upload up to 3 images of your project</span>

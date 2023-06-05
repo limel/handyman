@@ -35,7 +35,17 @@
     
   }
 
-  &:hover {
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--hover-text-color);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:focus {
     color: var(--hover-text-color);
 
     &::before {

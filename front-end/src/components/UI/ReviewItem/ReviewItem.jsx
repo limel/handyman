@@ -39,8 +39,14 @@ const ReviewItem = ({
             {/* <div> */}
             <p className={ s.name }>{ name }</p>
             <p className={ s.time }>{ relativeTime }</p>
-              <div className={ s.rating }><Star /><Star /><Star /><Star /><Star /></div>
-              <div className={ s.text }>{ text }</div>
+            <div className={ s.rating }>
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+              <Star />
+            </div>
+            <div className={ s.text }>{ text }</div>
             {/* </div> */}
           </div>
           <Link href={ url } prefetch={ false }>

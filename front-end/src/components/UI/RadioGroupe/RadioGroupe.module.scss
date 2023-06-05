@@ -7,9 +7,15 @@
     justify-content: flex-start;
     margin-bottom: 0.9375rem;
     cursor: pointer;
+    transition: var(--transition) color;
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    &:focus-within {
+      outline: none;
+      color: var(--accent-color)
     }
   }
 

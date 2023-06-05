@@ -1,15 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { useEffect, useState } from 'react';
 import Steps from '~/components/Steps/';
 import FormWrapper from '~/components/UI/FormWrapper';
 import Input from '~/components/UI/Input';
 import SelectField from '~/components/UI/SelectField';
 import RadioGroup from '~/components/UI/RadioGroupe';
 import InputFile from '~/components/UI/InputFile';
-import * as schema from '~/../../cms/src/api/order/content-types/order/schema.json';
+import axios from 'axios';
 import Title from '~/components/UI/Title';
 import s from './CallbackForm.module.scss';
 
 const CallbackForm = () => {
+  const [ options, setOptions ] = useState([]);
   const initialValues = {
     first_name: '',
     last_name: '',
@@ -24,8 +26,19 @@ const CallbackForm = () => {
     upload_image: [],
   };
 
-  const { attributes } = schema;
-  const { hear_about_us: hearAboutUsEnum } = attributes;
+  useEffect(() => {
+    const getOptionsList = async () => {
+      try {
+        return await axios.get('/api/orders/options');
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    };
+    getOptionsList().then(({ data }) => {
+      setOptions(data.data.schema.attributes.hear_about_us.enum);
+    });
+  }, []);
 
   const tipsEmailOptions = [
     { value: 'true', label: 'Yes,sign me up' },
@@ -54,7 +67,7 @@ const CallbackForm = () => {
             <Input name="city" as="input" placeholder="e.g.Shoreline" label="CITY" required />
             <Input name="zip_code" as="input" placeholder="98155" label="ZIP CODE" required />
           </div>
-          <SelectField name="hear_about_us" as="select" placeholder="Select from the list..." label="How did you hear about us?" required options={ hearAboutUsEnum.enum } />
+          <SelectField name="hear_about_us" as="select" placeholder="Select from the list..." label="How did you hear about us?" required options={ options } />
           <RadioGroup label="Would you like to receive occasional tips and offers via email?" name="tips_via_email" options={ tipsEmailOptions } />
           <RadioGroup label="Is this your first experience with Acumen Handyman?" name="first_exp" options={ firstExpOptions } />
           <Input

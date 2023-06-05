@@ -69,6 +69,10 @@ const nextConfig = {
         destination: `${ process.env.BACK_URL }/api/orders`,
       },
       {
+        source: '/api/orders/options',
+        destination: `${ process.env.BACK_URL }/api/content-type-builder/content-types/api::order.order`,
+      },
+      {
         source: '/api/upload',
         destination: `${ process.env.BACK_URL }/api/upload`,
       },

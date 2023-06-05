@@ -5,17 +5,9 @@ import s from './Reviews.module.scss';
 import ReviewItem from '../UI/ReviewItem/ReviewItem';
 import Star from '../UI/Star/Star';
 
-const Reviews = ({ googleReviews }) => {
-  const [ yelpReviews, setYelpReviews ] = useState([]);
+const Reviews = ({ googleReviews, yelpReviews }) => {
   const [ thumbtackReviews, setThumbtackReviews ] = useState([]);
-
-  const getYelpReviews = async () => {
-    // await axios.get('https://data.accentapi.com/feed/150813.json?nocache=1685969522637')
-    await axios.get('https://service-reviews-ultimate.elfsight.com/data/reviews?uris%5B%5D=https%3A%2F%2Fwww.yelp.com%2Fbiz%2Facumen-handyman-seattle&with_text_only=1&min_rating=5&page_length=100&order=date')
-      .then((response) => setYelpReviews(response.data.result.data))
-      .catch((error) => console.error(error));
-  };
-
+console.log(yelpReviews);
   const getThumbtackReviews = async () => {
     await axios.get('https://data.accentapi.com/feed/150849.json?nocache=1685982129323')
       .then((response) => setThumbtackReviews(response.data.reviews))
@@ -23,7 +15,6 @@ const Reviews = ({ googleReviews }) => {
   };
 
   useEffect(() => {
-    getYelpReviews();
     getThumbtackReviews();
   }, []);
 
@@ -98,23 +89,19 @@ const Reviews = ({ googleReviews }) => {
             )
             : null
         ))}
-        {/* {yelpReviews.map((review) => (
-          review.rating === 5
-            ? (
-              <ReviewItem
+        {yelpReviews && yelpReviews.map((review) => (
+          <ReviewItem
               // review={ review }
-                photo={ review.reviewer_picture_url }
-                name={ review.reviewer_name }
-                relativeTime={ review.published_at }
-                rating={ review.rating }
-                text={ review.text }
-                url={ review.url }
-                linkHref="/sprite.svg#yelp"
-              />
-            )
-            : null
+            photo={ review.user.image_url }
+            name={ review.user.name }
+            relativeTime={ review.time_created }
+                // rating={ review.rating }
+            text={ review.text }
+            url={ review.user.profile_url }
+            linkHref="/sprite.svg#yelp"
+          />
         ))}
-        {thumbtackReviews.map((review) => (
+        {/* thumbtackReviews.map((review) => (
           review.review_stars === 5
             ? (
               <ReviewItem

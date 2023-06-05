@@ -31,6 +31,7 @@ const nextConfig = {
       's3-media0.fl.yelpcdn.com',
       'production-next-images-cdn.thumbtack.com',
       process.env.BACK_URL,
+      '127.0.0.1',
     ],
   },
   webpack: (config, { dev }) => {
@@ -67,7 +68,23 @@ const nextConfig = {
     return [
       {
         source: '/api/orders',
-        destination: 'http://localhost:1337/api/orders',
+        destination: `${ process.env.BACK_URL }/api/orders`,
+      },
+      {
+        source: '/api/orders/options',
+        destination: `${ process.env.BACK_URL }/api/content-type-builder/content-types/api::order.order`,
+      },
+      {
+        source: '/api/upload',
+        destination: `${ process.env.BACK_URL }/api/upload`,
+      },
+      {
+        source: '/api/services',
+        destination: `${ process.env.BACK_URL }/api/services?populate=*`,
+      },
+      {
+        source: '/uploads/:path*',
+        destination: '/cms/uploads/:path*',
       },
     ];
   },

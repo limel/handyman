@@ -11,7 +11,7 @@ const ValidataionSchema = Yup.object().shape({
   city: Yup.string().min(3).required('City is required'),
   zip_code: Yup.string().min(3).required('Zip code is required').matches(zipCodePattern, 'Zip code is not valid'),
   hear_about_us: Yup.string().required('Hear about us is required'),
-  upload_file: Yup.array().of(
+  upload_image: Yup.array().of(
     Yup.mixed().test(
       'fileFormat',
       'wrong format',

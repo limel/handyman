@@ -14,7 +14,10 @@
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
     "eslint-import-resolver-jsconfig": "^1.1.0",
+    "form-data": "^4.0.0",
+    "formidable": "^2.1.1",
     "formik": "^2.4.0",
+    "fs-extra": "^11.1.1",
     "gsap": "^3.11.5",
     "loader-utils": "^3.2.1",
     "next": "13.4.3",
@@ -22,6 +25,7 @@
     "react-dom": "18.2.0",
     "react-select": "^5.7.3",
     "react-transition-group": "^4.4.5",
+    "strapi-sdk-javascript": "^0.3.3",
     "yup": "^1.2.0"
   },
   "devDependencies": {

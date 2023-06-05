@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import Head from 'next/head';
 import Background from '~/components/Background';
 import LampLightAnimation from '~/components/Background/LampLightAnimation';
@@ -8,8 +9,19 @@ import Bath from '~/components/Background/Bath';
 import Kitchen from '~/components/Background/Kitchen';
 import ServicesList from '~/components/ServicesList';
 import useWindowWidth from '~/hooks/useWindowWidth';
+import axios from 'axios';
 
-export default function Home() {
+export async function getStaticProps() {
+  const services = await axios(`${ process.env.FRONT_URL }/api/services`);
+  const { data } = services;
+  return {
+    props: {
+      services: data,
+    },
+  };
+}
+
+export default function Home({ services }) {
   const windowWidth = useWindowWidth();
   return (
     <>
@@ -20,7 +32,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ServicesList />
+        <ServicesList services={ services } />
       </main>
       <Background>
         {windowWidth >= 1024 ? <LampLight top="-41%" left="20%" delay="2.5" /> : null}

@@ -45,9 +45,9 @@ const Reviews = () => {
 
   const options = {
     method: 'GET',
-    mode: 'no-cors',
+    // mode: 'no-cors',
     headers: {
-      accept: 'application/json',
+      accept: '*/*',
       Authorization: 'Bearer H50el0rBzv6vomGBs6IYlRKpmq1VIZvx4rPoJZ058KcZweNWriJIK766u3lSO4rXdPWPhzz8Oa0Zfhkct8YTn2wQ9htIQRvSo3E3GoVKFsKGbBo54EETZURKb2B3ZHYx',
       'Access-Control-Allow-Origin': '*',
     },
@@ -69,14 +69,17 @@ const Reviews = () => {
   useEffect(() => {
     logPlaceDetails();
     const getYelpReviews = async () => {
-     const yelpReviews = await fetch('https://api.yelp.com/v3/businesses/acumen-handyman-seattle/reviews', options);
-     return yelpReviews;
-    }
+      const yelpReviews = fetch('https://api.yelp.com/v3/businesses/acumen-handyman-seattle/reviews', options);
+
+      return yelpReviews;
+    };
     // .then((response) => response.json())
     // .then((response) => console.log(response))
     // .catch((err) => console.error(err));
 
-    console.log(getYelpReviews().then((response) => console.log(response)));
+    console.log(getYelpReviews().then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error)));
   }, []);
 
   return (

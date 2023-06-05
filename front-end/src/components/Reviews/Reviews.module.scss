@@ -1,6 +1,60 @@
 .section {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
+  max-width: 1229px;
+  margin: 0 auto;
+}
+
+.reviews {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  gap: 24px;
+}
+
+.reviews-about {
+  margin-left: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 35px;
+}
+
+.reviews-stars {
+  i {
+    margin-right: 8px;
+  }
+}
+
+.reviews-discription {
+  font-size: 18px;
+}
+
+.blue {
+  color: #4372E9;
+}
+
+.red {
+  color: #D44333;
+}
+
+.yellow {
+  color: #EBB03D;
+}
+
+.green {
+  color: #4C984C;
+}
+
+.thumbtack {
+  color: #469DD4;
+}
+
+.yelp {
+  color: #D44532;
+}
+
+.handyman {
+  color: var(--accent-color-light);
 }

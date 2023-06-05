@@ -47,6 +47,7 @@ const ReviewItem = ({
       <div className={ s['main-block'] }>
         <div className={ s['main-info'] }>
           <div className={ s.image }>
+            { photo && (
             <Image
               src={ photo }
               alt="Review avatar"
@@ -58,6 +59,7 @@ const ReviewItem = ({
                 inset: ' auto 0 0 auto',
               } }
             />
+            )}
           </div>
           {/* <div> */}
           <p className={ s.name }>{ name }</p>

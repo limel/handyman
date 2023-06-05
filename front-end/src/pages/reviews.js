@@ -9,14 +9,22 @@ export async function getStaticProps() {
   //   },
   // });
   // const googleReviewsArray = googleReviews.data;
+  const yelpReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/yelp`, {
+    headers: {
+      Authorization: `Beraer ${ process.env.YELP_API_KEY }`,
+    },
+  });
+  const yelpReviewsArray = yelpReviews.data;
   return {
     props: {
       // googleReviews: googleReviewsArray,
+      yelpReviews: yelpReviewsArray,
     },
   };
 }
 
-export default function ReviewsPage({ googleReviews }) {
+export default function ReviewsPage({ googleReviews, yelpReviews }) {
+  console.log(yelpReviews);
   return (
     <>
       <Head>
@@ -29,7 +37,7 @@ export default function ReviewsPage({ googleReviews }) {
         {/* <script src="https://widgets.sociablekit.com/yelp-reviews/widget.js" async defer /> */}
       </Head>
       <main>
-        <Reviews googleReviews={ googleReviews } />
+        <Reviews googleReviews={ googleReviews } yelpReviews={ yelpReviews } />
       </main>
     </>
   );

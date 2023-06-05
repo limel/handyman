@@ -34,6 +34,9 @@ const nextConfig = {
       '127.0.0.1',
     ],
   },
+  env: {
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+  },
   webpack: (config, { dev }) => {
     const rules = config.module.rules
       .find((rule) => typeof rule.oneOf === 'object')
@@ -85,6 +88,14 @@ const nextConfig = {
       {
         source: '/uploads/:path*',
         destination: '/cms/uploads/:path*',
+      },
+      {
+        source: '/api/reviews/google',
+        destination: 'https://maps.googleapis.com/maps/api/place/details/:path*',
+      },
+      {
+        source: '/api/reviews/yelp',
+        destination: 'https://api.yelp.com/v3/businesses/:path*',
       },
     ];
   },

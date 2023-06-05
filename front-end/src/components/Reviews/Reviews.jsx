@@ -5,40 +5,10 @@ import s from './Reviews.module.scss';
 import ReviewItem from '../UI/ReviewItem/ReviewItem';
 import Star from '../UI/Star/Star';
 
-const Reviews = () => {
-  const placeId = 'ChIJKcxaU1Hj20ARUKAZQD-FLZg';
-  const googleApiKey = 'AIzaSyDFWvgz9fkV8wnlzz3nsoBKDb17UjMJsv0';
-  const [ googleReviews, setGoogleReviews ] = useState([]);
+const Reviews = ({ googleReviews }) => {
   const [ yelpReviews, setYelpReviews ] = useState([]);
   const [ thumbtackReviews, setThumbtackReviews ] = useState([]);
 
-  const getGoogleReviews = async () => {
-    const { google } = window;
-    const service = await new google.maps.places.PlacesService(document.getElementById('map'));
-    service.getDetails({
-      placeId,
-      fields: [ 'reviews' ],
-    }, (place) => {
-      // console.log('Place details:', place.reviews);
-      setGoogleReviews(place.reviews);
-    });
-  };
-
-  // const getYelpReviews = async () => {
-  //   const options = {
-  //     method: 'GET',
-  //     mode: 'no-cors',
-  //     headers: {
-  //       accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //       Authorization: 'Bearer H50el0rBzv6vomGBs6IYlRKpmq1VIZvx4rPoJZ058KcZweNWriJIK766u3lSO4rXdPWPhzz8Oa0Zfhkct8YTn2wQ9htIQRvSo3E3GoVKFsKGbBo54EETZURKb2B3ZHYx',
-  //     },
-  //   };
-  //   await fetch('https://api.yelp.com/v3/businesses/acumen-handyman-seattle/reviews', options)
-  //     .then((response) => response.json())
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // };
   const getYelpReviews = async () => {
     // await axios.get('https://data.accentapi.com/feed/150813.json?nocache=1685969522637')
     await axios.get('https://service-reviews-ultimate.elfsight.com/data/reviews?uris%5B%5D=https%3A%2F%2Fwww.yelp.com%2Fbiz%2Facumen-handyman-seattle&with_text_only=1&min_rating=5&page_length=100&order=date')
@@ -53,15 +23,12 @@ const Reviews = () => {
   };
 
   useEffect(() => {
-    getGoogleReviews();
     getYelpReviews();
     getThumbtackReviews();
   }, []);
 
   return (
     <section className={ s.section }>
-      <div id="map" />
-      {/* <div className="sk-ww-google-reviews" data-embed-id="148829" /> */}
       <div className={ s['reviews-about'] }>
         <p className={ s['reviews-stars'] }>
           <Star />
@@ -114,10 +81,11 @@ const Reviews = () => {
         </p>
       </div>
       <div className={ s.reviews }>
-        {googleReviews.map((review) => (
+        {googleReviews && googleReviews.map((review) => (
           review.rating === 5
             ? (
               <ReviewItem
+                key={ review.author_url }
                 review={ review }
                 photo={ review.profile_photo_url }
                 name={ review.author_name }
@@ -130,7 +98,7 @@ const Reviews = () => {
             )
             : null
         ))}
-        {yelpReviews.map((review) => (
+        {/* {yelpReviews.map((review) => (
           review.rating === 5
             ? (
               <ReviewItem
@@ -161,7 +129,7 @@ const Reviews = () => {
               />
             )
             : null
-        ))}
+        ))} */}
       </div>
     </section>
   );

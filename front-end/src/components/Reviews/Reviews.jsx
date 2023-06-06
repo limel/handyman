@@ -5,15 +5,6 @@ import s from './Reviews.module.scss';
 import ReviewItem from '../UI/ReviewItem/ReviewItem';
 import Star from '../UI/Star/Star';
 
-<<<<<<< HEAD
-const Reviews = ({ googleReviews, yelpReviews }) => {
-  const [ thumbtackReviews, setThumbtackReviews ] = useState([]);
-  console.log(yelpReviews);
-  const getThumbtackReviews = async () => {
-    await axios.get('https://data.accentapi.com/feed/150849.json?nocache=1685982129323')
-      .then((response) => setThumbtackReviews(response.data.reviews))
-      .catch((error) => console.error(error));
-=======
 const Reviews = ({ googleReviews, yelpReviews, thumbtackReviews }) => {
   const [ reviews, setReviews ] = useState([ ...googleReviews, ...yelpReviews, ...thumbtackReviews ]);
   const [ visibleReviews, setVisibleReviews ] = useState(10);
@@ -25,7 +16,6 @@ const Reviews = ({ googleReviews, yelpReviews, thumbtackReviews }) => {
   console.log(reviews);
   const handleLoadMoreReviews = () => {
     setVisibleReviews((prevCount) => prevCount + 10);
->>>>>>> fdee07a29ab893d5f3130c2ae3b90cacc4750a95
   };
 
   return (

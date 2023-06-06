@@ -41,6 +41,24 @@
   }
 }
 
+.image-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--placeholder-color);
+  border-radius: 50%;
+  width: 3.625rem;
+  height: 3.625rem;
+  margin-right: 25px;
+  margin-bottom: 15px;
+
+  @media (width <= 992px) {
+    width: 2.4375rem;
+    height: 2.4375rem;
+    margin-right: 15px;
+  }
+}
+
 .name {
   font-size: 1.25rem;
   letter-spacing: -0.01em;

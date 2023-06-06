@@ -126,3 +126,16 @@
     display: block;
   }
 }
+
+@media (width <= 1024px) {
+  .card {
+    max-width: none;
+  }
+
+  .card.active {
+    .description {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

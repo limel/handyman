@@ -7,7 +7,7 @@ import Star from '../UI/Star/Star';
 
 const Reviews = ({ googleReviews, yelpReviews }) => {
   const [ thumbtackReviews, setThumbtackReviews ] = useState([]);
-console.log(yelpReviews);
+  console.log(yelpReviews);
   const getThumbtackReviews = async () => {
     await axios.get('https://data.accentapi.com/feed/150849.json?nocache=1685982129323')
       .then((response) => setThumbtackReviews(response.data.reviews))
@@ -92,6 +92,7 @@ console.log(yelpReviews);
         {yelpReviews && yelpReviews.map((review) => (
           <ReviewItem
               // review={ review }
+            key={ review.id }
             photo={ review.user.image_url }
             name={ review.user.name }
             relativeTime={ review.time_created }

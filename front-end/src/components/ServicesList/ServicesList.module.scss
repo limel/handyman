@@ -4,7 +4,6 @@
   margin: 0 auto;
   padding: 0 4.375rem;
 
-
   .wrapper {
     position: relative;
   }
@@ -17,8 +16,7 @@
 
   .lists {
     width: 100%;
-    transition: var(--transition) all;
-    margin-left: 0;
+    transition: var(--transition) width;
     margin-left: auto;
   }
 
@@ -39,9 +37,7 @@
     position: relative;
     margin-bottom: 3.375rem;
 
-    @media (width <= 1210px) {
-      justify-content: center;
-    }
+
 
     li {
       margin-right: 12.375rem;
@@ -72,12 +68,31 @@
   }
 }
 
+@media (width <= 1210px) {
+  .list {
+    justify-content: center;
+  }
+}
+
 @media (width <= 1440px) {
   .container {
     margin: 0 auto;
   }
 }
 
+
+@media (width <= 1024px)
+{
+  // .lists{
+
+  // }
+}
+
 .button {
   margin: 0 auto;
+}
+
+
+@media (width < 768px) {
+  margin-left: 0;
 }

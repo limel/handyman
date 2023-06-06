@@ -24,7 +24,6 @@ export async function getStaticProps() {
 }
 
 export default function ReviewsPage({ googleReviews, yelpReviews }) {
-  console.log(yelpReviews);
   return (
     <>
       <Head>

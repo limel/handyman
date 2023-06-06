@@ -58,4 +58,7 @@
     <path fill-rule="evenodd" clip-rule="evenodd" d="M49.96 53.4798C53.21 49.1998 57.07 47.4198 63.14 47.0498V76.0498C63.14 84.3598 60.93 89.8598 56.63 96.4598C52.49 90.1198 49.96 84.8898 49.96 76.0498V53.4798Z" fill="white"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M28.8896 29.5898H85.3697V41.4698H28.8896V29.5898Z" fill="white"/>
   </symbol>
+  <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" id="arrow">
+    <path d="M0.736267 1.27869L5.23627 5.77869L9.73627 1.27869L8.67877 0.221191L5.23627 3.65619L1.79377 0.221191L0.736267 1.27869Z" fill="white"></path>
+  </symbol>
 </svg>

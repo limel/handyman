@@ -4,9 +4,31 @@ import Link from 'next/link';
 import Star from '../Star/Star';
 import s from './ReviewItem.module.scss';
 
-const ReviewItem = ({
-  photo, name, relativeTime, rating, text, url, linkHref,
-}) => {
+const ReviewItem = (props) => {
+  const name = props?.author_name ?? props?.user?.name ?? props?.review_name ?? 'User';
+  const photo = props?.profile_photo_url
+                ?? props?.users?.profile_url
+                ?? props?.review_profile
+                ?? null;
+  const relativeTime = props?.relative_time_description ?? props?.time_created ?? props?.review_date ?? 'many years ago';
+  const text = props?.text ?? props?.text ?? props?.review_text ?? 'No review text';
+  const url = props?.author_url ?? props?.user?.url ?? props?.review_link ?? null;
+  let linkHref;
+  const { source } = props;
+  switch (source) {
+    case 'google':
+      linkHref = '/sprite.svg#google';
+      break;
+    case 'yelp':
+      linkHref = '/sprite.svg#yelp';
+      break;
+    case 'thumbtack':
+      linkHref = '/sprite.svg#thumbtack';
+      break;
+    default:
+      linkHref = null;
+  }
+
   const textRef = useRef(null);
   const [ showReadMore, setShowReadMore ] = useState(false);
   const [ ellipsisRow, setEllipsisRow ] = useState(null);
@@ -35,7 +57,7 @@ const ReviewItem = ({
       <div className={ s['main-block'] }>
         <div className={ s['main-info'] }>
           <div className={ s.image }>
-            {/* {photo ? (
+            {photo ? (
               <Image
                 src={ photo }
                 alt="Review avatar"
@@ -49,9 +71,9 @@ const ReviewItem = ({
               />
             ) : (
               <span className={ s['image-placeholder'] }>
-                {name.split(' ').map((nameString) => nameString.charAt(0)).join('')}
+                {name ? name.split(' ').map((nameString) => nameString.charAt(0)).join('') : name}
               </span>
-            )} */}
+            )}
           </div>
           <p className={ s.name }>{ name }</p>
           <p className={ s.time }>{ relativeTime }</p>
@@ -73,16 +95,16 @@ const ReviewItem = ({
               { text }
             </div>
             {showReadMore
-              ? <div className={ s['read-more'] } onClick={ readMore }>READ MORE&gt;&gt;&gt;</div>
+              ? <button type="button" className={ s['read-more'] } onClick={ readMore }>READ MORE&gt;&gt;&gt;</button>
               : null}
           </div>
         </div>
-        <Link href={ url } prefetch={ false } className={ s.link } target="_blank">
+        <Link href={ url ?? '/' } prefetch={ false } className={ s.link } target="_blank">
           <svg className={ s['link-icon'] }><use href={ linkHref } /></svg>
         </Link>
       </div>
     </div>
   );
-  // TODO - create fallback
 };
+
 export default ReviewItem;

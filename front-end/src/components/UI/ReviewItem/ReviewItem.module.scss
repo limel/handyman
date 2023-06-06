@@ -1,7 +1,6 @@
 .review {
   max-width: 76.8125rem;
   width: 100%;
-  height: auto;
   border: 0.5px solid var(--accent-color-light);
   padding: 1.5625rem 1.875rem;
   border-radius: 3.8125rem;
@@ -118,7 +117,14 @@
   // -webkit-line-clamp: 3;
 }
 
-.read-more {
+.text-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.read-more, .read-less {
   font-size: 0.875rem;
   font-style: italic;
   font-weight: 400;

@@ -23,8 +23,11 @@ export default function ContuctUs() {
         <ContactUs />
       </main>
       <Background>
-        {windowWidth >= 1440 ? <LampLightAnimation top="-21%" left="33%" /> : null}
-        <LampLightAnimation top={ windowWidth >= 1440 ? '-21%' : windowWidth >= 992 ? '-26%' : '-30%' } left="61%" />
+        {windowWidth >= 1440 ? <LampLightAnimation top="-21%" left="30%" /> : null}
+        <LampLightAnimation
+          top={ windowWidth >= 1440 ? '-21%' : windowWidth >= 768 ? '-25%' : '-30%' }
+          left={ windowWidth >= 768 ? '64%' : '68%' }
+        />
         <Bath
           bottom={ windowWidth >= 1440 ? '8%' : windowWidth >= 768 ? '22%' : '6%' }
           left={ windowWidth >= 1440 ? '16%' : windowWidth >= 768 ? '67%' : '16%' }

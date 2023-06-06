@@ -61,7 +61,7 @@ const CallbackForm = () => {
           </div>
           <div className={ s.row }>
             <Input name="phone_number" as="input" placeholder="e.g.(218)111-1111" label="PHONE NUMBER" required />
-            <Input name="email" as="input" placeholder="e.g.anna@gmai.com" label="EMAIL" required />
+            <Input name="email" as="input" placeholder="e.g.anna@gmail.com" label="EMAIL" required />
           </div>
           <div className={ s.row }>
             <Input name="city" as="input" placeholder="e.g.Shoreline" label="CITY" required />

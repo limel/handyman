@@ -1,10 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Link from 'next/link';
 import s from './Reviews.module.scss';
 import ReviewItem from '../UI/ReviewItem/ReviewItem';
 import Star from '../UI/Star/Star';
 
+<<<<<<< HEAD
 const Reviews = ({ googleReviews, yelpReviews }) => {
   const [ thumbtackReviews, setThumbtackReviews ] = useState([]);
   console.log(yelpReviews);
@@ -12,11 +13,20 @@ const Reviews = ({ googleReviews, yelpReviews }) => {
     await axios.get('https://data.accentapi.com/feed/150849.json?nocache=1685982129323')
       .then((response) => setThumbtackReviews(response.data.reviews))
       .catch((error) => console.error(error));
+=======
+const Reviews = ({ googleReviews, yelpReviews, thumbtackReviews }) => {
+  const [ reviews, setReviews ] = useState([ ...googleReviews, ...yelpReviews, ...thumbtackReviews ]);
+  const [ visibleReviews, setVisibleReviews ] = useState(10);
+  const newArray = [];
+  for (let i = 0; i < 10; i++) {
+    newArray.push(reviews[i]);
+    console.log(reviews[i]);
+  }
+  console.log(reviews);
+  const handleLoadMoreReviews = () => {
+    setVisibleReviews((prevCount) => prevCount + 10);
+>>>>>>> fdee07a29ab893d5f3130c2ae3b90cacc4750a95
   };
-
-  useEffect(() => {
-    getThumbtackReviews();
-  }, []);
 
   return (
     <section className={ s.section }>
@@ -71,8 +81,8 @@ const Reviews = ({ googleReviews, yelpReviews }) => {
           More may be seen by clicking the links.
         </p>
       </div>
-      <div className={ s.reviews }>
-        {googleReviews && googleReviews.map((review) => (
+      {/* <div className={ s.reviews }>
+        {googleReviews ? googleReviews.map((review) => (
           review.rating === 5
             ? (
               <ReviewItem
@@ -81,13 +91,14 @@ const Reviews = ({ googleReviews, yelpReviews }) => {
                 photo={ review.profile_photo_url }
                 name={ review.author_name }
                 relativeTime={ review.relative_time_description }
-                rating={ review.rating }
+              // rating={ review.rating }
                 text={ review.text }
                 url={ review.author_url }
                 linkHref="/sprite.svg#google"
               />
             )
             : null
+<<<<<<< HEAD
         ))}
         {yelpReviews && yelpReviews.map((review) => (
           <ReviewItem
@@ -104,9 +115,28 @@ const Reviews = ({ googleReviews, yelpReviews }) => {
         ))}
         {/* thumbtackReviews.map((review) => (
           review.review_stars === 5
+=======
+        )) : <p className={ s.fallback }>Google reviews are not available at the moment, please try again later</p>}
+        {yelpReviews ? yelpReviews.map((review) => (
+          review.rating === 5
+>>>>>>> fdee07a29ab893d5f3130c2ae3b90cacc4750a95
             ? (
               <ReviewItem
               // review={ review }
+                photo={ review.user.image_url }
+                name={ review.user.name }
+                relativeTime={ review.time_created }
+                // rating={ review.rating }
+                text={ review.text }
+                url={ review.user.profile_url }
+                linkHref="/sprite.svg#yelp"
+              />
+            ) : null
+        )) : <p className={ s.fallback }>Yelp reviews are not available at the moment, please try again later</p>}
+        {thumbtackReviews ? thumbtackReviews.map((review) => (
+          review.review_stars === 5
+            ? (
+              <ReviewItem
                 photo={ review.review_profile }
                 name={ review.review_name }
                 relativeTime={ review.review_date }
@@ -117,8 +147,16 @@ const Reviews = ({ googleReviews, yelpReviews }) => {
               />
             )
             : null
-        ))} */}
+        )) : <p className={ s.fallback }>Thumbtack reviews are not available at the moment, please try again later</p>}
+      </div> */}
+      <div className={ s.reviews }>
+        {newArray.map((review, index) => { console.log(review); })}
       </div>
+      {visibleReviews < reviews.length && (
+      <button type="button" className={ s['load-more'] } onClick={ handleLoadMoreReviews }>
+        Load More Reviews
+      </button>
+      )}
     </section>
   );
 };

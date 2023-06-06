@@ -98,6 +98,10 @@ const nextConfig = {
         source: '/api/reviews/yelp',
         destination: 'https://api.yelp.com/v3/businesses/:path*',
       },
+      {
+        source: '/api/reviews/thumbtack',
+        destination: 'https://data.accentapi.com/feed/150849.json?nocache=1685982129323',
+      },
     ];
   },
 };

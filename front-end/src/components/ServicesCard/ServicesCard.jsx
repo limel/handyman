@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import useWindowWidth from '~/hooks/useWindowWidth';
 import Image from 'next/image';
 import cn from 'classnames';
 import Button from '~/components/UI/Button';
@@ -12,6 +13,7 @@ const ServicesCard = ({
   const cardRef = useRef(null);
   const [ cardActiveHeight, setCardActiveHeight ] = useState(0);
   const { url } = image.data.attributes;
+  const windowWidth = useWindowWidth();
 
   useEffect(() => {
     let timeoutId;
@@ -59,20 +61,24 @@ const ServicesCard = ({
       });
     };
 
-    if (isActive) {
-      // Add a delay of 500 milliseconds before calculating the position
-      timeoutId = setTimeout(() => {
-        animateCardToTarget();
-      }, 200);
-    } else {
-      resetCardPosition();
+    if (windowWidth > 1024) {
+      if (isActive) {
+        // Add a delay of 500 milliseconds before calculating the position
+        timeoutId = setTimeout(() => {
+          animateCardToTarget();
+        }, 200);
+      } else {
+        resetCardPosition();
+      } return () => {
+        // Clear the timeout when the component unmounts or when isActive changes it's important!
+        clearTimeout(timeoutId);
+      };
     }
-
     return () => {
       // Clear the timeout when the component unmounts or when isActive changes it's important!
-      clearTimeout(timeoutId);
+      // clearTimeout(timeoutId);
     };
-  }, [ isActive ]);
+  }, [ isActive, windowWidth ]);
 
   const handlerClick = (e) => {
     if (e.currentTarget === textRef.current) return;

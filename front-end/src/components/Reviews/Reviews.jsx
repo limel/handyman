@@ -88,9 +88,28 @@ const Reviews = ({ googleReviews, yelpReviews, thumbtackReviews }) => {
               />
             )
             : null
+<<<<<<< HEAD
+        ))}
+        {yelpReviews && yelpReviews.map((review) => (
+          <ReviewItem
+              // review={ review }
+            key={ review.id }
+            photo={ review.user.image_url }
+            name={ review.user.name }
+            relativeTime={ review.time_created }
+                // rating={ review.rating }
+            text={ review.text }
+            url={ review.user.profile_url }
+            linkHref="/sprite.svg#yelp"
+          />
+        ))}
+        {/* thumbtackReviews.map((review) => (
+          review.review_stars === 5
+=======
         )) : <p className={ s.fallback }>Google reviews are not available at the moment, please try again later</p>}
         {yelpReviews ? yelpReviews.map((review) => (
           review.rating === 5
+>>>>>>> fdee07a29ab893d5f3130c2ae3b90cacc4750a95
             ? (
               <ReviewItem
               // review={ review }

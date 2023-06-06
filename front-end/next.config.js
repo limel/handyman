@@ -35,6 +35,7 @@ const nextConfig = {
     ],
   },
   env: {
+    BACK_URL: process.env.BACK_URL,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     YELP_API_KEY: process.env.YELP_API_KEY,
   },

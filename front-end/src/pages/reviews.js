@@ -3,25 +3,25 @@ import axios from 'axios';
 import Reviews from '~/components/Reviews/Reviews';
 
 export async function getStaticProps() {
-  const googleReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/google`, {
-    headers: {
-      Authorization: `Beraer ${ process.env.GOOGLE_API_KEY }`,
-    },
-  });
-  const googleReviewsArray = googleReviews.data;
-  const yelpReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/yelp`, {
-    headers: {
-      Authorization: `Beraer ${ process.env.YELP_API_KEY }`,
-    },
-  });
-  const yelpReviewsArray = yelpReviews.data;
-  const thumbtackReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/thumbtack`);
-  const thumbtackReviewsArray = thumbtackReviews.data;
+  // const googleReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/google`, {
+  //   headers: {
+  //     Authorization: `Beraer ${ process.env.GOOGLE_API_KEY }`,
+  //   },
+  // });
+  // const googleReviewsArray = googleReviews.data;
+  // const yelpReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/yelp`, {
+  //   headers: {
+  //     Authorization: `Beraer ${ process.env.YELP_API_KEY }`,
+  //   },
+  // });
+  // const yelpReviewsArray = yelpReviews.data;
+  // const thumbtackReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/thumbtack`);
+  // const thumbtackReviewsArray = thumbtackReviews.data;
   return {
     props: {
-      googleReviews: googleReviewsArray,
-      yelpReviews: yelpReviewsArray,
-      thumbtackReviews: thumbtackReviewsArray,
+      // googleReviews: googleReviewsArray,
+      // yelpReviews: yelpReviewsArray,
+      // thumbtackReviews: thumbtackReviewsArray,
     },
   };
 }

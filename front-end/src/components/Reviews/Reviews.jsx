@@ -9,6 +9,7 @@ const Reviews = ({ googleReviews, yelpReviews, thumbtackReviews }) => {
   const [ visibleReviews, setVisibleReviews ] = useState(10);
 
   useEffect(() => {
+    if (!googleReviews || !yelpReviews || !thumbtackReviews) return;
     setReviews([
       ...googleReviews.map((review) => ({ ...review, source: 'google' })),
       ...yelpReviews.map((review) => ({ ...review, source: 'yelp' })),
@@ -24,9 +25,13 @@ const Reviews = ({ googleReviews, yelpReviews, thumbtackReviews }) => {
     <section className={ s.section }>
       <ReviewsHead />
       <div className={ s.reviews }>
-        {reviews.slice(0, visibleReviews).map((review, index) => (
+        {reviews.length !== 0 ? (reviews.slice(0, visibleReviews).map((review, index) => (
           <ReviewItem { ...review } key={ index } />
-        ))}
+        ))) : (
+          <p className={ s.fallback }>
+            Sorry, services is not aviable now, please try again later
+          </p>
+        )}
       </div>
       {visibleReviews < reviews.length && (
       <button type="button" className={ s['load-more'] } onClick={ handleLoadMoreReviews }>

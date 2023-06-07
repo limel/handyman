@@ -36,10 +36,10 @@ export default function Home({ services }) {
       </main>
       <Background>
         {windowWidth >= 1024 ? <LampLight top="-41%" left="20%" delay="2.5" /> : null}
-        {windowWidth >= 1024 ? <LampLightAnimation top="-17%" left="28%" /> : null}
+        {windowWidth >= 1024 ? <LampLightAnimation top="-18%" left="31%" /> : null}
         <LampLightAnimation
-          left={ windowWidth >= 1024 ? '62%' : windowWidth >= 768 ? '65%' : '66%' }
-          top={ windowWidth >= 1024 ? '-18%' : windowWidth >= 768 ? '-25%' : '-23%' }
+          left={ windowWidth >= 1024 ? '62%' : windowWidth >= 768 ? '65%' : '68%' }
+          top={ windowWidth >= 1024 ? '-18%' : windowWidth >= 768 ? '-25%' : '-25%' }
         />
         {windowWidth >= 1024
           ? (

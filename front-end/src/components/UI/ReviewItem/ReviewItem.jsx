@@ -31,21 +31,30 @@ const ReviewItem = (props) => {
 
   const textRef = useRef(null);
   const [ showReadMore, setShowReadMore ] = useState(false);
+  const [ showReadLess, setShowReadLess ] = useState(false);
   const [ ellipsisRow, setEllipsisRow ] = useState(null);
 
   const handlerEllipsisText = () => {
     const textOffsetHeight = textRef.current.offsetHeight - 1;
     const lineHeight = parseInt(window.getComputedStyle(textRef.current).getPropertyValue('line-height'), 10);
 
-    if ((textOffsetHeight / lineHeight) > 3) {
+    if ((textOffsetHeight / lineHeight) > 3 && !showReadMore) {
       setEllipsisRow(3);
       setShowReadMore(true);
+      setShowReadLess(false);
     }
   };
 
   const readMore = () => {
     setEllipsisRow(null);
     setShowReadMore(false);
+    setShowReadLess(true);
+  };
+
+  const readLess = () => {
+    setEllipsisRow(3);
+    setShowReadMore(true);
+    setShowReadLess(false);
   };
 
   useEffect(() => {
@@ -96,6 +105,9 @@ const ReviewItem = (props) => {
             </div>
             {showReadMore
               ? <button type="button" className={ s['read-more'] } onClick={ readMore }>READ MORE&gt;&gt;&gt;</button>
+              : null}
+            {showReadLess
+              ? <button type="button" className={ s['read-less'] } onClick={ readLess }>READ LESS&lt;&lt;&lt;</button>
               : null}
           </div>
         </div>

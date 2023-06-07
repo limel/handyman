@@ -7,6 +7,13 @@
 
   @media (width <= 992px) {
     padding: 1.25rem 2.8125rem;
+    background: linear-gradient(151.13deg, rgba(245, 245, 245, 0.28) 14.71%, rgba(245, 245, 245, 0) 106.39%);
+    // min-height: 247px;
+    height: 100%;
+  }
+
+  @media (width < 425px) {
+    padding: 1.25rem 2rem;
   }
 }
 
@@ -78,6 +85,8 @@
   font-weight: 300;
   color: rgba(255, 255, 255, 0.75);
   align-self: flex-start;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .link {
@@ -101,8 +110,14 @@
   height: 0;
   margin-right: 25px;
   gap: 6px;
+
   @media (width <= 992px) {
     margin-right: 10px;
+  }
+
+  @media (width < 425px) {
+    gap: 1px;
+    margin-bottom: 10px;
   }
 }
 
@@ -115,6 +130,10 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   // -webkit-line-clamp: 3;
+
+  @media (width < 425px) {
+    font-size: 1rem;
+  }
 }
 
 .text-block {
@@ -149,7 +168,15 @@
     grid-template-areas: 
       "image name name ."
       "image rating time ."
-      "text-block text-block text-block text-block"  }
+      "text-block text-block text-block text-block" 
+  }
+  @media (width < 425px) {
+    grid-template-areas: 
+      "image name name ."
+      "image rating rating ."
+      "image time time ."
+      "text-block text-block text-block text-block" 
+  }
 }
 
 .image { grid-area: image; }

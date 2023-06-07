@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "contact",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "schedule_days": {
+      "type": "string"
+    },
+    "schedule_time": {
+      "type": "string"
+    },
+    "contacts_info": {
+      "displayName": "contact_field",
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.contact-field"
+    },
+    "notice": {
+      "type": "string"
+    }
+  }
+}

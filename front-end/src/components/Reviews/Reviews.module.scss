@@ -110,11 +110,13 @@
 
   .load-more {
     display: flex;
+
     div {
       display: flex;
       flex-direction: column;
       height: 14px;
     }
+
     svg {
       width: 8px;
       height: 12px;
@@ -126,6 +128,7 @@
   .section {
     padding: 0 15px;
   }
+
   .reviews {
     padding: 0;
     border: none;

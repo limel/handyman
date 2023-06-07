@@ -9,11 +9,21 @@ import s from './ServicesCard.module.scss';
 const ServicesCard = ({
   title, description, isActive, onClick, targetRef, commonListRef, image,
 }) => {
+  const { url } = image.data.attributes;
+  const [ cardActiveHeight, setCardActiveHeight ] = useState(0);
+  const cardClassName = cn(s.card, { [s.active]: isActive });
+  const windowWidth = useWindowWidth();
   const textRef = useRef(null);
   const cardRef = useRef(null);
-  const [ cardActiveHeight, setCardActiveHeight ] = useState(0);
-  const { url } = image.data.attributes;
-  const windowWidth = useWindowWidth();
+
+  const handlerClick = (e) => {
+    if (e.currentTarget === textRef.current) return;
+    onClick();
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') handlerClick(e);
+  };
 
   useEffect(() => {
     let timeoutId;
@@ -70,20 +80,13 @@ const ServicesCard = ({
       } else {
         resetCardPosition();
       } return () => {
-        // Clear the timeout when the component unmounts or when isActive changes it's important!
+        // it's important!
         clearTimeout(timeoutId);
       };
     }
-    return () => {
-      // Clear the timeout when the component unmounts or when isActive changes it's important!
-      // clearTimeout(timeoutId);
-    };
+    return () => {};
   }, [ isActive, windowWidth ]);
 
-  const handlerClick = (e) => {
-    if (e.currentTarget === textRef.current) return;
-    onClick();
-  };
   useEffect(() => {
     const mainElement = document.querySelector('main');
     const mainHeight = mainElement.offsetHeight;
@@ -94,12 +97,6 @@ const ServicesCard = ({
       mainElement.style.minHeight = 0;
     }
   }, [ cardActiveHeight ]);
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') handlerClick(e);
-  };
-
-  const cardClassName = cn(s.card, { [s.active]: isActive });
 
   return (
     <li
@@ -121,7 +118,7 @@ const ServicesCard = ({
         <div className={ s.image }>
           <Image
             // TODO hide back url
-            src={ `http://127.0.0.1:1337${ url }` }
+            src={ `${ process.env.BACK_URL }${ url }` }
             alt="test"
             fill
             style={ {
@@ -134,6 +131,11 @@ const ServicesCard = ({
         </div>
       </figure>
       <div className={ s.description } ref={ textRef }>
+        <button className={ s.close } type="button" onClick={ onClick }>
+          <span />
+          <span />
+        </button>
+        <h2 className={ s.description__title }>{title}</h2>
         <div className="text" dangerouslySetInnerHTML={ { __html: description } } />
         <Button href="/services" className={ s.button }>
           GET A QUOTE

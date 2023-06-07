@@ -10,7 +10,7 @@
 }
 
 .title {
-  font-size: 60px;
+  font-size: 3.75rem;
   font-family: var(--font-title);
   line-height: 100%;
   color: var(--accent-color-light);
@@ -19,8 +19,8 @@
 }
 
 .decorative-container{ 
-  max-width: 210px;
-  min-width: 210px;
+  max-width: 13.125rem;
+  min-width: 13.125rem;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -28,7 +28,7 @@
 
 .decorative {
   bottom: 0;
-  width: 139px;
+  width: 8.6875rem;
   height: 14px;
   background: rgb(196 196 196 / 9%);
   border-radius: 50px;
@@ -59,7 +59,7 @@
 
 @media (width <= 992px) {
   .decorative {
-    width: 110px;
+    width: 6.875rem;
 
     &::after {
       right: -22px;
@@ -67,8 +67,8 @@
   }
 
   .decorative-container{
-    max-width: 187px;
-    min-width: 70px
+    max-width: 11.6875rem;
+    min-width: 4.375rem
   }
 
   .title {
@@ -88,12 +88,12 @@
   }
 
   .decorative-container{
-    max-width: 117px;
-    min-width: 50px
+    max-width: 7.3125rem;
+    min-width: 3.125rem;
   }
 
   .decorative {
-    width: 60px;
+    width: 3.125rem;
     height: 5px;
 
     &::before,

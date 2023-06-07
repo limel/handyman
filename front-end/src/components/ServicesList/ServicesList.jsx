@@ -1,5 +1,9 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
-import { useState, forwardRef, useRef } from 'react';
+import {
+  useState, forwardRef, useRef, useEffect,
+} from 'react';
 import ServicesCard from '~/components/ServicesCard';
 import cn from 'classnames';
 import useWindowWidth from '~/hooks/useWindowWidth';
@@ -9,21 +13,30 @@ import Button from '../UI/Button';
 
 // eslint-disable-next-line no-unused-vars
 const ServicesList = forwardRef((props, ref) => {
+  const { data } = props.services;
   const windowWidth = useWindowWidth();
-  const cardCountInRow = windowWidth >= 768 ? 3 : 2;
   const [ activeItem, setActiveItem ] = useState(null);
+  const cardCountInRow = windowWidth >= 768 ? 3 : 2;
   const targetRef = useRef(null);
+  const overlayRef = useRef(null);
   const commonListRef = useRef(null);
+
+  const rowList = Array
+    .from(
+      { length: Math.ceil(data.length / cardCountInRow) },
+      (_, index) => data.slice(index * cardCountInRow, (index + 1) * cardCountInRow),
+    );
+
+  const handleOverlayClick = () => {
+    // Set the active item to null when the overlay is clicked
+    setActiveItem(null);
+  };
+
   const handlerClick = (id) => {
     if (activeItem === id) setActiveItem(null);
     else setActiveItem(id);
   };
-  const { data } = props.services;
-  const rowList = [];
-  for (let i = 0; i < data.length; i += cardCountInRow) {
-    const row = data.slice(i, i + cardCountInRow);
-    rowList.push(row);
-  }
+
   return (
     <section className={ s.container }>
       <Title>
@@ -39,9 +52,7 @@ const ServicesList = forwardRef((props, ref) => {
         >
           {rowList.map((chunk, index) => (
             <ul
-              className={ cn(s.list, {
-                [s.active]: activeItem !== null,
-              }) }
+              className={ cn(s.list) }
               key={ index }
             >
               {chunk.map((item) => (
@@ -58,6 +69,14 @@ const ServicesList = forwardRef((props, ref) => {
           ))}
         </div>
       </div>
+      {activeItem && windowWidth <= 1024 && (
+      <div
+        className={ s.overlay }
+        aria-label="overlay"
+        ref={ overlayRef }
+        onClick={ handleOverlayClick }
+      />
+      )}
       {!activeItem ? <Button href="/callback-form" className={ s.button }>GET A QUOTE</Button> : null}
     </section>
   );

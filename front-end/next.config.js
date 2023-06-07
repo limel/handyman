@@ -88,6 +88,10 @@ const nextConfig = {
         destination: `${ process.env.BACK_URL }/api/services?populate=*`,
       },
       {
+        source: '/api/contact',
+        destination: `${ process.env.BACK_URL }/api/contact?populate=*`,
+      },
+      {
         source: '/uploads/:path*',
         destination: '/cms/uploads/:path*',
       },

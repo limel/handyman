@@ -184,7 +184,7 @@
       transform: translate(-50%, -50%) scale(1);
 
       .close {
-        position: absolute;
+        position: fixed;
         top: 11%;
         right: 10px;
         width: 3rem;

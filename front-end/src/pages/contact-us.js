@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import axios from 'axios';
 import Background from '~/components/Background';
 import LampLightAnimation from '~/components/Background/LampLightAnimation';
 import Bath from '~/components/Background/Bath';
@@ -8,9 +9,20 @@ import Cookie from '~/components/Background/Cookie';
 import useWindowWidth from '~/hooks/useWindowWidth';
 import Kitchen from '~/components/Background/Kitchen';
 
-export default function ContuctUs() {
-  const windowWidth = useWindowWidth();
+export async function getStaticProps() {
+  const info = await axios.get(`${ process.env.FRONT_URL }/api/contact`);
+  const { data } = info;
+  return {
+    props: {
+      info: data,
+    },
+  };
+}
 
+export default function ContuctUs({ info }) {
+  const windowWidth = useWindowWidth();
+  // const info = contactInfo.;
+  console.log(info);
   return (
     <>
       <Head>
@@ -20,11 +32,14 @@ export default function ContuctUs() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ContactUs />
+        <ContactUs { ...info } />
       </main>
       <Background>
-        {windowWidth >= 1440 ? <LampLightAnimation top="-21%" left="33%" /> : null}
-        <LampLightAnimation top={ windowWidth >= 1440 ? '-21%' : windowWidth >= 992 ? '-26%' : '-30%' } left="61%" />
+        {windowWidth >= 1440 ? <LampLightAnimation top="-21%" left="30%" /> : null}
+        <LampLightAnimation
+          top={ windowWidth >= 1440 ? '-21%' : windowWidth >= 768 ? '-25%' : '-30%' }
+          left={ windowWidth >= 768 ? '64%' : '68%' }
+        />
         <Bath
           bottom={ windowWidth >= 1440 ? '8%' : windowWidth >= 768 ? '22%' : '6%' }
           left={ windowWidth >= 1440 ? '16%' : windowWidth >= 768 ? '67%' : '16%' }

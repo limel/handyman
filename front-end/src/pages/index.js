@@ -36,19 +36,19 @@ export default function Home() {
         <LampLigth top="-48%" left="37%" delay="3" />
         <House
           width={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '137' }
-          height={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '125' }
-          top={ windowWidth >= 1440 ? '35%' : windowWidth >= 768 ? '38%' : '36%' }
-          left={ windowWidth >= 1440 ? '67%' : windowWidth >= 768 ? '14%' : '17%' }
+          height={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '110' }
+          top={ windowWidth >= 1440 ? '34%' : windowWidth >= 768 ? '38%' : '38%' }
+          left={ windowWidth >= 1440 ? '67%' : windowWidth >= 768 ? '14%' : '11%' }
         />
         <Kitchen
-          bottom="19%"
+          bottom={ windowWidth <= 768 ? '15%' : '13%' }
           left={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '75%' : '73%' }
-          width={ windowWidth >= 1440 ? '171' : '103' }
-          height={ windowWidth >= 1440 ? '181' : '109' }
+          width={ windowWidth >= 1440 ? '150' : windowWidth >= 768 ? '103' : '70' }
+          height={ windowWidth >= 1440 ? '160' : windowWidth >= 768 ? '109' : '75' }
         />
         <Bath
-          bottom={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '5%' : '5%' }
-          left={ windowWidth >= 1440 ? '87%' : windowWidth >= 768 ? '27%' : '30%' }
+          bottom={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '5%' : '10%' }
+          left={ windowWidth >= 1440 ? '87%' : windowWidth >= 768 ? '27%' : '15%' }
           width={ windowWidth >= 1440 ? '160' : '104' }
           height={ windowWidth >= 1440 ? '146' : '99' }
         />

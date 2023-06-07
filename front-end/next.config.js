@@ -35,6 +35,7 @@ const nextConfig = {
     ],
   },
   env: {
+    BACK_URL: process.env.BACK_URL,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     YELP_API_KEY: process.env.YELP_API_KEY,
   },
@@ -85,6 +86,10 @@ const nextConfig = {
       {
         source: '/api/services',
         destination: `${ process.env.BACK_URL }/api/services?populate=*`,
+      },
+      {
+        source: '/api/contact',
+        destination: `${ process.env.BACK_URL }/api/contact?populate=*`,
       },
       {
         source: '/uploads/:path*',

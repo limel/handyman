@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import axios from 'axios';
+import { getGoogleReviews, getThumbtackReviews, getYelpReviews } from '~/functions/api/getReviews';
 import Reviews from '~/components/Reviews/Reviews';
 import Background from '~/components/Background';
 import LampLight from '~/components/Background/LampLight';
@@ -11,20 +11,15 @@ import useWindowWidth from '~/hooks/useWindowWidth';
 import Cookie from '~/components/Background/Cookie';
 
 export async function getStaticProps() {
-  const googleReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/google`, {
-    headers: {
-      Authorization: `Beraer ${ process.env.GOOGLE_API_KEY }`,
-    },
-  });
-  const googleReviewsArray = googleReviews.data;
-  const yelpReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/yelp`, {
-    headers: {
-      Authorization: `Beraer ${ process.env.YELP_API_KEY }`,
-    },
-  });
-  const yelpReviewsArray = yelpReviews.data;
-  const thumbtackReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/thumbtack`);
-  const thumbtackReviewsArray = thumbtackReviews.data;
+  const googleReviews = await getGoogleReviews();
+  const googleReviewsArray = googleReviews;
+
+  const yelpReviews = await getYelpReviews();
+  const yelpReviewsArray = yelpReviews;
+
+  const thumbtackReviews = await getThumbtackReviews();
+  const thumbtackReviewsArray = thumbtackReviews;
+
   return {
     props: {
       googleReviews: googleReviewsArray,

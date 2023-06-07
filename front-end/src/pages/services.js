@@ -9,11 +9,11 @@ import Bath from '~/components/Background/Bath';
 import Kitchen from '~/components/Background/Kitchen';
 import ServicesList from '~/components/ServicesList';
 import useWindowWidth from '~/hooks/useWindowWidth';
-import axios from 'axios';
+// import axios from 'axios';
+import getServices from '~/functions/api/getServices';
 
 export async function getStaticProps() {
-  const services = await axios(`${ process.env.FRONT_URL }/api/services`);
-  const { data } = services;
+  const data = await getServices();
   return {
     props: {
       services: data,

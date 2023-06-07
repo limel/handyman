@@ -21,7 +21,6 @@ const ContactUs = ({ ...props }) => {
             <div className={ s.contacts } key={ contact.id }>
               <p>
                 {contact.label}
-                :
               </p>
               <p>
                 {contact.url

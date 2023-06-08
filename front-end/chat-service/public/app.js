@@ -1,65 +1,25 @@
-// const socket = io('ws://localhost:4040');
+const socket = io('/');
 
-// const refs = {
-//   messageEditor: document.querySelector('#message-editor'),
-//   feed: document.querySelector('#message-feed'),
-// };
+socket.on('connect', () => {
+  console.log('Connected to admin panel');
+});
 
-// const userName = prompt('Ты кто?') || 'Аноним';
+socket.on('message/receive', (message) => {
+  console.log('Received message:', message);
+  // Update the message feed in the HTML
+  const messageFeed = document.getElementById('message-feed');
+  const listItem = document.createElement('li');
+  listItem.textContent = message;
+  messageFeed.appendChild(listItem);
+});
 
-// socket.emit('user/joinChat', userName);
+const messageEditor = document.getElementById('message-editor');
 
-// socket.on('user/joinChatSuccess', (message) => {
-//   console.log(message);
-// });
-
-// socket.on('chat/userJoined', (message) => {
-//   console.log(message);
-// });
-
-// socket.on('chat/newMessage', appendMessageToFeed);
-
-// socket.on('user/connected', (history) => {
-//   const markup = history
-//     .map(({ author, message, timestamp }) => {
-//       const { hours, minutes } = getTime(timestamp);
-
-//       return `<li>
-//         <b>${ author }</b> ${ hours }:${ minutes }
-//         <p>${ message }</p>
-//       </li>`;
-//     })
-//     .join('');
-
-//   refs.feed.insertAdjacentHTML('beforeend', markup);
-// });
-
-// refs.messageEditor.addEventListener('submit', onEditorSubmit);
-
-// function onEditorSubmit(event) {
-//   event.preventDefault();
-
-//   socket.emit('chat/newMessage', event.currentTarget.elements.message.value);
-//   event.currentTarget.elements.message.value = '';
-// }
-
-// function appendMessageToFeed({ author, message, timestamp }) {
-//   const { hours, minutes } = getTime(timestamp);
-
-//   const markup = `
-//   <li>
-//     <b>${ author }</b> ${ hours }:${ minutes }
-//     <p>${ message }</p>
-//   </li>`;
-
-//   refs.feed.insertAdjacentHTML('beforeend', markup);
-//   refs.feed.scrollTop = refs.feed.scrollHeight;
-// }
-
-// function getTime(timestamp) {
-//   const time = new Date(timestamp);
-//   const hours = time.getHours();
-//   const minutes = time.getMinutes();
-
-//   return { hours, minutes };
-// }
+// Example usage: Send a message to the server
+messageEditor.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const input = event.target.elements.message;
+  const message = input.value;
+  socket.emit('message/send', message);
+  input.value = '';
+});

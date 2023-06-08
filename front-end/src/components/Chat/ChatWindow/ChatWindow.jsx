@@ -1,36 +1,79 @@
 import { useEffect, useState } from 'react';
-import WebSocket from 'isomorphic-ws';
+import { io } from 'socket.io-client';
+import s from '~/components/Chat/Chat.module.scss';
 
-export default function Home() {
-  let socket;
-  // const [ socket, setSocket ] = useState(null);
+export default function ChatWindow({ open, closeHandler }) {
+  const [ message, setMessage ] = useState('');
+  const [ receivedMessages, setReceivedMessages ] = useState([]);
+  const [ socket, setSocket ] = useState(null);
+  // let socket;
+
   useEffect(() => {
-    // setSocket(new WebSocket('ws://127.0.0.1:5050'));
-    socket = new WebSocket('ws://127.0.0.1:5050');
+    const newSocket = io('http://127.0.0.1:5050', {
+      transports: [ 'websocket' ],
+    });
 
-    socket.onopen = () => {
-      console.log('WebSocket connection established');
-    };
+    newSocket.on('connect', () => {
+      console.log('Connected to the server', newSocket.id);
+    });
 
-    socket.onmessage = (event) => {
-      console.log('Received message:', event.data);
-    };
+    newSocket.on('message/receive', (msg) => {
+      setReceivedMessages((prev) => [ ...prev, msg ]);
+    });
+
+    setSocket(newSocket);
 
     return () => {
-      socket.close();
+      newSocket.disconnect();
     };
   }, []);
 
   const sendMessage = () => {
-    const message = document.getElementById('messageInput').value;
-    socket.send(message);
+    if (message.trim() !== '') {
+      socket.emit('message/send', message);
+      setMessage('');
+    }
   };
 
   return (
-    <div>
-      <h1>WebSocket Example</h1>
-      <input type="text" id="messageInput" placeholder="Type a message" />
-      <button onClick={ sendMessage }>Send</button>
-    </div>
+    open && (
+      <div className={ s.chat }>
+        <div className={ s.header }>
+          <p>ACUMEN HANDYMEN</p>
+          <button
+            className={ s.close }
+            aria-label="close"
+            onClick={ closeHandler }
+            type="button"
+          />
+        </div>
+        <div className={ s.body }>
+          <ul className={ s['msg-block'] }>
+            {receivedMessages.map((messageData, index) => {
+              console.log(messageData);
+              return (
+                <li key={ index } className={ s['server-msg'] }>
+                  {messageData}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className={ s.footer }>
+          <form onSubmit={ (e) => { e.preventDefault(); sendMessage(); } }>
+            <textarea
+              rows="3"
+              type="text"
+              value={ message }
+              onChange={ (e) => setMessage(e.target.value) }
+              className={ s['message-input'] }
+              placeholder="Type your message here..."
+              autoFocus
+            />
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    )
   );
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Chat</title>
+</head>
+<body>
+  <main>
+    <section class="chat">
+        <div class="chat-tree">
+          <ul class="chat-list">
+            <li class="chat-list__item">
+              <h4>Sergey</h4>
+              <p>qweqweqewqew</p>
+            </li>
+            <li class="chat-list__item">
+              <h4>Sergey</h4>
+              <p>qweqweqewqew</p>
+            </li>
+            <li class="chat-list__item">
+              <h4>Sergey</h4>
+              <p>qweqweqewqew</p>
+            </li>
+          </ul>
+        </div>
+        <div class="comunication-block">
+          <div class="main-chat">
+            <ul id="message-feed" class="feed"></ul>
+            <!-- <ul class="main-chat__list">
+              <li class="client__msg">Client message...</li>
+              <li class="admin__msg">Admin message...</li>
+            </ul> -->
+          </div>
+          <div class="chat-input">
+            <form id="message-editor" class="editor">
+              <input name="message" autocomplete="off" />
+              <button type="submit">Отправить</button>
+            </form>
+          </div>
+        </div>
+    </section>
+  </main>
+  <!-- <script src="/socket.io/socket.io.js"></script> -->
+  <!-- <script src="app.js"></script> -->
+</body>
+</html>

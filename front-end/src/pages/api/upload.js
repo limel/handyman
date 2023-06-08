@@ -27,7 +27,7 @@ export default async function handler(req, res) {
           formData.append('files', fs.createReadStream(file.filepath), file.originalFilename);
         });
         // Make a POST request to Strapi upload endpoint
-        const response = await axios.post('http://127.0.0.1:1337/api/upload', formData, {
+        const response = await axios.post(`${ process.env.BACK_URL }/api/upload`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

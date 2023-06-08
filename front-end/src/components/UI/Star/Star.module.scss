@@ -6,4 +6,9 @@
     width: 0.9rem;
     height: 0.9rem;
   }
+
+  @media (width < 768px) {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
 }

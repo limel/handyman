@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import axios from 'axios';
+import getContacts from '~/functions/api/getContacts';
 import Background from '~/components/Background';
 import LampLightAnimation from '~/components/Background/LampLightAnimation';
 import Bath from '~/components/Background/Bath';
@@ -10,8 +10,7 @@ import useWindowWidth from '~/hooks/useWindowWidth';
 import Kitchen from '~/components/Background/Kitchen';
 
 export async function getStaticProps() {
-  const info = await axios.get(`${ process.env.FRONT_URL }/api/contact`);
-  const { data } = info;
+  const data = await getContacts();
   return {
     props: {
       info: data,
@@ -21,8 +20,6 @@ export async function getStaticProps() {
 
 export default function ContuctUs({ info }) {
   const windowWidth = useWindowWidth();
-  // const info = contactInfo.;
-  console.log(info);
   return (
     <>
       <Head>

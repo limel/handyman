@@ -7,17 +7,6 @@ import House from '~/components/Background/House';
 import Kitchen from '~/components/Background/Kitchen';
 import useWindowWidth from '~/hooks/useWindowWidth';
 
-// export async function getStaticProps() {
-
-//   const formOptions =
-
-//   return {
-//     props: {
-//       title: 'Get a quote',
-//     },
-//   };
-// }
-
 export default function GetAQuote() {
   const windowWidth = useWindowWidth();
   return (

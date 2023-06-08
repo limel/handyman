@@ -1,22 +1,25 @@
 import Head from 'next/head';
-import axios from 'axios';
+import { getGoogleReviews, getThumbtackReviews, getYelpReviews } from '~/functions/api/getReviews';
 import Reviews from '~/components/Reviews/Reviews';
+import Background from '~/components/Background';
+import LampLight from '~/components/Background/LampLight';
+import LampLightAnimation from '~/components/Background/LampLightAnimation';
+import Bath from '~/components/Background/Bath';
+import House from '~/components/Background/House';
+import Kitchen from '~/components/Background/Kitchen';
+import useWindowWidth from '~/hooks/useWindowWidth';
+import Cookie from '~/components/Background/Cookie';
 
 export async function getStaticProps() {
-  const googleReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/google`, {
-    headers: {
-      Authorization: `Beraer ${ process.env.GOOGLE_API_KEY }`,
-    },
-  });
-  const googleReviewsArray = googleReviews.data;
-  const yelpReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/yelp`, {
-    headers: {
-      Authorization: `Beraer ${ process.env.YELP_API_KEY }`,
-    },
-  });
-  const yelpReviewsArray = yelpReviews.data;
-  const thumbtackReviews = await axios(`${ process.env.FRONT_URL }/api/reviews/thumbtack`);
-  const thumbtackReviewsArray = thumbtackReviews.data;
+  const googleReviews = await getGoogleReviews();
+  const googleReviewsArray = googleReviews;
+
+  const yelpReviews = await getYelpReviews();
+  const yelpReviewsArray = yelpReviews;
+
+  const thumbtackReviews = await getThumbtackReviews();
+  const thumbtackReviewsArray = thumbtackReviews;
+
   return {
     props: {
       googleReviews: googleReviewsArray,
@@ -27,6 +30,7 @@ export async function getStaticProps() {
 }
 
 export default function ReviewsPage({ googleReviews, yelpReviews, thumbtackReviews }) {
+  const windowWidth = useWindowWidth();
   return (
     <>
       <Head>
@@ -41,6 +45,56 @@ export default function ReviewsPage({ googleReviews, yelpReviews, thumbtackRevie
           yelpReviews={ yelpReviews }
           thumbtackReviews={ thumbtackReviews }
         />
+        <Background>
+          {windowWidth >= 1024 ? (
+            <LampLight
+              top="-314px"
+              left="17%"
+              delay="2.5"
+            />
+          )
+            : null}
+          {windowWidth >= 1024 ? <LampLightAnimation top="-240px" left="28%" /> : null}
+          <LampLightAnimation
+            left={ windowWidth >= 768 ? '62%' : '71%' }
+            top={ windowWidth >= 1024 ? '-240px' : windowWidth >= 768 ? '-230px' : '-260px' }
+          />
+          {windowWidth >= 768
+            ? (
+              <Bath
+                bottom={ windowWidth >= 1024 ? '225px' : windowWidth >= 768 ? '16%' : '8%' }
+                left={ windowWidth >= 1024 ? '16%' : windowWidth >= 768 ? '82%' : '66%' }
+                width={ windowWidth >= 1440 ? '154' : '104' }
+                height={ windowWidth >= 1440 ? '140' : '94' }
+              />
+            ) : null}
+          {windowWidth >= 1024 ? (
+            <House
+              width="275"
+              height="234"
+              bottom="99px"
+              left="56%"
+            />
+          )
+            : null}
+          {windowWidth >= 1024
+            ? (
+              <Cookie
+                left="-260px"
+                bottom="50%"
+              />
+            )
+            : null }
+          {windowWidth < 1024 && windowWidth >= 768
+            ? (
+              <Kitchen
+                bottom={ windowWidth >= 768 ? '15%' : '8%' }
+                left={ windowWidth >= 768 ? '10%' : '8%' }
+                width={ windowWidth >= 768 ? '127' : '103' }
+                height={ windowWidth >= 768 ? '133' : '109' }
+              />
+            ) : null}
+        </Background>
       </main>
     </>
   );

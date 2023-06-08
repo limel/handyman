@@ -33,6 +33,7 @@ const nextConfig = {
       '195.12.56.85',
       process.env.BACK_URL,
       '127.0.0.1',
+      '195.12.56.85',
     ],
   },
   env: {

@@ -69,7 +69,15 @@ const nextConfig = {
 
     return config;
   },
-
+  async redirects() {
+    return [
+      {
+        source: '/chat-service',
+        destination: 'http://127.0.0.1:5050/',
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

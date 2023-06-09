@@ -4,12 +4,14 @@ import React, { useRef, useId } from 'react';
 import cn from 'classnames';
 import { useField } from 'formik';
 import ControlLabel from '~/components/UI/ControlLabel';
+import useWindowWidth from '~/hooks/useWindowWidth';
 import s from './InputFile.module.scss';
 
 const FileInput = ({
   placeholder,
   ...props
 }) => {
+  const windowWidth = useWindowWidth();
   const id = useId();
   const [ field, meta, helpers ] = useField(props);
   const inputRef = useRef();
@@ -41,7 +43,7 @@ const FileInput = ({
 
   return (
     <>
-      <div className={ cn(s['file-input'], { [s.error]: error }) }>
+      <div className={ cn(s['file-input'], { [s.error]: error }, s.attachments) }>
         <ControlLabel className={ s['file-input__label'] } { ...props } id={ id }>
           <svg className={ s['upload-icon'] }><use href="./sprite.svg#file" /></svg>
         </ControlLabel>
@@ -53,17 +55,23 @@ const FileInput = ({
             field.value.map((file, index) => (
               <div key={ index } className={ s['file-item'] }>
                 <span className={ s.name }>{file.name}</span>
-                <svg className={ s.close } onClick={ () => onClearFile(index) }><use href="./sprite.svg#delete" /></svg>
+                <svg className={ s.close } onClick={ () => onClearFile(index) }>
+                  <use xlinkHref="./sprite.svg#delete" />
+                </svg>
               </div>
             ))
-          ) : (
-            <div className={ s['file-item'] }>
-              <span className={ s.name }>
-                {error ? meta.error : 'no file chosen'}
-              </span>
-              {error && <svg className={ s.close } onClick={ () => onClearAllFile() }><use href="./sprite.svg#delete" /></svg>}
-            </div>
-          )}
+          ) : (windowWidth > 425 && (
+          <div className={ s['file-item'] }>
+            <span className={ s.name }>
+              {error ? meta.error : 'no file chosen'}
+            </span>
+            {error && (
+            <svg className={ s.close } onClick={ () => onClearAllFile() }>
+              <use xlinkHref="./sprite.svg#delete" />
+            </svg>
+            )}
+          </div>
+          )) || null}
           <input type="file" ref={ inputRef } onChange={ onInputChange } id={ id } multiple />
         </div>
       </div>

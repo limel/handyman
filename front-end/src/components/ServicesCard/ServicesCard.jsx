@@ -132,12 +132,10 @@ const ServicesCard = ({
       </figure>
       <div className={ s.description } ref={ textRef }>
         <button className={ s.close } type="button" onClick={ onClick }>
-          <span />
-          <span />
         </button>
         <h2 className={ s.description__title }>{title}</h2>
         <div className="text" dangerouslySetInnerHTML={ { __html: description } } />
-        <Button href="/services" className={ s.button }>
+        <Button href="/callback-form" className={ s.button }>
           GET A QUOTE
         </Button>
       </div>

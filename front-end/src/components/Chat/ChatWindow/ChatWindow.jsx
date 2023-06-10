@@ -3,7 +3,8 @@ import { io } from 'socket.io-client';
 import s from '~/components/Chat/Chat.module.scss';
 
 export default function ChatWindow({ open, closeHandler }) {
-  const [ message, setMessage ] = useState('');
+  const [ message, setMessage ] = useState();
+  const [ sendedMessage, setSendedMessage ] = useState([]);
   const [ receivedMessages, setReceivedMessages ] = useState([]);
   const [ socket, setSocket ] = useState(null);
   // let socket;
@@ -17,7 +18,8 @@ export default function ChatWindow({ open, closeHandler }) {
       console.log('Connected to the server', newSocket.id);
     });
 
-    newSocket.on('message/receive', (msg) => {
+    newSocket.on('message/client-recieved', (msg) => {
+      console.log('Message from server', msg);
       setReceivedMessages((prev) => [ ...prev, msg ]);
     });
 
@@ -30,7 +32,8 @@ export default function ChatWindow({ open, closeHandler }) {
 
   const sendMessage = () => {
     if (message.trim() !== '') {
-      socket.emit('message/send', message);
+      setSendedMessage((prev) => [ ...prev, { message } ]);
+      socket.emit('message/client-send', { message });
       setMessage('');
     }
   };
@@ -49,11 +52,19 @@ export default function ChatWindow({ open, closeHandler }) {
         </div>
         <div className={ s.body }>
           <ul className={ s['msg-block'] }>
+            {sendedMessage.map((messageData, index) => {
+              console.log(messageData);
+              return (
+                <li key={ index } className={ s['client-msg'] }>
+                  {messageData.message}
+                </li>
+              );
+            })}
             {receivedMessages.map((messageData, index) => {
               console.log(messageData);
               return (
                 <li key={ index } className={ s['server-msg'] }>
-                  {messageData}
+                  {messageData.message}
                 </li>
               );
             })}

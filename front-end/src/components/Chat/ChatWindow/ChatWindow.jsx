@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import s from '~/components/Chat/Chat.module.scss';
 
 export default function ChatWindow({ open, closeHandler }) {
   const [ message, setMessage ] = useState();
-  const [ sendedMessage, setSendedMessage ] = useState([]);
-  const [ receivedMessages, setReceivedMessages ] = useState([]);
+  const [ messages, setMessages ] = useState([
+    { from: '', message: 'Hello there, Please ask your question.' },
+  ]);
   const [ socket, setSocket ] = useState(null);
+  const messagesEndRef = useRef(null);
   // let socket;
 
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function ChatWindow({ open, closeHandler }) {
 
     newSocket.on('message/client-recieved', (msg) => {
       console.log('Message from server', msg);
-      setReceivedMessages((prev) => [ ...prev, msg ]);
+      setMessages((prev) => [ ...prev, msg ]);
     });
 
     setSocket(newSocket);
@@ -30,11 +32,26 @@ export default function ChatWindow({ open, closeHandler }) {
     };
   }, []);
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [ messages ]);
+
   const sendMessage = () => {
     if (message.trim() !== '') {
-      setSendedMessage((prev) => [ ...prev, { message } ]);
+      setMessages((prev) => [ ...prev, { from: 'client', msg: message } ]);
       socket.emit('message/client-send', { message });
       setMessage('');
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      sendMessage();
     }
   };
 
@@ -52,22 +69,22 @@ export default function ChatWindow({ open, closeHandler }) {
         </div>
         <div className={ s.body }>
           <ul className={ s['msg-block'] }>
-            {sendedMessage.map((messageData, index) => {
-              console.log(messageData);
-              return (
-                <li key={ index } className={ s['client-msg'] }>
-                  {messageData.message}
+            {messages.map((msg, index) => (!msg.from
+              ? (
+                <li className={ s['server-msg'] } key={ index }>
+                  {/* {'Handyman: '}
+                  {' '} */}
+                  {msg.message}
                 </li>
-              );
-            })}
-            {receivedMessages.map((messageData, index) => {
-              console.log(messageData);
-              return (
-                <li key={ index } className={ s['server-msg'] }>
-                  {messageData.message}
+              ) : (
+                <li className={ s['client-msg'] } key={ index }>
+                  {/* {`${ msg.from }: `}
+                  {' '} */}
+                  {msg.msg}
                 </li>
-              );
-            })}
+              )))}
+            <p className={ s['msg-help-info'] }>Press Enter to send a message</p>
+            <div ref={ messagesEndRef } />
           </ul>
         </div>
         <div className={ s.footer }>
@@ -79,9 +96,10 @@ export default function ChatWindow({ open, closeHandler }) {
               onChange={ (e) => setMessage(e.target.value) }
               className={ s['message-input'] }
               placeholder="Type your message here..."
+              onKeyDown={ handleKeyPress }
               autoFocus
             />
-            <button type="submit">Send</button>
+            {/* <button type="submit">Send</button> */}
           </form>
         </div>
       </div>

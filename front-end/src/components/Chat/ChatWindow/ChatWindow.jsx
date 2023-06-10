@@ -12,7 +12,7 @@ export default function ChatWindow({ open, closeHandler }) {
   // let socket;
 
   useEffect(() => {
-    const newSocket = io('http://127.0.0.1:5050', {
+    const newSocket = io('http://195.12.56.85:5050', {
       transports: [ 'websocket' ],
     });
 

@@ -12,7 +12,7 @@ const ReviewItem = (props) => {
                 ?? null;
   const relativeTime = props?.relative_time_description ?? props?.time_created ?? props?.review_date ?? 'many years ago';
   const text = props?.text ?? props?.text ?? props?.review_text ?? 'No review text';
-  const url = props?.author_url ?? props?.user?.url ?? props?.review_link ?? null;
+  const url = props?.author_url ?? props?.url ?? props?.review_link ?? null;
   let linkHref;
   const { source } = props;
   switch (source) {

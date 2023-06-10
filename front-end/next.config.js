@@ -30,6 +30,7 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       's3-media0.fl.yelpcdn.com',
       'production-next-images-cdn.thumbtack.com',
+      '195.12.56.85',
       process.env.BACK_URL,
       '127.0.0.1',
       '195.12.56.85',
@@ -69,7 +70,15 @@ const nextConfig = {
 
     return config;
   },
-
+  async redirects() {
+    return [
+      {
+        source: '/chat-service',
+        destination: 'http://127.0.0.1:5050/',
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

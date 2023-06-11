@@ -11,7 +11,7 @@ const ReviewsHead = () => (
       <Star />
       <Star />
       {' '}
-      FROM 100  REVIEWS
+      FROM 100+ REVIEWS
     </p>
     <p className={ s['reviews-discription'] }>
       See customer reviews for

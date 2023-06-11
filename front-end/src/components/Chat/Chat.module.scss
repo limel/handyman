@@ -136,6 +136,17 @@
     height: 105px;
     padding: 20px 47px;
     border-top: 1px solid var(--accent-color-light);
+
+    .form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .button svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   .message-input {
@@ -181,6 +192,11 @@
     
     .footer {
       padding: 20px 30px;
+
+      .button svg {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

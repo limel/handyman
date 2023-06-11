@@ -96,7 +96,7 @@ export default function ChatWindow({ open, closeHandler }) {
           </ul>
         </div>
         <div className={ s.footer }>
-          <form onSubmit={ (e) => { e.preventDefault(); sendMessage(); } }>
+          <form onSubmit={ (e) => { e.preventDefault(); sendMessage(); } } className={ s.form }>
             <textarea
               rows="3"
               type="text"
@@ -107,7 +107,9 @@ export default function ChatWindow({ open, closeHandler }) {
               onKeyDown={ handleKeyPress }
               autoFocus
             />
-            {/* <button type="submit">Send</button> */}
+            <button type="submit" className={ s.button } onClick={ (e) => { e.preventDefault(); sendMessage(); } }>
+              <svg><use href="/sprite.svg#send" /></svg>
+            </button>
           </form>
         </div>
       </div>

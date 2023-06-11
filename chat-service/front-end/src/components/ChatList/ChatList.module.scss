@@ -1,0 +1,39 @@
+.container {
+  grid-area: list;
+  border-right: 2px solid #FBE64D;
+}
+
+.title {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 700; 
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  .icon {
+    margin-bottom: 0.5rem;
+    color: #FEF9CC;
+  }
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  &__chat {
+    padding: 0.5rem; 
+    cursor: pointer;
+    transition: 0.3s all;
+    @media (any-hover: hover) {
+      &:hover {
+        color: #FBE64D;
+      }
+    }
+
+    &:focus, &.active {
+      outline: none;
+      color: #FBE64D; 
+    }
+  }
+}

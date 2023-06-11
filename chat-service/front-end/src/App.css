@@ -1,0 +1,17 @@
+.app {
+  display: grid;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  grid-template-rows: auto auto auto;
+  font-family: "Roboto", sans-serif;
+  gap: 0 10px;
+  height: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #303030;
+  color: #fff;
+  grid-template-areas:
+    "list message-feed"
+    "list message-feed"
+    "list ui";
+}

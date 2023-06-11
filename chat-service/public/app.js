@@ -12,31 +12,23 @@ socket.on('connect', () => {
   console.log('Connected to admin panel');
 });
 
-socket.on('users', (users) => {
-  console.log('users', users);
+socket.on('chats', (chats) => {
+  console.log('chats', chats);
   const usersList = document.getElementById('users-list');
   usersList.innerHTML = '';
-  users.forEach((user) => {
+  chats.forEach((chat) => {
     const listItem = document.createElement('li');
-    listItem.textContent = user;
+    listItem.textContent = chat.chat_name;
     listItem.addEventListener('click', () => {
-      setActiveChatId(user);
+      setActiveChatId(chat.socketId);
     });
     usersList.appendChild(listItem);
   });
 });
 
 socket.on('message/server-recieved', (data) => {
-  const message = data.message;
-  console.log(message);
-  // const currentChatId = document.getElementById('chat-id-input').value;
-  // if (currentChatId === chatId) {
-    // Update the message feed in the HTML
-    const messageFeed = document.getElementById('message-feed');
-    const listItem = document.createElement('li');
-    listItem.textContent = message;
-    messageFeed.appendChild(listItem);
-  // }
+  console.log('it catch server-recievd', data);
+  
 });
 
 const messageEditor = document.getElementById('message-editor');
@@ -47,6 +39,11 @@ messageEditor.addEventListener('submit', (event) => {
   const input = event.target.elements.message;
   const message = input.value;
   const chatId = activeChatId;
+  const messageFeed = document.getElementById('message-feed');
+  const listItem = document.createElement('li');
+  listItem.textContent = message;
+  messageFeed.appendChild(listItem);
+
   if (chatId) {
     socket.emit('message/server-send', { message, chatId });
     input.value = '';

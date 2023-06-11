@@ -12,7 +12,7 @@ export default function ChatWindow({ open, closeHandler }) {
   // let socket;
 
   useEffect(() => {
-    const newSocket = io('http://195.12.56.85:5050', {
+    const newSocket = io('http://127.0.0.1:5050', {
       transports: [ 'websocket' ],
     });
 
@@ -22,6 +22,7 @@ export default function ChatWindow({ open, closeHandler }) {
 
     newSocket.on('message/client-recieved', (msg) => {
       console.log('Message from server', msg);
+      console.log(messages);
       setMessages((prev) => [ ...prev, msg ]);
     });
 
@@ -43,7 +44,7 @@ export default function ChatWindow({ open, closeHandler }) {
   const sendMessage = () => {
     if (message.trim() !== '') {
       setMessages((prev) => [ ...prev, { from: 'client', msg: message } ]);
-      socket.emit('message/client-send', { message });
+      socket.emit('message/client-send', { message, socketId: socket.id, from: 'client' });
       setMessage('');
     }
   };
@@ -55,6 +56,13 @@ export default function ChatWindow({ open, closeHandler }) {
     }
   };
 
+  const handlerClose = () => {
+    closeHandler();
+    if (socket) {
+      socket.disconnect();
+    }
+  };
+
   return (
     open && (
       <div className={ s.chat }>
@@ -63,7 +71,7 @@ export default function ChatWindow({ open, closeHandler }) {
           <button
             className={ s.close }
             aria-label="close"
-            onClick={ closeHandler }
+            onClick={ handlerClose }
             type="button"
           />
         </div>

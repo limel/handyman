@@ -1,0 +1,34 @@
+.container {
+  grid-area: message-feed;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 450px;
+  margin-bottom: 1rem;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  height: 100%;
+
+}
+
+.message {
+  border-radius: 15px;
+  padding: 10px 20px;
+  min-width: 272px;
+  max-width: 272px;
+  word-wrap: break-word;
+}
+
+.server {
+  border: 1px solid #fff;
+  align-self: flex-end;
+}
+
+.client {
+  align-self: flex-start;
+  border: 1px solid #FEF9CC;
+  color: #FEF9CC;
+}

@@ -2,38 +2,185 @@
 
 # dependencies
 
-../*/node_modules
-/node_modules
-*/node_modules
-/.pnp
-.pnp.js
+./front-end/node_modules
+./front-end/.pnp
+./front-end/.pnp.js
+
 
 # testing
-/coverage
+./front-end/coverage
 
 # next.js
-/.next/
-/out/
+front-end/.next/
+front-end/out/
 
 # production
-/build
+front-end/build
 
 # misc
-.DS_Store
-*.pem
+front-end/.DS_Store
+front-end/*.pem
 
 # debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+front-end/npm-debug.log*
+front-end/yarn-debug.log*
+front-end/yarn-error.log*
 
 # local env files
-.env*.local
-.env
+front-end/.env*.local
+front-end/.env
 
 # vercel
-.vercel
+front-end/.vercel
 
 # typescript
-*.tsbuildinfo
-next-env.d.ts
+front-end/*.tsbuildinfo
+front-end/next-env.d.ts
+
+# CMS
+############################
+# OS X
+############################
+
+cms/.DS_Store
+cms/.AppleDouble
+cms/.LSOverride
+cms/Icon
+cms/.Spotlight-V100
+cms/.Trashes
+cms/._*
+
+
+############################
+# Linux
+############################
+
+cms/*~
+
+
+############################
+# Windows
+############################
+
+cms/Thumbs.db
+cms/ehthumbs.db
+cms/Desktop.ini
+cms/$RECYCLE.BIN/
+cms/*.cab
+cms/*.msi
+cms/*.msm
+cms/*.msp
+
+
+############################
+# Packages
+############################
+
+cms/*.7z
+cms/*.csv
+cms/*.dat
+cms/*.dmg
+cms/*.gz
+cms/*.iso
+cms/*.jar
+cms/*.rar
+cms/*.tar
+cms/*.zip
+cms/*.com
+cms/*.class
+cms/*.dll
+cms/*.exe
+cms/*.o
+cms/*.seed
+cms/*.so
+cms/*.swo
+cms/*.swp
+cms/*.swn
+cms/*.swm
+cms/*.out
+cms/*.pid
+
+
+############################
+# Logs and databases
+############################
+
+cms/.tmp
+cms/*.log
+cms/*.sql
+cms/*.sqlite
+cms/*.sqlite3
+
+
+############################
+# Misc.
+############################
+
+*#
+cms/ssl
+cms/.idea
+cms/nbproject
+cms/public/uploads/*
+cms/!public/uploads/.gitkeep
+
+############################
+# Node.js
+############################
+
+cms/lib-cov
+cms/lcov.info
+cms/pids
+cms/logs
+cms/results
+cms/node_modules
+cms/.node_history
+
+############################
+# Tests
+############################
+
+cms/testApp
+cms/coverage
+
+############################
+# Strapi
+############################
+
+cms/.env
+cms/license.txt
+cms/exports
+*.cache
+cms/dist
+cms/build
+cms/.strapi-updater.json
+
+chat-service/node_modules
+chat-service/front-end/node_modules
+
+node_modules
+
+
+# front chat services 
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+chat-service/front-end/.pnp
+chat-service/front-end/.pnp.js
+
+# testing
+chat-service/front-end//coverage
+
+# production
+chat-service/front-end//build
+
+# misc
+chat-service/front-end/.DS_Store
+chat-service/front-end/.env.local
+chat-service/front-end/.env.development.local
+chat-service/front-end/.env.test.local
+chat-service/front-end/.env.production.local
+
+chat-service/front-end/npm-debug.log*
+chat-service/front-end/yarn-debug.log*
+chat-service/front-end/yarn-error.log*

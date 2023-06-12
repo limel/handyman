@@ -23,7 +23,7 @@ export default function GetAQuote() {
       <Background>
         {windowWidth >= 1440 ? <LampLightAnimation top="-9.5%" left="31%" /> : null}
         <LampLightAnimation
-          left={ windowWidth >= 1440 ? '59%' : windowWidth >= 768 ? '65%' : '71%' }
+          left={ windowWidth >= 1440 ? '62%' : windowWidth >= 768 ? '65%' : '71%' }
           top={ windowWidth >= 1440 ? '-9.5%' : windowWidth >= 768 ? '-12%' : '-13%' }
         />
         {windowWidth >= 768

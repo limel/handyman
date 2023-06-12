@@ -1,14 +1,36 @@
+import { useRef, useState } from 'react';
+import useWindowWidth from '../../hooks/useWindowWidth';
 import cn from "classnames";
 import s from "./ChatList.module.scss";
 
 const ChatList = ({ chatList, activeChatId, setActiveChatId }) => {
+  const windowWidth = useWindowWidth();
+  const [ active, setActive ] = useState(true);
+  const buttonRef = useRef(null);
+
   const handleChatClick = (chatId) => {
     setActiveChatId(chatId);
+    windowWidth < 768 ? setActive(false) : setActive(true);
   };
 
   return (
     <aside className={s.container}>
-      <h1 className={s.title}>
+      <button
+        className={ cn(s['toggle-button'], {
+          [s.active]: active,
+        }) }
+        type="button"
+        aria-label="toggle menu"
+        onClick={ () => setActive(!active) }
+        ref={ buttonRef }
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+      { active && (
+        <>
+        <h1 className={s.title}>
         <svg xmlns="http://www.w3.org/2000/svg" width="141" height="42" className={s.icon} viewBox="0 0  141 42">
           <path
             fill="currentColor"
@@ -49,6 +71,8 @@ const ChatList = ({ chatList, activeChatId, setActiveChatId }) => {
           );
         })}
       </ul>
+        </>
+      )}
     </aside>
   );
 };

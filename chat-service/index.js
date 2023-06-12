@@ -2,10 +2,45 @@ const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const path = require("path");
+const cors = require("cors");
 const Chance = require("chance");
+const TelegramBot = require("node-telegram-bot-api");
+
+const TELEGRAM_TOKEN = "5559726721:AAED2QtVs0-S9de4F70JgsnfOMHc8u46yys";
+const TELEGRAM_CHAT_ID = "-1001564312270";
+
+const login = "admin";
+const pass = "admin";
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.resolve(__dirname, "front-end/build")));
+
+const authentificate = (req, res, next) => {
+  const reqLogin = req.headers.login;
+  const reqPass = req.headers.password;
+
+  if (reqLogin === login && reqPass === pass) {
+    req.isAuthenticated = true;
+  } else {
+    req.isAuthenticated = false;
+  }
+  next();
+};
+
+app.post("/api/login", authentificate, (req, res) => {
+  if (req.isAuthenticated) {
+    // Authentication successful
+    res.status(200).send("Authentication successful");
+  } else {
+    // Authentication failed
+    res.status(401).send("Authentication failed");
+  }
+});
+
 const httpServer = createServer(app);
+
 const io = new Server(httpServer, {
   cors: {
     origin: "*",
@@ -14,15 +49,17 @@ const io = new Server(httpServer, {
   secure: true,
 });
 
-app.use(express.static(path.resolve(__dirname, "front-end/build")));
+
 const chats = [];
+const bot = new TelegramBot(TELEGRAM_TOKEN);
 
 io.on("connection", (socket) => {
+  let isFirstMessage = true;
   if (chats.map((chat) => chat.socketId).includes(socket.id)) {
     return;
   } else {
     const chance = new Chance();
-    const name = chance.animal({ type: "pet" });
+    const name = chance.animal({ type: "grassland" });
     const chat = {
       id: socket.id,
       chat_name: name,
@@ -37,6 +74,10 @@ io.on("connection", (socket) => {
     if (chat) {
       chat.messages.push(data);
       io.of("/admin").emit("chats", chats);
+      if (isFirstMessage) {
+        bot.sendMessage(TELEGRAM_CHAT_ID, "You have a new message! Check admin panel");
+        isFirstMessage = false; // Set the flag to false after the first message
+      }
     }
   });
 
@@ -50,7 +91,7 @@ io.on("connection", (socket) => {
 });
 
 io.of("/admin").on("connection", (socket) => {
-  socket.on('message/server-send', (data) => {
+  socket.on("message/server-send", (data) => {
     const chat = chats.find((chat) => chat.id === data.id);
     if (chat) {
       chat.messages.push(data);

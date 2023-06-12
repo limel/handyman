@@ -22,21 +22,14 @@ function App() {
     newSocket.on("chats", (chats) => {
       setChatsList(chats);
     });
-
-    newSocket.on("message/server-recieved", (chats) => {
-      console.log("it catch server-recievd", chats);
-      console.log(chats);
-      setChatsList(chats);
-    });
-
+    
     setSocket(newSocket);
     return () => newSocket.disconnect();
   }, []);
 
   useEffect(() => {
-    setActiveChat(chatsList.find((chat) => chat.socketId === activeChatId));
+    setActiveChat(chatsList.find((chat) => chat.id === activeChatId));
   }, [activeChatId, chatsList]);
-  console.log('it chats', chatsList);
 
   return (
     <main className="app">

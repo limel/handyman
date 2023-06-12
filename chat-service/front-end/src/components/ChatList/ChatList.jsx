@@ -38,11 +38,11 @@ const ChatList = ({ chatList, activeChatId, setActiveChatId }) => {
           return (
             <li
               tabIndex={0}
-              key={chat.socketId}
+              key={chat.id}
               className={cn(s.list__chat, {
-                [s.active]: chat.socketId === activeChatId,
+                [s.active]: chat.id === activeChatId,
               })}
-              onClick={() => handleChatClick(chat.socketId)}
+              onClick={() => handleChatClick(chat.id)}
             >
               {chat.chat_name}
             </li>

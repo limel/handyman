@@ -2,8 +2,8 @@
   grid-area: message-feed;
   overflow: hidden;
   overflow-y: scroll;
-  height: 450px;
-  margin-bottom: 1rem;
+  height: 100%;
+  padding: 1rem;
 }
 
 .messages {
@@ -23,12 +23,13 @@
 }
 
 .server {
-  border: 1px solid #fff;
+  border: 1px solid #FEF9CC;
+  color: #FEF9CC;
   align-self: flex-end;
 }
 
 .client {
   align-self: flex-start;
-  border: 1px solid #FEF9CC;
-  color: #FEF9CC;
+  border: 1px solid #fff;
+  color: #fff;
 }

@@ -1,3 +1,25 @@
+:root {
+  --primary-bg: #303030;
+  --text-color: #FFF;
+  --hover-text-color: #535353;
+  --hover-links-color: #FEF9CC;
+  --accent-color: #FBE64D;
+  --accent-color-light: #FEF9CC;
+  --error-color:rgb(234 67 30 / 80%);
+  --button-bg: rgb(83 83 83 / 65.9%);
+
+  /* Forms */
+  --inputs-bg: rgb(196 196 196 / 5%);
+  --border-color: #fff;
+  --error-border-color:  rgb(234 67 30 / 50%);
+  --filled-border-color:  #FEF9CC;
+  --upload-flled-border-color:  #FBE64D;
+  --placeholder-color: rgb(255 255 255 / 55%);
+  
+
+  --transition: 0.3s ease-in-out;
+}
+
 * {
 	padding: 0px;
 	margin: 0px;

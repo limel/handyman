@@ -15,6 +15,8 @@ const Chat = () => {
     setOpen(false);
   };
 
+  const imgSrc = open ? '/images/chat-icon.gif' : '/images/chat-icon.png';
+
   return (
     <div className={ s.chatBlock }>
       <p className={ s.text }>
@@ -22,7 +24,7 @@ const Chat = () => {
         <br />
         Don&apos;t hesitate to ask!
       </p>
-      <Image className={ s.icon } src="/images/chat-icon.png" alt="Chat" width={ 85 } height={ 85 } onClick={ openHandler } />
+      <Image className={ s.icon } src={ imgSrc } alt="Chat" width={ 85 } height={ 85 } onClick={ openHandler } />
       {open && <ChatWindow open={ open } closeHandler={ closeHandler } />}
     </div>
   );

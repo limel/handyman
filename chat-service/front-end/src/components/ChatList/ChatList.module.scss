@@ -7,8 +7,9 @@
   border-right: 2px solid #FBE64D;
 
   @media (width < 768px) {
-    padding: 1rem;
+    padding: 1rem 5px;
     flex: 0 1 5%;
+    border-right: 1px solid #FBE64D;
   }
 }
 

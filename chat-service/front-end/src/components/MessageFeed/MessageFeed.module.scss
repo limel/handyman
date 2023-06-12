@@ -4,6 +4,9 @@
   overflow-y: scroll;
   height: 100%;
   padding: 1rem;
+  @media (width < 768px) {
+    margin-bottom: 10px;
+  }
 }
 
 .messages {
@@ -20,6 +23,12 @@
   min-width: 272px;
   max-width: 272px;
   word-wrap: break-word;
+
+  @media (width < 768px) {
+    min-width: 215px;
+    max-width: 215px;
+    padding: 5px 15px;
+  }
 }
 
 .server {

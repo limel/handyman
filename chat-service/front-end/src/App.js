@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import Chat from "./components/Chat";
 import Auth from "./components/Auth";
 
-
-const LOCAL_STORAGE_KEY = "chatsList";
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 

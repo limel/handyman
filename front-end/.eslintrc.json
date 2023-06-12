@@ -34,7 +34,10 @@
 				"input[type=\"image\"]": ["InputImage"]
 			}
 		],
-		"linebreak-style": "off",
+    "jsx-a11y/no-autofocus": [ 2, {
+      "ignoreNonDOM": true
+    }],
+    "linebreak-style": "off",
 		"object-curly-spacing": ["error", "always"],
 		"react/jsx-curly-spacing": ["error", "always"],
 

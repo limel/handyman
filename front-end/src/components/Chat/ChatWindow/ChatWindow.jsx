@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
+import cn from 'classnames';
 import s from '~/components/Chat/Chat.module.scss';
 
-export default function ChatWindow({ open, closeHandler }) {
+const ChatWindow = ({ open, closeHandler }) => {
   const [ message, setMessage ] = useState();
   const [ messages, setMessages ] = useState([
     { from: '', message: 'Hello there, Please ask your question.' },
   ]);
   const [ socket, setSocket ] = useState(null);
   const messagesEndRef = useRef(null);
-  // let socket;
 
   useEffect(() => {
     const newSocket = io('http://127.0.0.1:5050', {
@@ -20,15 +20,14 @@ export default function ChatWindow({ open, closeHandler }) {
       console.log('Connected to the server', newSocket.id);
     });
 
-    newSocket.on('message/client-recieved', (msg) => {
-      console.log('Message from server', msg);
-      console.log(messages);
-      setMessages((prev) => [ ...prev, msg ]);
+    newSocket.on('message/client-recieved', (incomingMessage) => {
+      setMessages((prev) => [ ...prev, incomingMessage ]);
     });
 
     setSocket(newSocket);
 
     return () => {
+      newSocket.off('message/client-recieved');
       newSocket.disconnect();
     };
   }, []);
@@ -43,8 +42,8 @@ export default function ChatWindow({ open, closeHandler }) {
 
   const sendMessage = () => {
     if (message.trim() !== '') {
-      setMessages((prev) => [ ...prev, { from: 'client', msg: message } ]);
-      socket.emit('message/client-send', { message, socketId: socket.id, from: 'client' });
+      setMessages((prev) => [ ...prev, { from: 'client', message } ]);
+      socket.emit('message/client-send', { id: socket.id, message, from: 'client' });
       setMessage('');
     }
   };
@@ -77,20 +76,17 @@ export default function ChatWindow({ open, closeHandler }) {
         </div>
         <div className={ s.body }>
           <ul className={ s['msg-block'] }>
-            {messages.map((msg, index) => (!msg.from
-              ? (
-                <li className={ s['server-msg'] } key={ index }>
-                  {/* {'Handyman: '}
-                  {' '} */}
-                  {msg.message}
-                </li>
-              ) : (
-                <li className={ s['client-msg'] } key={ index }>
-                  {/* {`${ msg.from }: `}
-                  {' '} */}
-                  {msg.msg}
-                </li>
-              )))}
+            {messages.map((msg, index) => (
+              <li
+                className={ cn({
+                  [s.server]: msg.from === 'server',
+                  [s.client]: msg.from === 'client',
+                }) }
+                key={ index }
+              >
+                {msg.message}
+              </li>
+            )) }
             <p className={ s['msg-help-info'] }>Press Enter to send a message</p>
             <div ref={ messagesEndRef } />
           </ul>
@@ -115,4 +111,6 @@ export default function ChatWindow({ open, closeHandler }) {
       </div>
     )
   );
-}
+};
+
+export default ChatWindow;

@@ -5,6 +5,7 @@
   gap: 12px;
   position: relative;
 }
+
 .text {
   font-size: 16px;
   text-align: right;
@@ -33,7 +34,7 @@
   bottom: 0;
   width: 398px;
   height: 653px;
-  background: linear-gradient(151.13deg, rgba(245, 245, 245, 0.28) 14.71%, rgba(245, 245, 245, 0) 106.39%);
+  background: linear-gradient(151.13deg, rgb(245 245 245 / 28%) 14.71%, rgb(245 245 245 / 0%) 106.39%);
   backdrop-filter: blur(25px);
   border-radius: 61px;
   border: 3px solid #FDFACB;
@@ -94,7 +95,7 @@
       gap: 17px;
     }
 
-    .server-msg {
+    .server {
       border: 1px solid #fff;
       border-radius: 15px;
       padding: 10px 20px;
@@ -104,7 +105,7 @@
       word-wrap: break-word;
     }
 
-    .client-msg {
+    .client {
       border: 1px solid var(--accent-color-light);
       color: var(--accent-color-light);
       border-radius: 15px;
@@ -125,9 +126,10 @@
       left: 75px;
       font-size: 1rem;
       letter-spacing: 0.045em;
-      color: rgba(255, 255, 255, 0.75);
+      color: rgb(255 255 255 / 75%);
     }
   }
+
   .footer {
     position: absolute;
     left: 0;
@@ -143,6 +145,7 @@
       justify-content: center;
       gap: 5px;
     }
+
     .button svg {
       width: 30px;
       height: 30px;
@@ -155,11 +158,12 @@
     outline: none;
     background-color: transparent;
     color: var(--accent-color-light);
+
     ::placeholder {
       font-style: italic;
       font-weight: 300;
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.75);
+      color: rgb(255 255 255 / 75%);
       letter-spacing: 0.045em;
     }
   }
@@ -184,6 +188,7 @@
           max-width: 200px;
           word-wrap: break-word;
         }
+
         .msg-help-info {
           font-size: 0.8rem;
           left: 50px;

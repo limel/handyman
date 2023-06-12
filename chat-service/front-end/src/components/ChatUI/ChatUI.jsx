@@ -2,14 +2,13 @@ import { useRef, useEffect } from "react";
 import s from "./ChatUI.module.scss";
 
 const ChatUI = ({activeChatId, socket}) => {
-  const a = " ";
   const inputRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const message = inputRef.current.value;
     if(activeChatId) {
-      socket.emit("message/server-send", {message, chatId: activeChatId, from: "server"});
+      socket.emit("message/server-send", {message, id: activeChatId, from: 'server'});
       inputRef.current.value = "";
     }
   };
@@ -26,9 +25,6 @@ const ChatUI = ({activeChatId, socket}) => {
       document.removeEventListener("keypress", handleKeyPress);
     };
   }, [activeChatId]);
-
-
-  
 
   return (
     <form className={s.container} onSubmit={(e)=> handleSubmit(e)} >

@@ -2,10 +2,13 @@ import axios from 'axios';
 
 const getGoogleReviews = async () => {
   try {
-    const response = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${ process.env.GOOGLE_PLACE_ID }&fields=reviews&sort_by=newestFirst &key=${ process.env.GOOGLE_API_KEY }`);
-    const { data } = response;
-    if (data.status === 'OK') {
-      return (data.result.reviews);
+    //https://data.accentapi.com/feed/153761.json?nocache=1686598133255
+    //const response = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${ process.env.GOOGLE_PLACE_ID }&fields=reviews&sort_by=newestFirst &key=${ process.env.GOOGLE_API_KEY }`);
+    const response = await axios.get('https://data.accentapi.com/feed/153761.json?nocache=1686598133255');
+    // const { data } = response;
+    if (response.status === 200) {
+      const { data } = response;
+      return (data.reviews);
     }
   } catch (error) {
     console.error('Error fetching Google Reviews:', error);

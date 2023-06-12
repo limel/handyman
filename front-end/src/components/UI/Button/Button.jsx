@@ -3,7 +3,7 @@ import Link from 'next/link';
 import s from './Button.module.scss';
 
 const Button = ({
-  children, className, type, onClick, tag, href = false,
+  children, className, type, onClick, tag, href = false, target,
 }) =>
 {
   const Tag = href !== false ? tag || Link : tag || 'button';
@@ -14,6 +14,7 @@ const Button = ({
       type={ type }
       onClick={ tag !== 'a' || tag !== Link ? onClick : null }
       href={ hrefValue }
+      target={ target }
     >
       {children}
     </Tag>

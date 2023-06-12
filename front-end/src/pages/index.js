@@ -37,8 +37,8 @@ export default function Home() {
         <House
           width={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '137' }
           height={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '110' }
-          top={ windowWidth >= 1440 ? '34%' : windowWidth >= 768 ? '38%' : '38%' }
-          left={ windowWidth >= 1440 ? '67%' : windowWidth >= 768 ? '14%' : '11%' }
+          top={ windowWidth >= 1440 ? '36%' : windowWidth >= 768 ? '41.5%' : '38%' }
+          left={ windowWidth >= 1440 ? '67%' : windowWidth >= 768 ? '15%' : '16%' }
         />
         <Kitchen
           bottom={ windowWidth <= 768 ? '15%' : '13%' }
@@ -53,7 +53,7 @@ export default function Home() {
           height={ windowWidth >= 1440 ? '146' : '99' }
         />
         {windowWidth >= 768
-          ? <Thorfer top="62%" left="55%" delay="7" />
+          ? <Thorfer top="64%" left="55%" delay="7" />
           : null}
       </Background>
     </>

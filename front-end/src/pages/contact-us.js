@@ -35,7 +35,7 @@ export default function ContuctUs({ info }) {
         {windowWidth >= 1440 ? <LampLightAnimation top="-21%" left="30%" /> : null}
         <LampLightAnimation
           top={ windowWidth >= 1440 ? '-21%' : windowWidth >= 768 ? '-25%' : '-30%' }
-          left={ windowWidth >= 1024 ? '68%' : windowWidth < 425 ? '71%' : '66%' }
+          left={ windowWidth >= 1024 ? '62.5%' : windowWidth < 425 ? '71%' : '66%' }
         />
         <Bath
           bottom={ windowWidth >= 1440 ? '8%' : windowWidth >= 768 ? '22%' : '6%' }

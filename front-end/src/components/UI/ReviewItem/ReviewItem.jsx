@@ -5,14 +5,21 @@ import Star from '../Star/Star';
 import s from './ReviewItem.module.scss';
 
 const ReviewItem = (props) => {
-  const name = props?.author_name ?? props?.user?.name ?? props?.review_name ?? 'User';
-  const photo = props?.profile_photo_url
+  const name = props?.reviewer_name ?? props?.user?.name ?? props?.review_name ?? 'User';
+  const photo = props?.reviewer_photo_link
                 ?? props?.users?.profile_url
                 ?? props?.review_profile
                 ?? null;
-  const relativeTime = props?.relative_time_description ?? props?.time_created ?? props?.review_date ?? 'many years ago';
-  const text = props?.text ?? props?.text ?? props?.review_text ?? 'No review text';
-  const url = props?.author_url ?? props?.url ?? props?.review_link ?? null;
+  const relativeTime = props?.review_date_time ?? props?.time_created ?? props?.review_date ?? 'many years ago';
+  const dateString = relativeTime;
+  const dateObject = new Date(dateString);
+  console.log(dateObject);
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+  const year = dateObject.getFullYear();
+  const date = (`${ year }-${ month }-${ day }`);
+  const text = props?.review_text ?? props?.text ?? props?.review_text ?? 'No review text';
+  const url = props?.reviewer_link ?? props?.url ?? props?.review_link ?? null;
   let linkHref;
   const { source } = props;
   switch (source) {
@@ -85,7 +92,7 @@ const ReviewItem = (props) => {
             )}
           </div>
           <p className={ s.name }>{ name }</p>
-          <p className={ s.time }>{ relativeTime }</p>
+          <p className={ s.time }>{ isNaN(date) ? relativeTime : date }</p>
           <div className={ s.rating }>
             <Star />
             <Star />

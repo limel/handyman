@@ -18,9 +18,11 @@ const Footer = () => {
         <Chat />
       </div>
       <p className={ s.rights }>
-        © All rights reserved
+        ©
         {' '}
         { date.getFullYear() }
+        {' '}
+        Acumen Handyman. All rights reserved
       </p>
     </footer>
   );

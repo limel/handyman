@@ -87,6 +87,16 @@
   align-self: flex-start;
   letter-spacing: -0.01em;
   white-space: nowrap;
+
+  @media (width <= 992px) {
+    margin-top: 2px;
+  }
+  @media (width < 768px) {
+    margin-top: 3px;
+  }
+  @media (width < 425px) {
+    margin-top: 0px;
+  }
 }
 
 .link {

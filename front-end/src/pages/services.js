@@ -87,8 +87,8 @@ export default function Home({ services }) {
         {windowWidth < 1024
           ? (
             <Bath
-              bottom={ windowWidth >= 768 ? '8%' : '6%' }
-              left={ windowWidth >= 768 ? '28%' : '20%' }
+              bottom={ windowWidth >= 768 ? '8%' : '10%' }
+              left={ windowWidth >= 768 ? '28%' : '2%' }
               width="104"
               height="94"
             />
@@ -96,8 +96,8 @@ export default function Home({ services }) {
         {windowWidth < 1024
           ? (
             <Kitchen
-              bottom={ windowWidth >= 768 ? '18%' : '15%' }
-              left={ windowWidth >= 768 ? '8%' : '75 %' }
+              bottom={ windowWidth >= 768 ? '18%' : '10%' }
+              left={ windowWidth >= 768 ? '8%' : '77%' }
               width={ windowWidth >= 768 ? '103' : '80' }
               height={ windowWidth >= 768 ? '108' : '85' }
             />

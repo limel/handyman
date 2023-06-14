@@ -11,7 +11,7 @@ const ReviewsHead = () => (
       <Star />
       <Star />
       {' '}
-      FROM 100+ REVIEWS
+      <span>FROM 100+ REVIEWS</span>
     </p>
     <p className={ s['reviews-discription'] }>
       See customer reviews for
@@ -21,7 +21,7 @@ const ReviewsHead = () => (
       on
       {' '}
       <Link
-        href="https://www.google.com/maps/place/BBR+-+%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D0%B5+%D0%BF%D0%B8%D1%82%D0%B0%D0%BD%D0%B8%D0%B5+%7C+%D0%94%D0%BD%D0%B5%D0%BF%D1%80+%7C+%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0+%7C+%D0%A1%D0%BF%D0%BE%D1%80%D1%82%D0%9F%D0%B8%D1%82/@48.4184456,35.0437766,14z/data=!4m8!3m7!1s0x40dbe351535acc29:0x982d853f4019a050!8m2!3d48.424884!4d35.0206527!9m1!1b1!16s%2Fg%2F11f38h0gxt?hl=ru-RU&entry=ttu"
+        href="https://www.google.com/maps/place/Acumen+Handyman/@47.7542364,-122.31856,17z/data=!4m8!3m7!1s0x6744f0b5ef52c5b9:0x2194431aff5cbfc4!8m2!3d47.7542364!4d-122.3159851!9m1!1b1!16s%2Fg%2F11stnpdgd8?entry=ttu"
         target="_blank"
       >
         <span className={ s.blue }>G</span>

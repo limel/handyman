@@ -13,11 +13,11 @@ const ReviewItem = (props) => {
   const relativeTime = props?.review_date_time ?? props?.time_created ?? props?.review_date ?? 'many years ago';
   const dateString = relativeTime;
   const dateObject = new Date(dateString);
-  console.log(dateObject);
   const month = dateObject.getMonth() + 1;
   const day = dateObject.getDate();
   const year = dateObject.getFullYear();
   const date = (`${ year }-${ month }-${ day }`);
+  console.log(date);
   const text = props?.review_text ?? props?.text ?? props?.review_text ?? 'No review text';
   const url = props?.reviewer_link ?? props?.url ?? props?.review_link ?? null;
   let linkHref;
@@ -92,7 +92,7 @@ const ReviewItem = (props) => {
             )}
           </div>
           <p className={ s.name }>{ name }</p>
-          <p className={ s.time }>{ isNaN(date) ? relativeTime : date }</p>
+          <p className={ s.time }>{ !day ? relativeTime : date }</p>
           <div className={ s.rating }>
             <Star />
             <Star />

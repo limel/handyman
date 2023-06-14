@@ -46,7 +46,7 @@ const Steps = () => {
           </div>
           <p>
             We will discuss your
-            project and quote ,answer your questions
+            project and quote Answer your questions
           </p>
         </div>
         <div className={ s.step }>

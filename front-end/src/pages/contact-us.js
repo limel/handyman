@@ -63,10 +63,10 @@ export default function ContuctUs({ info }) {
           left={ windowWidth >= 1024 ? '62.5%' : windowWidth < 425 ? '71%' : '66%' }
         />
         <Bath
-          bottom={ windowWidth >= 1440 ? '8%' : windowWidth >= 768 ? '22%' : '6%' }
+          bottom={ windowWidth >= 1440 ? '8%' : windowWidth >= 768 ? '22%' : '5%' }
           left={ windowWidth >= 1440 ? '16%' : windowWidth >= 768 ? '67%' : '16%' }
-          width={ windowWidth >= 1440 ? '154' : '102' }
-          height={ windowWidth >= 1440 ? '140' : '92' }
+          width={ windowWidth >= 1440 ? '154' : '90' }
+          height={ windowWidth >= 1440 ? '140' : '80' }
           transform={ windowWidth >= 1440 ? 'scaleX(-1)' : 'scaleX(1)' }
         />
         {windowWidth >= 1440 ? <House bottom="5%" left="64%" /> : null}

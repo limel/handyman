@@ -19,11 +19,9 @@ app.prepare().then(() => {
 
   // Handle WebSocket connections
   io.on('connection', (socket) => {
-    console.log('New WebSocket connection');
 
     // Handle incoming WebSocket messages
     socket.on('message', (message) => {
-      console.log('Received message:', message);
 
       // Send a response back to the client
       socket.send(`Response from server: ${ message }`);
@@ -31,12 +29,10 @@ app.prepare().then(() => {
 
     // Handle WebSocket disconnection
     socket.on('disconnect', () => {
-      console.log('WebSocket connection closed');
     });
   });
 
   server.listen(3000, (err) => {
     if (err) throw err;
-    console.log('> Ready on http://localhost:3000');
   });
 });

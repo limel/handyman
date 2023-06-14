@@ -17,7 +17,6 @@ const ReviewItem = (props) => {
   const day = dateObject.getDate();
   const year = dateObject.getFullYear();
   const date = (`${ year }-${ month }-${ day }`);
-  console.log(date);
   const text = props?.review_text ?? props?.text ?? props?.review_text ?? 'No review text';
   const url = props?.reviewer_link ?? props?.url ?? props?.review_link ?? null;
   let linkHref;

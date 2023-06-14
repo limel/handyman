@@ -6,7 +6,6 @@ export default async function getContacts() {
     const { data: { attributes } } = response.data;
     return attributes;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 }

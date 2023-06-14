@@ -31,7 +31,6 @@ const FormWrapper = ({ children, initialValues }) => {
         const fileIds = data.map((file) => file.id);
         values.upload_image = fileIds;
       } catch (error) {
-        console.log(error);
         setStatus('error');
       }
     }

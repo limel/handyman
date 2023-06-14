@@ -61,23 +61,31 @@ export default function Home() {
         <House
           width={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '137' }
           height={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '110' }
-          top={ windowWidth >= 1440 ? '36%' : windowWidth >= 768 ? '41.5%' : '38%' }
+          top={ windowWidth >= 1440 ? '36%' : windowWidth >= 768 ? '4.5%' : '38%' }
           left={ windowWidth >= 1440 ? '67%' : windowWidth >= 768 ? '15%' : '16%' }
         />
         <Kitchen
           bottom={ windowWidth <= 768 ? '15%' : '13%' }
-          left={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '75%' : '73%' }
-          width={ windowWidth >= 1440 ? '150' : windowWidth >= 768 ? '103' : '70' }
-          height={ windowWidth >= 1440 ? '160' : windowWidth >= 768 ? '109' : '75' }
+          left={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '15%' : '73%' }
+          width={ windowWidth >= 1440 ? '140' : windowWidth >= 768 ? '90' : '70' }
+          height={ windowWidth >= 1440 ? '150' : windowWidth >= 768 ? '90' : '75' }
         />
         <Bath
-          bottom={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '5%' : '10%' }
-          left={ windowWidth >= 1440 ? '87%' : windowWidth >= 768 ? '27%' : '15%' }
-          width={ windowWidth >= 1440 ? '160' : '104' }
-          height={ windowWidth >= 1440 ? '146' : '99' }
+          bottom={ windowWidth >= 1440 ? '20%' : windowWidth >= 768 ? '5%' : '13%' }
+          left={ windowWidth >= 1440 ? '84%' : windowWidth >= 768 ? '33%' : '15%' }
+          width={ windowWidth >= 1440 ? '160' : '80' }
+          height={ windowWidth >= 1440 ? '146' : '70' }
         />
         {windowWidth >= 768
-          ? <Thorfer top="64%" left="55%" delay="7" />
+          ? (
+            <Thorfer
+              top="64%"
+              left="55%"
+              delay="7"
+              width={ windowWidth <= 992 ? '110' : '130' }
+              height={ windowWidth <= 992 ? '200' : '289' }
+            />
+          )
           : null}
       </Background>
     </>

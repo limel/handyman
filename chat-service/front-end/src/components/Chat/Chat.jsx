@@ -21,7 +21,6 @@ const Chat = () => {
     const newSocket = io("ws://127.0.0.1:5050/admin");
 
     newSocket.on("connect", () => {
-      console.log("Connected to admin panel");
     });
 
     newSocket.on("chats", (chats) => {

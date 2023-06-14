@@ -101,6 +101,4 @@ io.of("/admin").on("connection", (socket) => {
   });
 });
 
-httpServer.listen(5050, () => {
-  console.log("Server started on port 5050");
-});
+httpServer.listen(5050, () => {});

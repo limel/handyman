@@ -17,7 +17,6 @@ const ChatWindow = ({ open, closeHandler }) => {
     });
 
     newSocket.on('connect', () => {
-      console.log('Connected to the server', newSocket.id);
     });
 
     newSocket.on('message/client-recieved', (incomingMessage) => {

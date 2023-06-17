@@ -12,7 +12,7 @@ const ChatWindow = ({ open, closeHandler }) => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const newSocket = io('http://127.0.0.1:5050', {
+    const newSocket = io('ws://acumen-handyman.com:5050', {
       transports: [ 'websocket' ],
     });
 

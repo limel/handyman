@@ -9,4 +9,10 @@ module.exports = [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
+  {
+    // This is the middleware that redirects to /admin
+    // when the user visits the root URL.
+    // See cms\src\middlewares\admin-redirect.js
+    resolve: './src/middlewares/admin-redirect.js',
+  },
 ];

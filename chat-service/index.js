@@ -6,8 +6,8 @@ const cors = require("cors");
 const Chance = require("chance");
 const TelegramBot = require("node-telegram-bot-api");
 
-const TELEGRAM_TOKEN = "5559726721:AAED2QtVs0-S9de4F70JgsnfOMHc8u46yys";
-const TELEGRAM_CHAT_ID = "-1001564312270";
+const TELEGRAM_TOKEN = "6268629725:AAEc0huINwCnEVLjPbceGoeIP2Okv0eU7Lc";
+const TELEGRAM_CHAT_ID = "-1001851955250";
 
 const login = "admin";
 const pass = "admin";
@@ -75,7 +75,7 @@ io.on("connection", (socket) => {
       chat.messages.push(data);
       io.of("/admin").emit("chats", chats);
       if (isFirstMessage) {
-        bot.sendMessage(TELEGRAM_CHAT_ID, "You have a new message! Check admin panel");
+        bot.sendMessage(TELEGRAM_CHAT_ID, "You have a new message! Check admin panel http://acumen-handyman.com:5050/");
         isFirstMessage = false; // Set the flag to false after the first message
       }
     }

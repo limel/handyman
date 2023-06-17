@@ -18,7 +18,7 @@ const Chat = () => {
       setChatsList(storedChats);
     }
 
-    const newSocket = io("ws://127.0.0.1:5050/admin");
+    const newSocket = io("ws://acumen-handyman.com:5050/admin");
 
     newSocket.on("connect", () => {
     });

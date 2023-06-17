@@ -6,7 +6,7 @@ import s from '~/components/Chat/Chat.module.scss';
 const ChatWindow = ({ open, closeHandler }) => {
   const [ message, setMessage ] = useState();
   const [ messages, setMessages ] = useState([
-    { from: 'server', message: 'Hey ! I\'m Acumen Handyman. What can i help you with today ?' },
+    { from: 'server', message: 'Hey ! I\'m Acumen Handyman. What can I help you with today ?' },
   ]);
   const [ socket, setSocket ] = useState(null);
   const messagesEndRef = useRef(null);

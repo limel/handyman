@@ -1,18 +1,26 @@
+#root {
+  min-height: 100%;
+
+  background-color: #303030;
+}
+
 .app {
   display: flex;
-  background-color: #303030;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 .chat-block {
   display: flex;
-  flex: 1 1 85%;
+  flex: 0 1 85%;
   flex-direction: column;
   justify-content: space-between;
+  height: 100vh;
 }
 
 @media (width < 768px) {
   .chat-block {
-    flex: 1 1 95%;
+    flex: 0 1 95%;
   }
 }

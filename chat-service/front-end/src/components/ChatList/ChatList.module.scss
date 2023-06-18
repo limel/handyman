@@ -61,6 +61,10 @@
 }
 
 @media (width < 768px) {
+  .title {
+    font-size: 14px;
+  }
+
   .toggle-button {
     display: flex;
     align-items: center;

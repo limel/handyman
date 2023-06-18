@@ -20,7 +20,7 @@ app.use(express.static(path.resolve(__dirname, "front-end/build")));
 const authentificate = (req, res, next) => {
   const reqLogin = req.headers.login;
   const reqPass = req.headers.password;
-
+  
   if (reqLogin === login && reqPass === pass) {
     req.isAuthenticated = true;
   } else {

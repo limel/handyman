@@ -16,7 +16,10 @@ const Auth = ({ setIsLoggedIn }) => {
         password,
       },
     }).then((res) => res);
-    setIsLoggedIn(response.ok);
+    if (response.ok) {
+      setIsLoggedIn(response.ok);
+      localStorage.setItem('isLoggedIn', response.ok);
+    }
   };
 
   return (

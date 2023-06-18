@@ -11,8 +11,10 @@
   text-align: right;
 }
 
-.icon {
-  display: block;
+.icon-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 79px;
   height: 74px;
   background: linear-gradient(151.13deg, rgba(245, 245, 245, 0.28) 14.71%, rgba(245, 245, 245, 0) 106.39%);
@@ -26,9 +28,13 @@
     font-size: 14px;
   }
 
-  .icon {
-    width: 50px;
-    height: 50px;
+  .icon-block {
+    width: 45px;
+    height: 45px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
 
@@ -178,31 +184,40 @@
 @media (width < 768px) {
   .chat {
     right: 0;
-    width: 297px;
+    max-width: 297px;
+    height: 500px;
 
-      .header p {
-        margin-left: 10px;
+      .header {
+        padding: 25px;
+        p {
+          margin-left: 10px;
+        }
       }
-
       .close {
         margin-left: 20px;
       }
 
       .body {
-        .server-msg, .client-msg {
+        padding: 15px;
+        height: 340px;
+        
+        .server, .client {
           min-width: 200px;
           max-width: 200px;
           word-wrap: break-word;
+          font-size: 14px;
         }
 
         .msg-help-info {
           font-size: 0.8rem;
           left: 50px;
+          bottom: 85px;
         }
     }
     
     .footer {
-      padding: 20px 30px;
+      height: 80px;
+      padding: 10px 15px;
 
       .button svg {
         width: 20px;

@@ -11,25 +11,25 @@ const ValidataionSchema = Yup.object().shape({
   city: Yup.string().min(3).required('City is required'),
   zip_code: Yup.string().min(3).required('Zip code is required').matches(zipCodePattern, 'Zip code is not valid'),
   hear_about_us: Yup.string().required('Hear about us is required'),
-  upload_image: Yup.array().of(
-    Yup.mixed().test(
-      'fileFormat',
-      'wrong format',
-      (value) => {
-        if (!value) return true; // Skip validation if no file is provided
-        const supportedFormats = [ 'image/jpeg', 'image/png', 'application/pdf' ];
-        return supportedFormats.includes(value.type);
-      },
-    ).test(
-      'fileSize',
-      'image is too big',
-      (value) => {
-        if (!value) return true; // Skip validation if no file is provided
-        const maxSizeInBytes = 10 * 1024 * 1024; // 10MB
-        return value.size <= maxSizeInBytes;
-      },
-    ),
-  ),
+  // upload_image: Yup.array().of(
+  //   Yup.mixed().test(
+  //     'fileFormat',
+  //     'wrong format',
+  //     (value) => {
+  //       if (!value) return true; // Skip validation if no file is provided
+  //       const supportedFormats = [ 'image/jpeg', 'image/png', 'application/pdf' ];
+  //       return supportedFormats.includes(value.type);
+  //     },
+  //   ).test(
+  //     'fileSize',
+  //     'image is too big',
+  //     (value) => {
+  //       if (!value) return true; // Skip validation if no file is provided
+  //       const maxSizeInBytes = 10 * 1024 * 1024; // 10MB
+  //       return value.size <= maxSizeInBytes;
+  //     },
+  //   ),
+  // ),
 });
 
 export default ValidataionSchema;

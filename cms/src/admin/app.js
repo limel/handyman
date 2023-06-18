@@ -39,14 +39,6 @@ const config = {
       "app.components.LeftMenu.navbrand.workplace": "Admin panel",
     },
   },
-
-  theme: {
-    colors: {
-      primary700: "#FEF9CC",
-      primary600: "#FEF9CC",
-      alternative700: "#FEF9CC",
-    }
-  },
 };
 
 const bootstrap = (app) => {

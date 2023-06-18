@@ -6,8 +6,8 @@ const cors = require("cors");
 const Chance = require("chance");
 const TelegramBot = require("node-telegram-bot-api");
 
-const TELEGRAM_TOKEN = "6268629725:AAEc0huINwCnEVLjPbceGoeIP2Okv0eU7Lc";
-const TELEGRAM_CHAT_ID = "-1001851955250";
+const TELEGRAM_TOKEN = process.env.BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.CHAT_ID;
 
 const login = "admin";
 const pass = "admin";

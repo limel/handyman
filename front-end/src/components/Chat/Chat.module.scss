@@ -11,8 +11,10 @@
   text-align: right;
 }
 
-.icon {
-  display: block;
+.icon-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 79px;
   height: 74px;
   background: linear-gradient(151.13deg, rgba(245, 245, 245, 0.28) 14.71%, rgba(245, 245, 245, 0) 106.39%);
@@ -26,9 +28,13 @@
     font-size: 14px;
   }
 
-  .icon {
+  .icon-block {
     width: 45px;
     height: 45px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
 
@@ -193,6 +199,8 @@
 
       .body {
         padding: 15px;
+        height: 340px;
+        
         .server, .client {
           min-width: 200px;
           max-width: 200px;

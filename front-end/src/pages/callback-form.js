@@ -16,8 +16,8 @@ export default function GetAQuote() {
     if (typeof window !== 'undefined') {
       const setFavicon = (color) => {
         const favicon = document.getElementById('favicon');
-        favicon.href = `favicon-${ color }.svg`;
-        setFaviconHref(`favicon-${ color }.svg`);
+        favicon.href = `favicon-${ color }.ico`;
+        setFaviconHref(`favicon-${ color }.ico`);
       };
 
       const handleColorSchemeChange = (e) => {

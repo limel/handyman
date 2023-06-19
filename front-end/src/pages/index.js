@@ -18,8 +18,8 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       const setFavicon = (color) => {
         const favicon = document.getElementById('favicon');
-        favicon.href = `favicon-${ color }.svg`;
-        setFaviconHref(`favicon-${ color }.svg`);
+        favicon.href = `favicon-${ color }.ico`;
+        setFaviconHref(`favicon-${ color }.ico`);
       };
 
       const handleColorSchemeChange = (e) => {
@@ -59,10 +59,10 @@ export default function Home() {
         />
         <LampLigth top="-47%" left="37%" delay="3" />
         <House
-          width={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '137' }
-          height={ windowWidth >= 1440 ? '227' : windowWidth >= 768 ? '146' : '110' }
-          top={ windowWidth >= 1440 ? '36%' : windowWidth >= 768 ? '4.5%' : '38%' }
-          left={ windowWidth >= 1440 ? '67%' : windowWidth >= 768 ? '15%' : '16%' }
+          width={ windowWidth >= 1024 ? '227' : windowWidth >= 768 ? '146' : '137' }
+          height={ windowWidth >= 1024 ? '227' : windowWidth >= 768 ? '146' : '110' }
+          top={ windowWidth >= 1024 ? '36%' : windowWidth >= 768 ? '44%' : '38%' }
+          left={ windowWidth >= 1024 ? '67%' : windowWidth >= 768 ? '16%' : '16%' }
         />
         <Kitchen
           bottom={ windowWidth <= 768 ? '15%' : '16%' }

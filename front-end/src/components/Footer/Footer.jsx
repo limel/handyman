@@ -1,7 +1,7 @@
 import Link from 'next/link';
 // import Chat from '~/components/Chat';
 import s from './Footer.module.scss';
-// TODO all right reserved
+
 const Footer = () => {
   const date = new Date();
   return (

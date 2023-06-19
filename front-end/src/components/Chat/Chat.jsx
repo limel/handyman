@@ -15,7 +15,7 @@ const Chat = () => {
     setOpen(false);
   };
 
-  const imgSrc = open ? '/images/chat-icon.gif' : '/images/operator.png';
+  const imgSrc = open ? '/images/chat-icon.gif' : '/images/chat-icon.svg';
 
   return (
     <div className={ s.chatBlock }>
